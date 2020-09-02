@@ -9,7 +9,6 @@ export const RecipeItem = ({title, image, styles}) => {
           <Text style={styles.recipeTitle}>{title}</Text>
         </View>
       </ImageBackground>
-      {/*<Image style={styles.recipeImage} source={image} resizeMethod="resize" />*/}
     </View>
   );
 };

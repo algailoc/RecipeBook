@@ -1,18 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 export const homeScreenStyles = StyleSheet.create({
-  headerContainer: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: '#C8271D',
-  },
-  headerText: {
-    marginLeft: '30%',
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
   recipeList: {
     height: '100%',
   },

@@ -1,18 +1,22 @@
-import React from 'react';
-import CreateScreenModel from './createScreenModel';
+const CreateScreenController = (model) => {
+  const {currentIngredients, setCurrentIngredients} = model;
 
-const CreateScreenController = () => {
-  const {numberOfInputs, setNumberOfInputs} = CreateScreenModel();
-
-  const addIngredientInput = () => {
-    setNumberOfInputs((prevState) => [
+  const addIngredientButton = (name, amount) => {
+    setCurrentIngredients((prevState) => [
       ...prevState,
-      'input-' + prevState.length,
+      {
+        id: (prevState.length + 1).toString(),
+        name,
+        amount,
+      },
     ]);
-    console.log(numberOfInputs);
   };
 
-  return {addIngredientInput};
+  const removeIngredientTouchable = (id) => {
+    setCurrentIngredients(currentIngredients.filter((item) => id !== item.id));
+  };
+
+  return {addIngredientButton, removeIngredientTouchable};
 };
 
 export default CreateScreenController;

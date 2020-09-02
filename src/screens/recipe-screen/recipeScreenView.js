@@ -2,11 +2,11 @@ import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 
 const RecipeScreenView = ({model, styles}) => {
-  const {ingredients, steps} = model;
+  const {ingredients, steps, t} = model;
 
   return (
     <ScrollView>
-      <Text style={styles.section}>Ингредиенты</Text>
+      <Text style={styles.section}>{t('ingredients_list')}</Text>
       <View>
         {ingredients.map((item, index) => {
           return (
@@ -17,7 +17,7 @@ const RecipeScreenView = ({model, styles}) => {
           );
         })}
       </View>
-      <Text style={styles.section}>Рецепт</Text>
+      <Text style={styles.section}>{t('recipe_description')}</Text>
       <Text style={styles.steps}>{steps}</Text>
     </ScrollView>
   );

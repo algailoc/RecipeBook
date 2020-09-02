@@ -7,7 +7,7 @@ import CreateScreenController from './createScreenController';
 const CreateScreen = () => {
   const styles = CreateScreenStyles;
   const model = CreateScreenModel();
-  const controller = CreateScreenController();
+  const controller = CreateScreenController(model);
 
   return (
     <CreateScreenView styles={styles} model={model} controller={controller} />

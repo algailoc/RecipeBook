@@ -1,13 +1,17 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import {Button} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/home-screen/HomeScreen';
 import RecipeScreen from '../screens/recipe-screen/RecipeScreen';
 import CreateScreen from '../screens/create-screen/CreateScreen';
+import {useTranslation} from '../utils/common/localisation';
 
 const Stack = createStackNavigator();
 
 export const AppNavigation = () => {
+  const {t} = useTranslation();
+
   return (
     <Stack.Navigator
       initialRouteName="Home"
@@ -15,7 +19,7 @@ export const AppNavigation = () => {
         headerStyle: {backgroundColor: '#C8271D'},
         headerTintColor: '#fff',
         headerTitleStyle: {
-          marginLeft: '30%',
+          alignSelf: 'center',
           fontWeight: 'bold',
         },
       }}>
@@ -23,7 +27,9 @@ export const AppNavigation = () => {
         name="Home"
         component={HomeScreen}
         options={{
-          headerShown: false,
+          title: t('recipe_list'),
+          headerShown: true,
+          headerLeft: () => <Button title="" color="#C8271D" />,
         }}
       />
       <Stack.Screen
@@ -37,8 +43,9 @@ export const AppNavigation = () => {
         name="New recipe"
         component={CreateScreen}
         options={{
-          title: 'Новый рецепт',
-          headerTitleStyle: {marginLeft: '20%', fontWeight: 'bold'},
+          title: t('new_recipe'),
+          headerTitleStyle: {alignSelf: 'center', fontWeight: 'bold'},
+          headerRight: () => <Button title="" color="#C8271D" />,
         }}
       />
     </Stack.Navigator>

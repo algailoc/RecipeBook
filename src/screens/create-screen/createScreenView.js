@@ -1,25 +1,57 @@
 import React from 'react';
-import {ScrollView, View, TextInput, Button} from 'react-native';
+import {
+  Text,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+  ScrollView,
+  LogBox,
+} from 'react-native';
+import {AddIngredientDialog} from './addIngredientDialog';
+
+LogBox.ignoreLogs([
+  'VirtualizedLists should never be nested', // TODO: Remove when fixed
+]);
 
 export const CreateScreenView = ({styles, model, controller}) => {
-  const {numberOfInputs} = model;
-  const {addIngredientInput} = controller;
+  const {
+    currentIngredients,
+    setRecipeSteps,
+    setRecipeName,
+    recipeName,
+    recipeSteps,
+    t,
+  } = model;
+  const {removeIngredientTouchable} = controller;
 
   return (
     <ScrollView>
-      <Button title="Готово" />
-      <TextInput placeholder="Название" />
-      <TextInput placeholder="Ингредиент" />
-      <View>
-        {numberOfInputs.map((item, index) => (
-          <TextInput key={index} placeholder="Input" />
-        ))}
-      </View>
-      <Button title="Добавить ингредиент" onPress={addIngredientInput} />
       <TextInput
-        placeholder="Рецепт"
+        value={recipeName}
+        onChangeText={(text) => setRecipeName(text)}
+        placeholder={t('recipe_name')}
+      />
+      <FlatList
+        data={currentIngredients}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => {
+          return (
+            <TouchableOpacity
+              style={styles.items}
+              onLongPress={() => removeIngredientTouchable(item.id)}>
+              <Text>{item.name}</Text>
+              <Text>{item.amount}</Text>
+            </TouchableOpacity>
+          );
+        }}
+      />
+      <AddIngredientDialog model={model} controller={controller} />
+      <TextInput
+        placeholder={t('recipe_input')}
         style={styles.stepsInput}
         multiline={true}
+        value={recipeSteps}
+        onChangeText={(text) => setRecipeSteps(text)}
       />
     </ScrollView>
   );
