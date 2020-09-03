@@ -5,13 +5,14 @@ import {recipeScreenStyles} from './recipeScreenStyles';
 import {RecipeLoader} from '../../components/recipeLoader';
 import Icon from 'react-native-vector-icons/Feather';
 import {useFocusEffect} from '@react-navigation/native';
+import RecipeScreenController from './recipeScreenController';
 
 const RecipeScreen = () => {
   useFocusEffect(() => {
     model.navigation.setOptions({
       headerRight: () => (
         <Icon.Button
-          onPress={() => model.navigation.navigate('Home')}
+          onPress={() => controller.editButtonHandler()}
           name="edit"
           color="#fff"
           size={25}
@@ -23,9 +24,12 @@ const RecipeScreen = () => {
 
   const model = RecipeScreenModel();
   const styles = recipeScreenStyles;
+  const controller = RecipeScreenController(model);
 
   if (model.title !== '') {
-    return <RecipeScreenView model={model} styles={styles} />;
+    return (
+      <RecipeScreenView controller={controller} model={model} styles={styles} />
+    );
   } else {
     return <RecipeLoader styles={styles} />;
   }

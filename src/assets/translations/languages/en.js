@@ -10,9 +10,20 @@ export const en = {
 
   new_recipe: 'New recipe',
   recipe_name: 'Recipe name',
+  ingredients_removal_help: 'You can remove ingredients by long pressing them',
   add_ingredients_dialog: 'Add ingredients',
   recipe_input: 'Write recipe here',
   ingredient_name: 'Name',
   ingredient_amount: 'Amount',
   add_ingredient_button: 'Add',
+  add_complete: 'Finish',
+
+  options_edit: 'Edit',
+  options_remove: 'Delete',
+
+  alert_name_empty: 'Name cannot be empty',
+  alert_go_back_title: 'Are you sure you want to go back',
+  alert_go_back_message: "The recipe won't be saved",
+  alert_confirm: 'I am sure',
+  alert_cancel: 'Cancel',
 };

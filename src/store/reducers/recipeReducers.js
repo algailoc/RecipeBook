@@ -1,7 +1,16 @@
 import {
+  ADD_RECIPE,
   ADD_RECIPE_BEGIN,
   ADD_RECIPE_ERROR,
   ADD_RECIPE_FINISHED,
+  EDIT_RECIPE,
+  EDIT_RECIPE_BEGIN,
+  EDIT_RECIPE_ERROR,
+  EDIT_RECIPE_FINISHED,
+  REMOVE_RECIPE,
+  REMOVE_RECIPE_BEGIN,
+  REMOVE_RECIPE_ERROR,
+  REMOVE_RECIPE_FINISHED,
 } from '../types/recipeTypes';
 
 const initialState = {
@@ -16,13 +25,13 @@ const initialState = {
         '3. Разогрейте сковородку и смажьте маслом. Налейте в центр сковородки небольшую порцию теста. Сразу же вращайте сковородку по кругу, чтобы тесто равномерно распределилось по всей поверхности.\n' +
         '4. Жарим блины на среднем огне с обеих сторон до зарумянивания. Блины очень тонкие, поэтому переворачивайте их аккуратно с помощью лопатки. После того, как блин будет готов, снимите со сковородки и смажьте сливочным маслом, чтобы края не были сухими, а блины получились нежными.',
       ingredients: [
-        {name: 'Молоко', amount: '500 мл'},
-        {name: 'Яйца', amount: '3 шт'},
-        {name: 'Масло растительное', amount: ''},
-        {name: 'Мука ', amount: '250 г'},
-        {name: 'Сахар ', amount: '1 ст. ложка'},
-        {name: 'Соль ', amount: ''},
-        {name: 'Масло сливочное', amount: '1 ст. ложка'},
+        {id: '1', name: 'Молоко', amount: '500 мл'},
+        {id: '2', name: 'Яйца', amount: '3 шт'},
+        {id: '3', name: 'Масло растительное', amount: ''},
+        {id: '4', name: 'Мука ', amount: '250 г'},
+        {id: '5', name: 'Сахар ', amount: '1 ст. ложка'},
+        {id: '6', name: 'Соль ', amount: ''},
+        {id: '7', name: 'Масло сливочное', amount: '1 ст. ложка'},
       ],
     },
     {
@@ -31,7 +40,7 @@ const initialState = {
       img: require('../../assets/img/lasanja.jpg'),
       steps: 'Steps here',
       ingredients: [
-        {name: 'Name of ingredient', amount: 'Amount of ingredient'},
+        {id: '1', name: 'Name of ingredient', amount: 'Amount of ingredient'},
       ],
     },
     {
@@ -40,7 +49,7 @@ const initialState = {
       img: require('../../assets/img/default_bg.jpg'),
       steps: 'Steps here',
       ingredients: [
-        {name: 'Name of ingredient', amount: 'Amount of ingredient'},
+        {id: '1', name: 'Name of ingredient', amount: 'Amount of ingredient'},
       ],
     },
   ],
@@ -48,6 +57,22 @@ const initialState = {
 
 export const recipeReducers = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_RECIPE: {
+      return {
+        ...state,
+        recipes: [
+          ...state.recipes,
+          {
+            id: action.payload.id,
+            title: action.payload.title,
+            img: require('../../assets/img/default_bg.jpg'),
+            steps: action.payload.steps,
+            ingredients: action.payload.ingredients,
+          },
+        ],
+      };
+    }
+
     case ADD_RECIPE_BEGIN: {
       return state;
     }
@@ -69,6 +94,44 @@ export const recipeReducers = (state = initialState, action) => {
       console.log('Error on adding recipe');
       return state;
     }
+
+    case REMOVE_RECIPE: {
+      return {
+        ...state,
+        recipes: state.recipes.filter((item) => item.id !== action.payload),
+      };
+    }
+
+    case REMOVE_RECIPE_BEGIN: {
+      return state;
+    }
+
+    case REMOVE_RECIPE_FINISHED: {
+      return state;
+    }
+
+    case REMOVE_RECIPE_ERROR: {
+      console.log('Error on removing recipe');
+      return state;
+    }
+
+    case EDIT_RECIPE: {
+      return state;
+    }
+
+    case EDIT_RECIPE_BEGIN: {
+      return state;
+    }
+
+    case EDIT_RECIPE_FINISHED: {
+      return state;
+    }
+
+    case EDIT_RECIPE_ERROR: {
+      console.log('Error on editing recipe');
+      return state;
+    }
+
     default: {
       return state;
     }

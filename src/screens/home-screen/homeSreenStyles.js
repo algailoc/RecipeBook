@@ -1,6 +1,9 @@
 import {StyleSheet} from 'react-native';
 
 export const homeScreenStyles = StyleSheet.create({
+  imageBkg: {
+    width: '100%',
+  },
   recipeList: {
     height: '100%',
   },
@@ -22,6 +25,6 @@ export const homeScreenStyles = StyleSheet.create({
   },
   recipeItem: {
     height: 200,
-    marginBottom: 10,
+    marginBottom: 5,
   },
 });

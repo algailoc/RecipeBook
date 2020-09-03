@@ -26,4 +26,17 @@ export const recipeScreenStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  popUpWrapper: {
+    // position: 'absolute',
+    // left: '130%',
+  },
+  optionsWrapper: {
+    backgroundColor: '#fff',
+    // position: 'absolute',
+    // left: '130%',
+    // width: '80%',
+  },
+  optionText: {
+    fontSize: 20,
+  },
 });

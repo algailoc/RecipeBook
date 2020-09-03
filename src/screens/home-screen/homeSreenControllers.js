@@ -1,8 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
-
 const HomeScreenController = (model) => {
-  // const navigation = useNavigation();
-
   const goToRecipeScreen = (id, title) => {
     // setRecipeId(id);
     console.log(id, title);

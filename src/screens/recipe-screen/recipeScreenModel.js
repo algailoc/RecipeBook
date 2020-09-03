@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from '../../utils/common/localisation';
@@ -7,6 +7,7 @@ import {useTranslation} from '../../utils/common/localisation';
 const RecipeScreenModel = () => {
   const route = useRoute();
   const {id} = route.params;
+  const dispatch = useDispatch();
 
   const {t} = useTranslation();
 
@@ -15,6 +16,8 @@ const RecipeScreenModel = () => {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [steps, setSteps] = useState('');
+
+  const [isOpened, setIsOpened] = useState(false);
 
   const recipeList = useSelector((state) => state.recipe.recipes);
 
@@ -28,7 +31,18 @@ const RecipeScreenModel = () => {
     }
   }, [id, recipeList]);
 
-  return {title, ingredients, steps, t, navigation};
+  return {
+    id,
+    title,
+    ingredients,
+    steps,
+    t,
+    navigation,
+    recipeList,
+    isOpened,
+    setIsOpened,
+    dispatch,
+  };
 };
 
 export default RecipeScreenModel;

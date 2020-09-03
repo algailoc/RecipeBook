@@ -1,8 +1,12 @@
 import {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {useTranslation} from '../../utils/common/localisation';
+import {useNavigation} from '@react-navigation/native';
 
 const CreateScreenModel = () => {
+  const navigation = useNavigation();
   const {t} = useTranslation();
+  const dispatch = useDispatch();
 
   const [currentIngredients, setCurrentIngredients] = useState([
     {id: '1', name: 'Мука', amount: '100 г'},
@@ -19,6 +23,8 @@ const CreateScreenModel = () => {
     setCurrentIngredients,
     setRecipeSteps,
     setRecipeName,
+    navigation,
+    dispatch,
     t,
   };
 };
