@@ -2,7 +2,7 @@ import {ru} from './languages/ru';
 import {en} from './languages/en';
 
 const translations = {
-  defaultLanguage: 'en',
+  defaultLanguage: 'ru',
   translationsMap: {
     ru: ru,
     en: en,

@@ -13,7 +13,7 @@ LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
 ]);
 
-export const CreateScreenView = ({styles, model, controller}) => {
+export const EditScreenView = ({model, controller, styles}) => {
   const {
     currentIngredients,
     setRecipeSteps,
@@ -24,7 +24,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
   } = model;
   const {
     removeIngredientTouchable,
-    addRecipeButtonHandler,
+    editRecipeButtonHandler,
     editPictureHandler,
   } = controller;
 
@@ -70,7 +70,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
       <TouchableOpacity
         style={styles.createRecipeButton}
         onPress={() =>
-          addRecipeButtonHandler(recipeName, recipeSteps, currentIngredients)
+          editRecipeButtonHandler(recipeName, recipeSteps, currentIngredients)
         }>
         <Text style={styles.createRecipeButtonText}>{t('add_complete')}</Text>
       </TouchableOpacity>

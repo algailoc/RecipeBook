@@ -1,8 +1,8 @@
-import {addRecipe} from '../../store/actions/recipeActionCreator';
+import {editRecipe} from '../../store/actions/recipeActionCreator';
 import {Alert} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 
-const CreateScreenController = (model) => {
+const EditScreenController = (model) => {
   const {
     currentIngredients,
     setCurrentIngredients,
@@ -35,14 +35,13 @@ const CreateScreenController = (model) => {
     });
   };
 
-  const addRecipeButtonHandler = (title, steps, ingredients) => {
+  const editRecipeButtonHandler = (title, steps, ingredients) => {
     if (model.recipeName !== '') {
-      const id = Date.now().toString();
-      if (recipePic === null) {
-        setRecipePic(require('../../assets/img/default_bg.jpg'));
-      }
-      dispatch(addRecipe(id, title, steps, ingredients, recipePic));
       navigation.navigate('Home');
+      setTimeout(() => {
+        dispatch(editRecipe(model.id, title, steps, ingredients, recipePic)); //TODO remove timeout
+      }, 1000);
+      // dispatch(editRecipe(model.id, title, steps, ingredients));
     } else {
       Alert.alert('', t('alert_name_empty'), [{text: ''}, {text: ''}], {
         cancelable: true,
@@ -72,10 +71,10 @@ const CreateScreenController = (model) => {
   return {
     addIngredientButton,
     removeIngredientTouchable,
-    addRecipeButtonHandler,
+    editRecipeButtonHandler,
     backButtonHandler,
     editPictureHandler,
   };
 };
 
-export default CreateScreenController;
+export default EditScreenController;

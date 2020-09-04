@@ -6,6 +6,7 @@ import HomeScreen from '../screens/home-screen/HomeScreen';
 import RecipeScreen from '../screens/recipe-screen/RecipeScreen';
 import CreateScreen from '../screens/create-screen/CreateScreen';
 import {useTranslation} from '../utils/common/localisation';
+import EditScreen from '../screens/edit-screen/EditScreen';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,15 @@ export const AppNavigation = () => {
         component={CreateScreen}
         options={{
           title: t('new_recipe'),
+          headerTitleStyle: {alignSelf: 'center', fontWeight: 'bold'},
+          headerRight: () => <Button title="" color="#C8271D" />,
+        }}
+      />
+      <Stack.Screen
+        name="Edit recipe"
+        component={EditScreen}
+        options={{
+          title: t('edit_recipe'),
           headerTitleStyle: {alignSelf: 'center', fontWeight: 'bold'},
           headerRight: () => <Button title="" color="#C8271D" />,
         }}

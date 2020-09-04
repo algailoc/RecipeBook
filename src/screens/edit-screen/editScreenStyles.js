@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-export const CreateScreenStyles = StyleSheet.create({
+export const EditScreenStyles = StyleSheet.create({
   items: {
     flexDirection: 'row',
     margin: 3,

@@ -15,6 +15,7 @@ const CreateScreenModel = () => {
 
   const [recipeName, setRecipeName] = useState('');
   const [recipeSteps, setRecipeSteps] = useState('');
+  const [recipePic, setRecipePic] = useState();
 
   return {
     currentIngredients,
@@ -23,6 +24,8 @@ const CreateScreenModel = () => {
     setCurrentIngredients,
     setRecipeSteps,
     setRecipeName,
+    recipePic,
+    setRecipePic,
     navigation,
     dispatch,
     t,

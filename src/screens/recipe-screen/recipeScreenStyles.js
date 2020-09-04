@@ -16,7 +16,6 @@ export const recipeScreenStyles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
   },
-  itemAmount: {},
   steps: {
     fontSize: 18,
     fontFamily: 'Merriweather-Regular',
@@ -27,14 +26,14 @@ export const recipeScreenStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   popUpWrapper: {
-    // position: 'absolute',
-    // left: '130%',
+    flex: 1,
+    alignSelf: 'flex-end',
+    marginTop: '14%',
+    marginLeft: '60%',
   },
   optionsWrapper: {
     backgroundColor: '#fff',
-    // position: 'absolute',
-    // left: '130%',
-    // width: '80%',
+    // width: '40%',
   },
   optionText: {
     fontSize: 20,

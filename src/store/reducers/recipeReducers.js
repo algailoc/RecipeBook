@@ -65,9 +65,9 @@ export const recipeReducers = (state = initialState, action) => {
           {
             id: action.payload.id,
             title: action.payload.title,
-            img: require('../../assets/img/default_bg.jpg'),
             steps: action.payload.steps,
             ingredients: action.payload.ingredients,
+            img: action.payload.img,
           },
         ],
       };
@@ -116,7 +116,18 @@ export const recipeReducers = (state = initialState, action) => {
     }
 
     case EDIT_RECIPE: {
-      return state;
+      return {
+        ...state,
+        recipes: state.recipes.map((item) => {
+          if (item.id === action.payload.id) {
+            item.title = action.payload.title;
+            item.steps = action.payload.steps;
+            item.ingredients = action.payload.ingredients;
+            item.img = action.payload.img;
+          }
+          return item;
+        }),
+      };
     }
 
     case EDIT_RECIPE_BEGIN: {
