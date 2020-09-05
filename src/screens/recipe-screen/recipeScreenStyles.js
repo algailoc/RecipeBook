@@ -33,9 +33,12 @@ export const recipeScreenStyles = StyleSheet.create({
   },
   optionsWrapper: {
     backgroundColor: '#fff',
-    // width: '40%',
   },
   optionText: {
     fontSize: 20,
+  },
+  itemText: {
+    paddingHorizontal: 5,
+    fontSize: 18,
   },
 });

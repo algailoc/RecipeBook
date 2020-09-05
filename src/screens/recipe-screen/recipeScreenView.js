@@ -38,8 +38,8 @@ const RecipeScreenView = ({model, styles, controller}) => {
           {ingredients.map((item) => {
             return (
               <View key={item.id} style={styles.items}>
-                <Text style={styles.itemName}>{item.name}</Text>
-                <Text style={styles.itemAmount}>{item.amount}</Text>
+                <Text style={styles.itemText}>{item.name}</Text>
+                <Text style={styles.itemText}>{item.amount}</Text>
               </View>
             );
           })}

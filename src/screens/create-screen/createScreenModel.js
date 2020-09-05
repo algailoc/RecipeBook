@@ -15,7 +15,9 @@ const CreateScreenModel = () => {
 
   const [recipeName, setRecipeName] = useState('');
   const [recipeSteps, setRecipeSteps] = useState('');
-  const [recipePic, setRecipePic] = useState();
+  const [recipePic, setRecipePic] = useState(
+    require('../../assets/img/default_bg.jpg'),
+  );
 
   return {
     currentIngredients,

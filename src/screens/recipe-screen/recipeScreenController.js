@@ -6,7 +6,6 @@ const RecipeScreenController = (model) => {
 
   const editButtonHandler = () => {
     model.setIsOpened(!model.isOpened);
-    console.log(model.isOpened);
   };
 
   const deleteRecipe = () => {
@@ -23,6 +22,7 @@ const RecipeScreenController = (model) => {
             setTimeout(() => {
               model.dispatch(removeRecipe(model.id)); //TODO remove timeout when figure out how to delete w/o it
             }, 1000);
+            // model.dispatch(removeRecipe(model.id));
           },
         },
       ],

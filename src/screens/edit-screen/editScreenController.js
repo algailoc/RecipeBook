@@ -17,7 +17,7 @@ const EditScreenController = (model) => {
     setCurrentIngredients((prevState) => [
       ...prevState,
       {
-        id: (prevState.length + 1).toString(),
+        id: Date.now().toString(),
         name,
         amount,
       },
@@ -29,19 +29,21 @@ const EditScreenController = (model) => {
       width: 400,
       height: 200,
       cropping: true,
-    }).then((image) => {
-      console.log({uri: image.path});
-      setRecipePic({uri: image.path});
-    });
+    }).then(
+      (image) => {
+        console.log({uri: image.path});
+        setRecipePic({uri: image.path});
+      },
+      (error) => {
+        console.log(error);
+      },
+    );
   };
 
   const editRecipeButtonHandler = (title, steps, ingredients) => {
     if (model.recipeName !== '') {
       navigation.navigate('Home');
-      setTimeout(() => {
-        dispatch(editRecipe(model.id, title, steps, ingredients, recipePic)); //TODO remove timeout
-      }, 1000);
-      // dispatch(editRecipe(model.id, title, steps, ingredients));
+      dispatch(editRecipe(model.id, title, steps, ingredients, recipePic));
     } else {
       Alert.alert('', t('alert_name_empty'), [{text: ''}, {text: ''}], {
         cancelable: true,
@@ -55,7 +57,7 @@ const EditScreenController = (model) => {
 
   const backButtonHandler = () => {
     Alert.alert(
-      (t('alert_go_back_title') + '?'),
+      (t('alert_go_back_title') + '?'),  //need to keep prettier from removing braces
       t('alert_go_back_message'),
       [
         {text: t('alert_cancel'), style: 'negative'},

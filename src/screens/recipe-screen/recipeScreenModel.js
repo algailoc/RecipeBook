@@ -27,7 +27,6 @@ const RecipeScreenModel = () => {
       setTitle(recipe.title);
       setIngredients(recipe.ingredients);
       setSteps(recipe.steps);
-      console.log(recipe.title);
     }
   }, [id, recipeList]);
 

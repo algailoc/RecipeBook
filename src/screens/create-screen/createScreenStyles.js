@@ -38,6 +38,7 @@ export const CreateScreenStyles = StyleSheet.create({
     borderWidth: 3,
     borderColor: '#E9E2DE',
     margin: 5,
+    fontFamily: 'Merriweather-Regular',
   },
   stepsInput: {
     textAlignVertical: 'top',
@@ -54,7 +55,7 @@ export const CreateScreenStyles = StyleSheet.create({
   },
   touchableWrapper: {
     backgroundColor: '#73C1A7',
-    height: 45,
+    height: '10%',
     width: '40%',
     justifyContent: 'center',
     alignItems: 'center',

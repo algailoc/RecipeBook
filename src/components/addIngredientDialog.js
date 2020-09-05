@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   touchableWrapper: {
     backgroundColor: '#73C1A7',
-    height: 45,
+    height: 50,
     width: '40%',
     justifyContent: 'center',
     alignItems: 'center',
