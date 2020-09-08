@@ -12,22 +12,26 @@ const CreateScreenModel = () => {
     {id: '1', name: 'Мука', amount: '100 г'},
     {id: '2', name: 'Молоко', amount: '20 мл'},
   ]);
-
   const [recipeName, setRecipeName] = useState('');
   const [recipeSteps, setRecipeSteps] = useState('');
   const [recipePic, setRecipePic] = useState(
     require('../../assets/img/default_bg.jpg'),
   );
+  const [servings, setServings] = useState('1');
 
   return {
-    currentIngredients,
     recipeName,
+    currentIngredients,
     recipeSteps,
+    recipePic,
+    servings,
+
+    setRecipeName,
     setCurrentIngredients,
     setRecipeSteps,
-    setRecipeName,
-    recipePic,
     setRecipePic,
+    setServings,
+
     navigation,
     dispatch,
     t,

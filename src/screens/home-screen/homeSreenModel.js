@@ -5,7 +5,6 @@ import {useState} from 'react';
 
 const HomeScreenModels = () => {
   const navigation = useNavigation();
-
   const {t} = useTranslation();
 
   const recipeList = useSelector((state) => state.recipe.recipes);

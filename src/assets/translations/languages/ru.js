@@ -30,4 +30,6 @@ export const ru = {
   alert_cancel: 'Отмена',
 
   edit_recipe: 'Редактирование рецепта',
+
+  numberOfServings: 'Количество порций',
 };

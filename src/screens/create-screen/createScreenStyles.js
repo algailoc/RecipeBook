@@ -1,20 +1,11 @@
 import {StyleSheet} from 'react-native';
 
 export const CreateScreenStyles = StyleSheet.create({
-  items: {
-    flexDirection: 'row',
-    margin: 3,
-    justifyContent: 'space-between',
-    borderBottomColor: '#F35227',
-    borderBottomWidth: 2,
-  },
-  itemText: {
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
     fontSize: 18,
-  },
-  helper: {
-    alignSelf: 'center',
-    fontSize: 14,
-    color: '#747474',
+    textAlign: 'center',
   },
   createRecipeButton: {
     backgroundColor: '#DF5C12',
@@ -32,16 +23,18 @@ export const CreateScreenStyles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
+  items: {
+    flexDirection: 'row',
+    margin: 3,
+    justifyContent: 'space-between',
+    borderBottomColor: '#F35227',
+    borderBottomWidth: 2,
+  },
+  itemText: {
+    fontSize: 18,
+  },
   recipeName: {
     textAlign: 'center',
-    fontSize: 18,
-    borderWidth: 3,
-    borderColor: '#E9E2DE',
-    margin: 5,
-    fontFamily: 'Merriweather-Regular',
-  },
-  stepsInput: {
-    textAlignVertical: 'top',
     fontSize: 18,
     borderWidth: 3,
     borderColor: '#E9E2DE',
@@ -53,20 +46,32 @@ export const CreateScreenStyles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
   },
+  servings: {
+    justifyContent: 'flex-end',
+    height: 40,
+    flexDirection: 'row',
+  },
+  stepsInput: {
+    textAlignVertical: 'top',
+    fontSize: 18,
+    borderWidth: 3,
+    borderColor: '#E9E2DE',
+    margin: 5,
+    fontFamily: 'Merriweather-Regular',
+  },
+  tip: {
+    alignSelf: 'center',
+    fontSize: 14,
+    color: '#747474',
+  },
   touchableWrapper: {
     backgroundColor: '#73C1A7',
-    height: '10%',
+    height: 60,
     width: '40%',
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: '30%',
     borderRadius: 50,
     marginVertical: 10,
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 18,
-    textAlign: 'center',
   },
 });

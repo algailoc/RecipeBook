@@ -6,9 +6,19 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import {ServingsDropDown} from '../../components/servingsDropDown';
 
 const RecipeScreenView = ({model, styles, controller}) => {
-  const {ingredients, steps, isOpened, setIsOpened, t} = model;
+  const {
+    ingredients,
+    steps,
+    servings,
+    isOpened,
+    setIsOpened,
+    setServings,
+      servingsChanged,
+    t,
+  } = model;
   const {deleteRecipe, goToEdit} = controller;
 
   const PopUpMenu = () => {
@@ -44,6 +54,7 @@ const RecipeScreenView = ({model, styles, controller}) => {
             );
           })}
         </View>
+        <ServingsDropDown servings={servings} setServings={servingsChanged} />
         <Text style={styles.section}>{t('recipe_description')}</Text>
         <Text style={styles.steps}>{steps}</Text>
       </ScrollView>

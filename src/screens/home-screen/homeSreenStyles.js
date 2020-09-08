@@ -4,12 +4,16 @@ export const homeScreenStyles = StyleSheet.create({
   imageBkg: {
     width: '100%',
   },
-  recipeList: {
-    height: '100%',
-  },
   recipeImage: {
     height: '100%',
     resizeMode: 'contain',
+  },
+  recipeItem: {
+    height: 200,
+    marginBottom: 5,
+  },
+  recipeList: {
+    height: '100%',
   },
   recipeTitle: {
     textShadowColor: 'black',
@@ -22,9 +26,5 @@ export const homeScreenStyles = StyleSheet.create({
     height: '20%',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  recipeItem: {
-    height: 200,
-    marginBottom: 5,
   },
 });

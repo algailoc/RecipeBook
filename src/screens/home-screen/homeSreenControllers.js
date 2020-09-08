@@ -1,10 +1,10 @@
 const HomeScreenController = (model) => {
-  const goToRecipeScreen = (id, title) => {
-    model.navigation.navigate('Recipe', {id, title});
-  };
-
   const goToCreateScreen = () => {
     model.navigation.navigate('New recipe');
+  };
+
+  const goToRecipeScreen = (id, title) => {
+    model.navigation.navigate('Recipe', {id, title});
   };
 
   return {goToRecipeScreen, goToCreateScreen};

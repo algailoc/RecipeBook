@@ -13,10 +13,10 @@ import {
   EDIT_RECIPE_FINISHED,
 } from '../types/recipeTypes';
 
-export function addRecipe(id, title, steps, ingredients, img) {
+export function addRecipe(id, title, steps, ingredients, img, servings) {
   const action = {
     type: ADD_RECIPE,
-    payload: {id, title, steps, ingredients, img},
+    payload: {id, title, steps, ingredients, img, servings},
   };
   return action;
 }
@@ -77,10 +77,10 @@ export function removeRecipeError() {
   return action;
 }
 
-export function editRecipe(id, title, steps, ingredients, img) {
+export function editRecipe(id, title, steps, ingredients, img, servings) {
   const action = {
     type: EDIT_RECIPE,
-    payload: {id, title, steps, ingredients, img},
+    payload: {id, title, steps, ingredients, img, servings},
   };
   return action;
 }

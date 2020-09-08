@@ -30,4 +30,6 @@ export const en = {
   alert_cancel: 'Cancel',
 
   edit_recipe: 'Recipe editing',
+
+  numberOfServings: 'Number of servings',
 };

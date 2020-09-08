@@ -5,12 +5,15 @@ import ImagePicker from 'react-native-image-crop-picker';
 const EditScreenController = (model) => {
   const {
     currentIngredients,
+    recipePic,
+    recipeName,
+    recipeSteps,
+    servings,
     setCurrentIngredients,
+    setRecipePic,
     dispatch,
     navigation,
     t,
-    recipePic,
-    setRecipePic,
   } = model;
 
   const addIngredientButton = (name, amount) => {
@@ -24,6 +27,20 @@ const EditScreenController = (model) => {
     ]);
   };
 
+  const backButtonHandler = () => {
+    Alert.alert(
+      t('alert_go_back_title') + '?',
+      t('alert_go_back_message'),
+      [
+        {text: t('alert_cancel'), style: 'negative'},
+        {text: ''},
+        {text: t('alert_confirm'), onPress: () => navigation.goBack()},
+      ],
+      {
+        cancelable: true,
+      },
+    );
+  };
   const editPictureHandler = () => {
     ImagePicker.openPicker({
       width: 400,
@@ -40,10 +57,19 @@ const EditScreenController = (model) => {
     );
   };
 
-  const editRecipeButtonHandler = (title, steps, ingredients) => {
+  const editRecipeButtonHandler = () => {
     if (model.recipeName !== '') {
       navigation.navigate('Home');
-      dispatch(editRecipe(model.id, title, steps, ingredients, recipePic));
+      dispatch(
+        editRecipe(
+          model.id,
+          recipeName,
+          recipeSteps,
+          currentIngredients,
+          recipePic,
+          servings,
+        ),
+      );
     } else {
       Alert.alert('', t('alert_name_empty'), [{text: ''}, {text: ''}], {
         cancelable: true,
@@ -55,27 +81,12 @@ const EditScreenController = (model) => {
     setCurrentIngredients(currentIngredients.filter((item) => id !== item.id));
   };
 
-  const backButtonHandler = () => {
-    Alert.alert(
-      (t('alert_go_back_title') + '?'),  //need to keep prettier from removing braces
-      t('alert_go_back_message'),
-      [
-        {text: t('alert_cancel'), style: 'negative'},
-        {text: ''},
-        {text: t('alert_confirm'), onPress: () => navigation.goBack()},
-      ],
-      {
-        cancelable: true,
-      },
-    );
-  };
-
   return {
     addIngredientButton,
-    removeIngredientTouchable,
-    editRecipeButtonHandler,
     backButtonHandler,
+    editRecipeButtonHandler,
     editPictureHandler,
+    removeIngredientTouchable,
   };
 };
 

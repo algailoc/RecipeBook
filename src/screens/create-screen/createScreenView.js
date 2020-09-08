@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  View,
   Text,
   TextInput,
   FlatList,
@@ -8,6 +9,7 @@ import {
   LogBox,
 } from 'react-native';
 import {AddIngredientDialog} from '../../components/addIngredientDialog';
+import {ServingsDropDown} from '../../components/servingsDropDown';
 
 LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -16,8 +18,10 @@ LogBox.ignoreLogs([
 export const CreateScreenView = ({styles, model, controller}) => {
   const {
     currentIngredients,
+    servings,
     setRecipeSteps,
     setRecipeName,
+    setServings,
     recipeName,
     recipeSteps,
     t,
@@ -52,7 +56,8 @@ export const CreateScreenView = ({styles, model, controller}) => {
           );
         }}
       />
-      <Text style={styles.helper}>{t('ingredients_removal_help')}</Text>
+      <Text style={styles.tip}>{t('ingredients_removal_help')}</Text>
+      <ServingsDropDown servings={servings} setServings={setServings} />
       <AddIngredientDialog model={model} controller={controller} />
       <Text style={styles.section}>{t('recipe_description')}</Text>
       <TextInput
@@ -69,9 +74,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.createRecipeButton}
-        onPress={() =>
-          addRecipeButtonHandler(recipeName, recipeSteps, currentIngredients)
-        }>
+        onPress={() => addRecipeButtonHandler()}>
         <Text style={styles.createRecipeButtonText}>{t('add_complete')}</Text>
       </TouchableOpacity>
     </ScrollView>

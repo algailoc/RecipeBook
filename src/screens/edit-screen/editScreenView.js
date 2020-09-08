@@ -8,6 +8,7 @@ import {
   LogBox,
 } from 'react-native';
 import {AddIngredientDialog} from '../../components/addIngredientDialog';
+import {ServingsDropDown} from '../../components/servingsDropDown';
 
 LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -15,6 +16,8 @@ LogBox.ignoreLogs([
 
 export const EditScreenView = ({model, controller, styles}) => {
   const {
+    servings,
+    setServings,
     currentIngredients,
     setRecipeSteps,
     setRecipeName,
@@ -52,7 +55,8 @@ export const EditScreenView = ({model, controller, styles}) => {
           );
         }}
       />
-      <Text style={styles.helper}>{t('ingredients_removal_help')}</Text>
+      <Text style={styles.tip}>{t('ingredients_removal_help')}</Text>
+      <ServingsDropDown servings={servings} setServings={setServings} />
       <AddIngredientDialog model={model} controller={controller} />
       <Text style={styles.section}>{t('recipe_description')}</Text>
       <TextInput
@@ -69,9 +73,7 @@ export const EditScreenView = ({model, controller, styles}) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.createRecipeButton}
-        onPress={() =>
-          editRecipeButtonHandler(recipeName, recipeSteps, currentIngredients)
-        }>
+        onPress={() => editRecipeButtonHandler()}>
         <Text style={styles.createRecipeButtonText}>{t('add_complete')}</Text>
       </TouchableOpacity>
     </ScrollView>

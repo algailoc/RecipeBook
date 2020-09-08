@@ -9,6 +9,7 @@ const EditScreenModel = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
   const route = useRoute();
+
   const {id} = route.params;
 
   const recipeList = useSelector((state) => state.recipe.recipes);
@@ -17,25 +18,27 @@ const EditScreenModel = () => {
   const [currentIngredients, setCurrentIngredients] = useState(
     recipe.ingredients,
   );
-
   const [recipeName, setRecipeName] = useState(recipe.title);
-
   const [recipeSteps, setRecipeSteps] = useState(recipe.steps);
-
   const [recipePic, setRecipePic] = useState(recipe.img);
+  const [servings, setServings] = useState(recipe.servings);
 
   return {
-    currentIngredients,
+    id,
     recipeName,
+    currentIngredients,
     recipeSteps,
+    recipePic,
+    servings,
+
+    setRecipeName,
     setCurrentIngredients,
     setRecipeSteps,
-    setRecipeName,
+    setRecipePic,
+    setServings,
+
     navigation,
     dispatch,
-    recipePic,
-    setRecipePic,
-    id,
     t,
   };
 };

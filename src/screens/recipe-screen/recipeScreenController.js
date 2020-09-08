@@ -4,14 +4,10 @@ import {Alert} from 'react-native';
 const RecipeScreenController = (model) => {
   const {t} = model;
 
-  const editButtonHandler = () => {
-    model.setIsOpened(!model.isOpened);
-  };
-
   const deleteRecipe = () => {
     Alert.alert(
       '',
-      (t('alert_delete') + '?'),
+      t('alert_delete') + '?',
       [
         {text: t('alert_cancel'), style: 'negative'},
         {text: ''},
@@ -35,6 +31,10 @@ const RecipeScreenController = (model) => {
     // setTimeout(() => {
     //   model.dispatch(removeRecipe(model.id)); //TODO remove timeout when figure out how to delete w/o it
     // }, 1000);
+  };
+
+  const editButtonHandler = () => {   //used on recipeScreen.js
+    model.setIsOpened(!model.isOpened);
   };
 
   const goToEdit = () => {

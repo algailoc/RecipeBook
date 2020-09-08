@@ -33,6 +33,7 @@ const initialState = {
         {id: '6', name: 'Соль ', amount: ''},
         {id: '7', name: 'Масло сливочное', amount: '1 ст. ложка'},
       ],
+      servings: '1',
     },
     {
       id: '2',
@@ -42,6 +43,7 @@ const initialState = {
       ingredients: [
         {id: '1', name: 'Name of ingredient', amount: 'Amount of ingredient'},
       ],
+      servings: '2',
     },
     {
       id: '3',
@@ -51,6 +53,7 @@ const initialState = {
       ingredients: [
         {id: '1', name: 'Name of ingredient', amount: 'Amount of ingredient'},
       ],
+      servings: '3',
     },
   ],
 };
@@ -68,6 +71,7 @@ export const recipeReducers = (state = initialState, action) => {
             steps: action.payload.steps,
             ingredients: action.payload.ingredients,
             img: action.payload.img,
+            servings: action.payload.servings,
           },
         ],
       };
@@ -124,6 +128,7 @@ export const recipeReducers = (state = initialState, action) => {
             item.steps = action.payload.steps;
             item.ingredients = action.payload.ingredients;
             item.img = action.payload.img;
+            item.servings = action.payload.servings;
           }
           return item;
         }),
