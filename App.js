@@ -4,14 +4,14 @@ import {Provider} from 'react-redux';
 import {MenuProvider} from 'react-native-popup-menu';
 import {NavigationContainer} from '@react-navigation/native';
 import store from './src/store';
-import {AppNavigation} from './src/components/AppNavigation';
+import AppLoader from './src/components/AppLoader';
 
 const App = () => {
   return (
     <NavigationContainer>
       <Provider store={store}>
         <MenuProvider>
-          <AppNavigation />
+          <AppLoader />
         </MenuProvider>
       </Provider>
     </NavigationContainer>

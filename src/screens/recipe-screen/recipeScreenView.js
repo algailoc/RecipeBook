@@ -16,10 +16,10 @@ const RecipeScreenView = ({model, styles, controller}) => {
     isOpened,
     setIsOpened,
     setServings,
-      servingsChanged,
+      // servingsChanged,
     t,
   } = model;
-  const {deleteRecipe, goToEdit} = controller;
+  const {deleteRecipe, goToEdit, servingsChanged} = controller;
 
   const PopUpMenu = () => {
     return (

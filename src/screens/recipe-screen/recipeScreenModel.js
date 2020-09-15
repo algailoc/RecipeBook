@@ -20,43 +20,32 @@ const RecipeScreenModel = () => {
   const [isOpened, setIsOpened] = useState(false);
 
   const recipeList = useSelector((state) => state.recipe.recipes);
-
-  const [initialIngredients, setInitialIngredients] = useState([]);
+  const recipe = recipeList.find((item) => item.id === id);
 
   useEffect(() => {
     if (id !== '') {
-      let recipe = recipeList.find((item) => item.id === id);
+      // let recipe = recipeList.find((item) => item.id === id);
       setTitle(recipe.title);
       setIngredients(recipe.ingredients);
       setSteps(recipe.steps);
       setServings(recipe.servings);
-      setInitialIngredients(recipe.ingredients);
     }
   }, [id, recipeList]);
-
-  const servingsChanged = (value) => {
-    // ingredients.map((item) => {
-    //   item.amount = initialIngredients.amount;
-    // });
-    setServings(value);
-    ingredients.map((item) => {  //changes the global state
-      item.amount += value;
-    });
-    console.log(recipeList.find((item) => item.id === id));
-  };
 
   return {
     id,
     title,
     ingredients,
+    recipe,
     steps,
     servings,
     recipeList,
     isOpened,
 
+    setIngredients,
     setIsOpened,
     setServings,
-    servingsChanged,
+    // servingsChanged,
 
     t,
     navigation,

@@ -11,12 +11,21 @@ import {
   EDIT_RECIPE_BEGIN,
   EDIT_RECIPE_ERROR,
   EDIT_RECIPE_FINISHED,
+  CREATE_RECIPE,
 } from '../types/recipeTypes';
 
 export function addRecipe(id, title, steps, ingredients, img, servings) {
   const action = {
     type: ADD_RECIPE,
     payload: {id, title, steps, ingredients, img, servings},
+  };
+  return action;
+}
+
+export function createRecipe() {
+  const action = {
+    type: CREATE_RECIPE,
+    payload: undefined,
   };
   return action;
 }

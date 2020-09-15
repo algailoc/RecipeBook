@@ -1,3 +1,5 @@
+export const CREATE_RECIPE = 'CREATE_RECIPE';
+
 export const ADD_RECIPE = 'ADD_RECIPE';
 export const ADD_RECIPE_BEGIN = 'ADD_RECIPE_BEGIN';
 export const ADD_RECIPE_FINISHED = 'ADD_RECIPE_FINISHED';
