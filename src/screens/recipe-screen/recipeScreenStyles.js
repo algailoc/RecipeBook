@@ -12,10 +12,6 @@ export const recipeScreenStyles = StyleSheet.create({
     paddingHorizontal: 5,
     fontSize: 18,
   },
-  loader: {
-    flex: 1,
-    justifyContent: 'center',
-  },
   optionText: {
     fontSize: 20,
   },

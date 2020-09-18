@@ -4,6 +4,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 const CreateScreenController = (model) => {
   const {
+    id,
     currentIngredients,
     recipePic,
     recipeName,
@@ -29,7 +30,6 @@ const CreateScreenController = (model) => {
 
   const addRecipeButtonHandler = () => {
     if (model.recipeName !== '') {
-      const id = Date.now().toString();
       dispatch(
         addRecipe(
           id,

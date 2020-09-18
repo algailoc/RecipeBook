@@ -8,8 +8,8 @@ import {
   ScrollView,
   LogBox,
 } from 'react-native';
-import {AddIngredientDialog} from '../../components/addIngredientDialog';
-import {ServingsDropDown} from '../../components/servingsDropDown';
+import {AddIngredientDialog} from '../../components/AddIngredientDialog';
+import {ServingsDropDown} from '../../components/ServingsDropDown';
 
 LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed

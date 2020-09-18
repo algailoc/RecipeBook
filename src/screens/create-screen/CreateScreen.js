@@ -5,6 +5,7 @@ import CreateScreenModel from './createScreenModel';
 import CreateScreenController from './createScreenController';
 import {useFocusEffect} from '@react-navigation/native';
 import {HeaderBackButton} from '@react-navigation/stack';
+import {RecipeLoader} from "../../components/RecipeLoader";
 
 const CreateScreen = () => {
   useFocusEffect(() => {
@@ -22,9 +23,19 @@ const CreateScreen = () => {
   const model = CreateScreenModel();
   const controller = CreateScreenController(model);
 
-  return (
-    <CreateScreenView styles={styles} model={model} controller={controller} />
-  );
+  {
+    if (model.recipeName !== undefined) {
+      return (
+        <CreateScreenView
+          controller={controller}
+          model={model}
+          styles={styles}
+        />
+      );
+    } else {
+      return <RecipeLoader />;
+    }
+  }
 };
 
 export default CreateScreen;

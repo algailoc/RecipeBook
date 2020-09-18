@@ -20,7 +20,7 @@ const EditScreenModel = () => {
   );
   const [recipeName, setRecipeName] = useState(recipe.title);
   const [recipeSteps, setRecipeSteps] = useState(recipe.steps);
-  const [recipePic, setRecipePic] = useState(recipe.img);
+  const [recipePic, setRecipePic] = useState(recipe.imagePath);
   const [servings, setServings] = useState(recipe.servings);
 
   return {

@@ -25,7 +25,6 @@ export class RecipesStorageService {
 
   static async init() {
     this.#db = SQlite.openDatabase({name: DB_NAME});
-    console.log('in storage');
 
     const recipesCreateTable =
       'CREATE TABLE IF NOT EXISTS ' +
@@ -37,11 +36,11 @@ export class RecipesStorageService {
       RECIPE_TITLE +
       ' TEXT NOT NULL, ' +
       RECIPE_IMAGE_PATH +
-      ' TEXT, ' +
+      ' BLOB, ' +
       RECIPE_STEPS +
       ' TEXT, ' +
       RECIPE_SERVINGS +
-      ' INTEGER NOT NULL)';
+      ' TEXT NOT NULL)';
 
     const ingredientsCreateTable =
       'CREATE TABLE IF NOT EXISTS ' +
@@ -70,7 +69,6 @@ export class RecipesStorageService {
   }
 
   static async getRecipesList() {
-    console.log('In recipesListStorage');
     const getRecipesList = 'SELECT * FROM ' + RECIPES_TABLE;
 
     try {
@@ -78,7 +76,7 @@ export class RecipesStorageService {
         db: RecipesStorageService.#db,
         statement: getRecipesList,
       });
-      console.log(result.rows.length);
+      // console.log(result.rows.length);
 
       const recipes = [];
       for (let i = 0; i < result.rows.length; ++i) {
@@ -87,7 +85,7 @@ export class RecipesStorageService {
 
       return recipes;
     } catch (e) {
-      console.log('Error', e);
+      console.log('Error on getting recipes list from storage', e);
     }
 
     return [];
@@ -142,7 +140,7 @@ export class RecipesStorageService {
       RECIPE_SERVINGS +
       ') VALUES (?, ?, ?, ?)';
 
-    const params = ['', '', '', 1];
+    const params = ['', '', '', '1'];
 
     const result = await SqlStatementExecutor.execute({
       db: RecipesStorageService.#db,
@@ -152,7 +150,7 @@ export class RecipesStorageService {
 
     const newRecipeId = result.insertId;
 
-    return await this.getRecipe(newRecipeId);
+    return await RecipesStorageService.getRecipe(newRecipeId);
   }
 
   static async addIngredient({recipeId, name, amount, unit}) {
@@ -207,27 +205,29 @@ export class RecipesStorageService {
       RECIPES_TABLE +
       ' SET ' +
       RECIPE_TITLE +
-      ' =?, ' +
+      ' = ?, ' +
       RECIPE_IMAGE_PATH +
-      +' =?, ' +
+      +' = ?, ' +
       RECIPE_STEPS +
-      ' =?, ' +
+      ' = ?, ' +
       RECIPE_SERVINGS +
-      ' =? WHERE ' +
+      ' = ? WHERE ' +
       RECIPE_ID +
-      ' =?';
+      ' = ?';
 
     const params = [title, imagePath, steps, servings, id];
 
-    const result = await SqlStatementExecutor.execute({
-      db: RecipesStorageService.#db,
-      statement: updateRecipe,
-      params,
-    });
-
-    const rowsAffected = result.rowsAffected;
-
-    return rowsAffected > 0;
+    try {
+      const result = await SqlStatementExecutor.execute({
+        db: RecipesStorageService.#db,
+        statement: updateRecipe,
+        params,
+      });
+      const rowsAffected = result.rowsAffected;
+      return rowsAffected > 0;
+    } catch (e) {
+      console.log('Error on updating recipe in storage', e);
+    }
   }
 
   static async removeRecipe({id}) {

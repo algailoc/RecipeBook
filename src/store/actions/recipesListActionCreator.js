@@ -29,10 +29,10 @@ export function loadRecipesListFinished(recipesList) {
   return action;
 }
 
-export function loadRecipesListError() {
+export function loadRecipesListError(error) {
   const action = {
     type: LOAD_RECIPES_LIST_ERROR,
-    payload: undefined,
+    payload: error,
   };
   return action;
 }

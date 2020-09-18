@@ -2,7 +2,7 @@ import React from 'react';
 import RecipeScreenView from './recipeScreenView';
 import RecipeScreenModel from './recipeScreenModel';
 import {recipeScreenStyles} from './recipeScreenStyles';
-import {RecipeLoader} from '../../components/recipeLoader';
+import {RecipeLoader} from '../../components/RecipeLoader';
 import Icon from 'react-native-vector-icons/Feather';
 import {useFocusEffect} from '@react-navigation/native';
 import RecipeScreenController from './recipeScreenController';
@@ -31,7 +31,7 @@ const RecipeScreen = () => {
       <RecipeScreenView controller={controller} model={model} styles={styles} />
     );
   } else {
-    return <RecipeLoader styles={styles} />;
+    return <RecipeLoader />;
   }
 };
 

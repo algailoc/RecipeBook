@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, FlatList, TouchableOpacity, ImageBackground} from 'react-native';
-import {RecipeItem} from '../../components/recipeItem';
+import {RecipeItem} from '../../components/RecipeItem';
 
 const HomeScreenView = ({model, controller, styles}) => {
   const {recipeList} = model;
@@ -20,7 +20,7 @@ const HomeScreenView = ({model, controller, styles}) => {
               <RecipeItem
                 style={styles.recipeItem}
                 title={item.title}
-                image={item.img}
+                image={item.imagePath}
                 styles={styles}
               />
             </TouchableOpacity>

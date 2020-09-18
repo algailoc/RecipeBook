@@ -11,10 +11,7 @@ const HomeScreen = () => {
     model.navigation.setOptions({
       headerRight: () => (
         <Icon.Button
-          onPress={() => {
-            model.navigation.navigate('New recipe');
-            controller.createRecipe();
-          }}
+          onPress={controller.goToNewRecipe}
           name="md-add-circle"
           color="#fff"
           size={30}

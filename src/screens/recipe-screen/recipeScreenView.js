@@ -6,7 +6,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
-import {ServingsDropDown} from '../../components/servingsDropDown';
+import {ServingsDropDown} from '../../components/ServingsDropDown';
 
 const RecipeScreenView = ({model, styles, controller}) => {
   const {

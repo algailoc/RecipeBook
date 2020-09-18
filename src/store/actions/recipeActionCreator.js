@@ -12,20 +12,47 @@ import {
   EDIT_RECIPE_ERROR,
   EDIT_RECIPE_FINISHED,
   CREATE_RECIPE,
+  CREATE_RECIPE_BEGIN,
+  CREATE_RECIPE_FINISHED,
+  CREATE_RECIPE_ERROR,
 } from '../types/recipeTypes';
-
-export function addRecipe(id, title, steps, ingredients, img, servings) {
-  const action = {
-    type: ADD_RECIPE,
-    payload: {id, title, steps, ingredients, img, servings},
-  };
-  return action;
-}
 
 export function createRecipe() {
   const action = {
     type: CREATE_RECIPE,
     payload: undefined,
+  };
+  return action;
+}
+
+export function createRecipeBegin() {
+  const action = {
+    type: CREATE_RECIPE_BEGIN,
+    payload: undefined,
+  };
+  return action;
+}
+
+export function createRecipeFinished(data) {
+  const action = {
+    type: CREATE_RECIPE_FINISHED,
+    payload: data,
+  };
+  return action;
+}
+
+export function createRecipeError(e) {
+  const action = {
+    type: CREATE_RECIPE_ERROR,
+    payload: e,
+  };
+  return action;
+}
+
+export function addRecipe(id, title, steps, ingredients, imagePath, servings) {
+  const action = {
+    type: ADD_RECIPE,
+    payload: {id, title, steps, ingredients, imagePath, servings},
   };
   return action;
 }
@@ -38,18 +65,25 @@ export function addRecipeBegin() {
   return action;
 }
 
-export function addRecipeFinished(title, steps, ingredients, id) {
+export function addRecipeFinished({
+  id,
+  title,
+  steps,
+  ingredients,
+  imagePath,
+  servings,
+}) {
   const action = {
     type: ADD_RECIPE_FINISHED,
-    payload: {title, steps, ingredients, id},
+    payload: {id, title, steps, ingredients, imagePath, servings},
   };
   return action;
 }
 
-export function addRecipeError() {
+export function addRecipeError(e) {
   const action = {
     type: ADD_RECIPE_ERROR,
-    payload: undefined,
+    payload: e,
   };
   return action;
 }
@@ -86,7 +120,7 @@ export function removeRecipeError() {
   return action;
 }
 
-export function editRecipe(id, title, steps, ingredients, img, servings) {
+export function editRecipe(id, title, steps, ingredients, imagePath, servings) {
   const action = {
     type: EDIT_RECIPE,
     payload: {id, title, steps, ingredients, img, servings},

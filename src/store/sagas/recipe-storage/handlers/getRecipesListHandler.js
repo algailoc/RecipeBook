@@ -17,7 +17,7 @@ function* getRecipesListHandler(action) {
     const data = yield call(recipesService.getRecipesList);
     yield put(loadRecipesListFinished(data));
   } catch (e) {
-    yield put(loadRecipesListError());
+    yield put(loadRecipesListError(e));
   }
 }
 

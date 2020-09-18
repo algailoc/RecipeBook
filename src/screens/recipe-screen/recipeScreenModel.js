@@ -19,14 +19,14 @@ const RecipeScreenModel = () => {
 
   const [isOpened, setIsOpened] = useState(false);
 
-  const recipeList = useSelector((state) => state.recipe.recipes);
+  const recipeList = useSelector((state) => state.recipesList.recipes);
   const recipe = recipeList.find((item) => item.id === id);
 
   useEffect(() => {
     if (id !== '') {
       // let recipe = recipeList.find((item) => item.id === id);
       setTitle(recipe.title);
-      setIngredients(recipe.ingredients);
+      // setIngredients(recipe.ingredients);
       setSteps(recipe.steps);
       setServings(recipe.servings);
     }
