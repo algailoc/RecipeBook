@@ -200,6 +200,15 @@ export class RecipesStorageService {
   }
 
   static async updateRecipe({id, title, imagePath, steps, servings}) {
+    console.log(
+      'Payload in update recipe service:',
+      id,
+      title,
+      imagePath,
+      steps,
+      servings,
+    );
+
     const updateRecipe =
       'UPDATE ' +
       RECIPES_TABLE +
@@ -230,7 +239,7 @@ export class RecipesStorageService {
     }
   }
 
-  static async removeRecipe({id}) {
+  static async removeRecipe(id) {
     const removeRecipe =
       'DELETE FROM ' + RECIPES_TABLE + ' WHERE ' + RECIPE_ID + ' =?';
 

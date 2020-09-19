@@ -112,10 +112,10 @@ export function removeRecipeFinished() {
   return action;
 }
 
-export function removeRecipeError() {
+export function removeRecipeError(e) {
   const action = {
     type: REMOVE_RECIPE_ERROR,
-    payload: undefined,
+    payload: e,
   };
   return action;
 }
@@ -123,7 +123,7 @@ export function removeRecipeError() {
 export function editRecipe(id, title, steps, ingredients, imagePath, servings) {
   const action = {
     type: EDIT_RECIPE,
-    payload: {id, title, steps, ingredients, img, servings},
+    payload: {id, title, steps, ingredients, imagePath, servings},
   };
   return action;
 }
@@ -136,18 +136,25 @@ export function editRecipeBegin() {
   return action;
 }
 
-export function editRecipeFinished() {
+export function editRecipeFinished(
+  id,
+  title,
+  steps,
+  ingredients,
+  imagePath,
+  servings,
+) {
   const action = {
     type: EDIT_RECIPE_FINISHED,
-    payload: undefined,
+    payload: {id, title, steps, ingredients, imagePath, servings},
   };
   return action;
 }
 
-export function editRecipeError() {
+export function editRecipeError(e) {
   const action = {
     type: EDIT_RECIPE_ERROR,
-    payload: undefined,
+    payload: e,
   };
   return action;
 }

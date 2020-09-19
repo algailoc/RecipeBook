@@ -12,7 +12,7 @@ const RecipeScreenModel = () => {
 
   const {id} = route.params;
 
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState();
   const [ingredients, setIngredients] = useState([]);
   const [steps, setSteps] = useState('');
   const [servings, setServings] = useState('');

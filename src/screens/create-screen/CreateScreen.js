@@ -8,16 +8,16 @@ import {HeaderBackButton} from '@react-navigation/stack';
 import {RecipeLoader} from "../../components/RecipeLoader";
 
 const CreateScreen = () => {
-  useFocusEffect(() => {
-    model.navigation.setOptions({
-      headerLeft: () => (
-        <HeaderBackButton
-          tintColor="#fff"
-          onPress={controller.backButtonHandler}
-        />
-      ),
-    });
-  });
+  // useFocusEffect(() => {
+  //   model.navigation.setOptions({
+  //     headerLeft: () => (
+  //       <HeaderBackButton
+  //         tintColor="#fff"
+  //         onPress={controller.backButtonHandler}
+  //       />
+  //     ),
+  //   });
+  // });
 
   const styles = CreateScreenStyles;
   const model = CreateScreenModel();

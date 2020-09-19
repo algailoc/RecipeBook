@@ -84,10 +84,7 @@ export const recipeReducers = (state = initialState, action) => {
     }
 
     case REMOVE_RECIPE: {
-      return {
-        ...state,
-        recipes: state.recipes.filter((item) => item.id !== action.payload),
-      };
+      return state;
     }
 
     case REMOVE_RECIPE_BEGIN: {
@@ -95,18 +92,29 @@ export const recipeReducers = (state = initialState, action) => {
     }
 
     case REMOVE_RECIPE_FINISHED: {
-      return state;
+      return {
+        ...state,
+        recipe: {},
+      };
     }
 
     case REMOVE_RECIPE_ERROR: {
-      console.log('Error on removing recipe');
+      console.log('Error on removing recipe', action.payload);
       return state;
     }
 
     case EDIT_RECIPE: {
+      return state;
+    }
+
+    case EDIT_RECIPE_BEGIN: {
+      return state;
+    }
+
+    case EDIT_RECIPE_FINISHED: {
       return {
         ...state,
-        recipes: state.recipes.map((item) => {
+        recipe: state.recipes.map((item) => {
           if (item.id === action.payload.id) {
             item.title = action.payload.title;
             item.steps = action.payload.steps;
@@ -119,16 +127,8 @@ export const recipeReducers = (state = initialState, action) => {
       };
     }
 
-    case EDIT_RECIPE_BEGIN: {
-      return state;
-    }
-
-    case EDIT_RECIPE_FINISHED: {
-      return state;
-    }
-
     case EDIT_RECIPE_ERROR: {
-      console.log('Error on editing recipe');
+      console.log('Error on editing recipe', action.payload);
       return state;
     }
 

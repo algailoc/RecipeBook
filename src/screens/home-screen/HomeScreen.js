@@ -5,6 +5,7 @@ import HomeScreenView from './homeScreenView';
 import HomeScreenModels from './homeSreenModel';
 import HomeScreenController from './homeSreenControllers';
 import {homeScreenStyles} from './homeSreenStyles';
+import {loadRecipesList} from '../../store/actions/recipesListActionCreator';
 
 const HomeScreen = () => {
   useFocusEffect(() => {
@@ -19,6 +20,7 @@ const HomeScreen = () => {
         />
       ),
     });
+    // model.dispatch(loadRecipesList());
   });
 
   const model = HomeScreenModels();

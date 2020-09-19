@@ -26,7 +26,7 @@ const RecipeScreen = () => {
   const styles = recipeScreenStyles;
   const controller = RecipeScreenController(model);
 
-  if (model.title !== '') {
+  if (model.title !== undefined) {
     return (
       <RecipeScreenView controller={controller} model={model} styles={styles} />
     );

@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import Services from '../services/Services';
 import {AppNavigation} from './AppNavigation';
+import {RecipeLoader} from './RecipeLoader';
 import {loadRecipesList} from '../store/actions/recipesListActionCreator';
 
 const AppLoader = () => {
