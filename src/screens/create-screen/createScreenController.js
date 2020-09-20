@@ -30,6 +30,7 @@ const CreateScreenController = (model) => {
 
   const addRecipeButtonHandler = () => {
     if (model.recipeName !== '') {
+      navigation.navigate('Home');
       dispatch(
         addRecipe(
           id,
@@ -40,7 +41,6 @@ const CreateScreenController = (model) => {
           servings,
         ),
       );
-      navigation.navigate('Home');
     } else {
       Alert.alert('', t('alert_name_empty'), [{text: ''}, {text: ''}], {
         cancelable: true,

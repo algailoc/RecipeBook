@@ -14,7 +14,6 @@ const CreateScreenModel = () => {
   ]);
 
   const recipe = useSelector((state) => state.recipe.recipe);
-  console.log('Recipe:', recipe);
 
   const [id, setId] = useState('');
   const [recipeName, setRecipeName] = useState();

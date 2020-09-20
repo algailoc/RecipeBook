@@ -36,7 +36,7 @@ export class RecipesStorageService {
       RECIPE_TITLE +
       ' TEXT NOT NULL, ' +
       RECIPE_IMAGE_PATH +
-      ' BLOB, ' +
+      ' TEXT, ' +
       RECIPE_STEPS +
       ' TEXT, ' +
       RECIPE_SERVINGS +
@@ -200,15 +200,6 @@ export class RecipesStorageService {
   }
 
   static async updateRecipe({id, title, imagePath, steps, servings}) {
-    console.log(
-      'Payload in update recipe service:',
-      id,
-      title,
-      imagePath,
-      steps,
-      servings,
-    );
-
     const updateRecipe =
       'UPDATE ' +
       RECIPES_TABLE +
@@ -225,6 +216,7 @@ export class RecipesStorageService {
       ' = ?';
 
     const params = [title, imagePath, steps, servings, id];
+    console.log('Params:', params);
 
     try {
       const result = await SqlStatementExecutor.execute({

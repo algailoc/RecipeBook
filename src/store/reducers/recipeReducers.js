@@ -11,6 +11,9 @@ import {
   EDIT_RECIPE_BEGIN,
   EDIT_RECIPE_ERROR,
   EDIT_RECIPE_FINISHED,
+  GET_RECIPE_BEGIN,
+  GET_RECIPE_ERROR,
+  GET_RECIPE_FINISHED,
   REMOVE_RECIPE,
   REMOVE_RECIPE_BEGIN,
   REMOVE_RECIPE_ERROR,
@@ -23,6 +26,22 @@ const initialState = {
 
 export const recipeReducers = (state = initialState, action) => {
   switch (action.type) {
+    case GET_RECIPE_BEGIN: {
+      return state;
+    }
+
+    case GET_RECIPE_FINISHED: {
+      return {
+        ...state,
+        recipe: action.payload,
+      };
+    }
+
+    case GET_RECIPE_ERROR: {
+      console.log('Error on getting recipe:', action.payload);
+      return state;
+    }
+
     case CREATE_RECIPE: {
       return state;
     }

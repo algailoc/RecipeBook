@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from '../../utils/common/localisation';
+import {getRecipe} from '../../store/actions/recipeActionCreator';
 
 const RecipeScreenModel = () => {
   const route = useRoute();
@@ -19,18 +20,19 @@ const RecipeScreenModel = () => {
 
   const [isOpened, setIsOpened] = useState(false);
 
-  const recipeList = useSelector((state) => state.recipesList.recipes);
-  const recipe = recipeList.find((item) => item.id === id);
+  const recipe = useSelector((state) => state.recipe.recipe);
+  // const recipe = recipeList.find((item) => item.id === id);
 
   useEffect(() => {
     if (id !== '') {
+      dispatch(getRecipe(id));
       // let recipe = recipeList.find((item) => item.id === id);
       setTitle(recipe.title);
       // setIngredients(recipe.ingredients);
       setSteps(recipe.steps);
       setServings(recipe.servings);
     }
-  }, [id, recipeList]);
+  }, [id]);
 
   return {
     id,
@@ -39,7 +41,7 @@ const RecipeScreenModel = () => {
     recipe,
     steps,
     servings,
-    recipeList,
+    // recipeList,
     isOpened,
 
     setIngredients,

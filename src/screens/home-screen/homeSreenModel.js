@@ -1,5 +1,5 @@
 import {useSelector, useDispatch} from 'react-redux';
-import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from '../../utils/common/localisation';
 
 const HomeScreenModels = () => {

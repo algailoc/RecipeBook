@@ -12,8 +12,8 @@ const EditScreenModel = () => {
 
   const {id} = route.params;
 
-  const recipeList = useSelector((state) => state.recipesList.recipes);
-  const recipe = recipeList.find((item) => item.id === id);
+  const recipe = useSelector((state) => state.recipe.recipe);
+  // const recipe = recipeList.find((item) => item.id === id);
 
   const [currentIngredients, setCurrentIngredients] = useState(
     recipe.ingredients,

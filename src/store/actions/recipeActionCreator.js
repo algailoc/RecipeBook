@@ -15,7 +15,43 @@ import {
   CREATE_RECIPE_BEGIN,
   CREATE_RECIPE_FINISHED,
   CREATE_RECIPE_ERROR,
+  GET_RECIPE,
+  GET_RECIPE_BEGIN,
+  GET_RECIPE_FINISHED,
+  GET_RECIPE_ERROR,
 } from '../types/recipeTypes';
+
+export function getRecipe(id) {
+  const action = {
+    type: GET_RECIPE,
+    payload: id,
+  };
+  return action;
+}
+
+export function getRecipeBegin() {
+  const action = {
+    type: GET_RECIPE_BEGIN,
+    payload: undefined,
+  };
+  return action;
+}
+
+export function getRecipeFinished(recipe) {
+  const action = {
+    type: GET_RECIPE_FINISHED,
+    payload: recipe,
+  };
+  return action;
+}
+
+export function getRecipeError(e) {
+  const action = {
+    type: GET_RECIPE_ERROR,
+    payload: e,
+  };
+  return action;
+}
 
 export function createRecipe() {
   const action = {
