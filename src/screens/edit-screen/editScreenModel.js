@@ -14,14 +14,14 @@ const EditScreenModel = () => {
     recipe.ingredients,
   );
 
-  const [id, setId] = useState(recipe.id);
+  const [recipeId, setRecipeId] = useState(recipe.id);
   const [recipeName, setRecipeName] = useState(recipe.title);
   const [recipeSteps, setRecipeSteps] = useState(recipe.steps);
   const [recipePic, setRecipePic] = useState(recipe.imagePath);
   const [servings, setServings] = useState(recipe.servings);
 
   return {
-    id,
+    recipeId,
     recipeName,
     currentIngredients,
     recipeSteps,

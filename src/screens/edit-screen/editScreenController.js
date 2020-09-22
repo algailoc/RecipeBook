@@ -1,9 +1,13 @@
-import {editRecipe} from '../../store/actions/recipeActionCreator';
+import {
+  addIngredient,
+  editRecipe,
+} from '../../store/actions/recipeActionCreator';
 import {Alert} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 
 const EditScreenController = (model) => {
   const {
+    recipeId,
     currentIngredients,
     recipePic,
     recipeName,
@@ -16,15 +20,17 @@ const EditScreenController = (model) => {
     t,
   } = model;
 
-  const addIngredientButton = (name, amount) => {
+  const addIngredientButton = (name, amount, unit) => {
     setCurrentIngredients((prevState) => [
       ...prevState,
       {
         id: Date.now().toString(),
         name,
         amount,
+        unit,
       },
     ]);
+    dispatch(addIngredient(recipeId, name, amount, unit));
   };
 
   const backButtonHandler = () => {
@@ -61,7 +67,7 @@ const EditScreenController = (model) => {
       navigation.navigate('Home');
       dispatch(
         editRecipe(
-          model.id,
+          recipeId,
           recipeName,
           recipeSteps,
           currentIngredients,
