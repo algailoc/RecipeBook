@@ -9,8 +9,11 @@ export const recipeScreenStyles = StyleSheet.create({
     borderBottomWidth: 2,
   },
   itemText: {
-    paddingHorizontal: 5,
+    marginHorizontal: 2,
     fontSize: 18,
+  },
+  measurementWrapper: {
+    flexDirection: 'row',
   },
   optionText: {
     fontSize: 20,

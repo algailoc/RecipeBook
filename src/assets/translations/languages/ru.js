@@ -15,7 +15,8 @@ export const ru = {
   add_ingredients_dialog: 'Добавить ингредиенты',
   recipe_input: 'Опишите рецепт здесь',
   ingredient_name: 'Название',
-  ingredient_amount: 'Кол-во',
+  ingredient_amount: 'Количество',
+  ingredient_unit: 'Единица',
   add_ingredient_button: 'Добавить',
   add_complete: 'Завершить',
 

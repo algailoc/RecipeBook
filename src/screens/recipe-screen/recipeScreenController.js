@@ -3,14 +3,7 @@ import {Alert} from 'react-native';
 import {useState} from 'react';
 
 const RecipeScreenController = (model) => {
-  const {
-    setServings,
-    ingredients,
-    setIngredients,
-    recipe,
-    recipeList,
-    t,
-  } = model;
+  const {setServings, ingredients, setIngredients, recipe, t} = model;
 
   const deleteRecipe = () => {
     Alert.alert(
@@ -34,15 +27,9 @@ const RecipeScreenController = (model) => {
         cancelable: true,
       },
     );
-
-    // model.navigation.goBack();
-    // setTimeout(() => {
-    //   model.dispatch(removeRecipe(model.id)); //TODO remove timeout when figure out how to delete w/o it
-    // }, 1000);
   };
 
   const editButtonHandler = () => {
-    //used on recipeScreen.js
     model.setIsOpened(!model.isOpened);
   };
 

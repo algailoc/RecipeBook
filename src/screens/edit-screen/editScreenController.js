@@ -48,11 +48,10 @@ const EditScreenController = (model) => {
       cropping: true,
     }).then(
       (image) => {
-        console.log({uri: image.path});
-        setRecipePic({uri: image.path});
+        setRecipePic(image.path);
       },
       (error) => {
-        console.log(error);
+        console.log('Image picker error:', error);
       },
     );
   };

@@ -16,7 +16,7 @@ const RecipeScreenView = ({model, styles, controller}) => {
     isOpened,
     setIsOpened,
     setServings,
-      // servingsChanged,
+    // servingsChanged,
     t,
   } = model;
   const {deleteRecipe, goToEdit, servingsChanged} = controller;
@@ -49,7 +49,10 @@ const RecipeScreenView = ({model, styles, controller}) => {
             return (
               <View key={item.id} style={styles.items}>
                 <Text style={styles.itemText}>{item.name}</Text>
-                <Text style={styles.itemText}>{item.amount}</Text>
+                <View style={styles.measurementWrapper}>
+                  <Text style={styles.itemText}>{item.amount}</Text>
+                  <Text style={styles.itemText}>{item.unit}</Text>
+                </View>
               </View>
             );
           })}

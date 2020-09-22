@@ -19,6 +19,10 @@ import {
   GET_RECIPE_BEGIN,
   GET_RECIPE_FINISHED,
   GET_RECIPE_ERROR,
+  ADD_INGREDIENT,
+  ADD_INGREDIENT_BEGIN,
+  ADD_INGREDIENT_FINISHED,
+  ADD_INGREDIENT_ERROR,
 } from '../types/recipeTypes';
 
 export function getRecipe(id) {
@@ -140,10 +144,10 @@ export function removeRecipeBegin() {
   return action;
 }
 
-export function removeRecipeFinished() {
+export function removeRecipeFinished(id) {
   const action = {
     type: REMOVE_RECIPE_FINISHED,
-    payload: undefined,
+    payload: id,
   };
   return action;
 }
@@ -172,14 +176,14 @@ export function editRecipeBegin() {
   return action;
 }
 
-export function editRecipeFinished(
+export function editRecipeFinished({
   id,
   title,
   steps,
   ingredients,
   imagePath,
   servings,
-) {
+}) {
   const action = {
     type: EDIT_RECIPE_FINISHED,
     payload: {id, title, steps, ingredients, imagePath, servings},
@@ -190,6 +194,38 @@ export function editRecipeFinished(
 export function editRecipeError(e) {
   const action = {
     type: EDIT_RECIPE_ERROR,
+    payload: e,
+  };
+  return action;
+}
+
+export function addIngredient(recipeId, name, amount, unit) {
+  const action = {
+    type: ADD_INGREDIENT,
+    payload: {recipeId, name, amount, unit},
+  };
+  return action;
+}
+
+export function addIngredientBegin() {
+  const action = {
+    type: ADD_INGREDIENT_BEGIN,
+    payload: undefined,
+  };
+  return action;
+}
+
+export function addIngredientFinished(recipeId, name, amount, unit) {
+  const action = {
+    type: ADD_INGREDIENT_FINISHED,
+    payload: {recipeId, name, amount, unit},
+  };
+  return action;
+}
+
+export function addIngredientError(e) {
+  const action = {
+    type: ADD_INGREDIENT_ERROR,
     payload: e,
   };
   return action;

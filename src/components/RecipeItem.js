@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Text, ImageBackground} from 'react-native';
 
 export const RecipeItem = ({title, image, styles}) => {
-
   const BgImage = (props) => {
     if (!image) {
       return (
@@ -14,7 +13,7 @@ export const RecipeItem = ({title, image, styles}) => {
       );
     } else {
       return (
-        <ImageBackground style={styles.recipeImage} source={image}>
+        <ImageBackground style={styles.recipeImage} source={{uri: image}}>
           {props.children}
         </ImageBackground>
       );

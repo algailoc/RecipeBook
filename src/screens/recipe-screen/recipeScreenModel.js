@@ -1,18 +1,14 @@
 import {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from '../../utils/common/localisation';
-import {getRecipe} from '../../store/actions/recipeActionCreator';
 
 const RecipeScreenModel = () => {
-  const route = useRoute();
   const dispatch = useDispatch();
   const {t} = useTranslation();
   const navigation = useNavigation();
 
-  const {id} = route.params;
-
+  const [id, setId] = useState('');
   const [title, setTitle] = useState();
   const [ingredients, setIngredients] = useState([]);
   const [steps, setSteps] = useState('');
@@ -21,18 +17,19 @@ const RecipeScreenModel = () => {
   const [isOpened, setIsOpened] = useState(false);
 
   const recipe = useSelector((state) => state.recipe.recipe);
-  // const recipe = recipeList.find((item) => item.id === id);
+  const loading = useSelector((state) => state.recipe.loading);
 
   useEffect(() => {
-    if (id !== '') {
-      dispatch(getRecipe(id));
-      // let recipe = recipeList.find((item) => item.id === id);
-      setTitle(recipe.title);
-      // setIngredients(recipe.ingredients);
-      setSteps(recipe.steps);
-      setServings(recipe.servings);
-    }
-  }, [id]);
+    setTitle(recipe.title);
+    setIngredients(recipe.ingredients);
+    setSteps(recipe.steps);
+    setServings(recipe.servings);
+    setId(recipe.id);
+  }, [recipe]);
+
+  // useEffect(() => {
+  //   navigation.setOptions({title: title});
+  // }, [title]);
 
   return {
     id,
@@ -41,8 +38,8 @@ const RecipeScreenModel = () => {
     recipe,
     steps,
     servings,
-    // recipeList,
     isOpened,
+    loading,
 
     setIngredients,
     setIsOpened,

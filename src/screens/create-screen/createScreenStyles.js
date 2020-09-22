@@ -32,6 +32,10 @@ export const CreateScreenStyles = StyleSheet.create({
   },
   itemText: {
     fontSize: 18,
+    marginHorizontal: 2,
+  },
+  measurementWrapper: {
+    flexDirection: 'row',
   },
   recipeName: {
     textAlign: 'center',

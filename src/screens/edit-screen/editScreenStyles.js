@@ -32,7 +32,10 @@ export const EditScreenStyles = StyleSheet.create({
   },
   itemText: {
     fontSize: 18,
-    paddingHorizontal: 5,
+    marginHorizontal: 2,
+  },
+  measurementWrapper: {
+    flexDirection: 'row',
   },
   recipeName: {
     textAlign: 'center',

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  View,
   Text,
   TextInput,
   FlatList,
@@ -50,7 +51,10 @@ export const EditScreenView = ({model, controller, styles}) => {
               style={styles.items}
               onLongPress={() => removeIngredientTouchable(item.id)}>
               <Text style={styles.itemText}>{item.name}</Text>
-              <Text style={styles.itemText}>{item.amount}</Text>
+              <View style={styles.measurementWrapper}>
+                <Text style={styles.itemText}>{item.amount}</Text>
+                <Text style={styles.itemText}>{item.unit}</Text>
+              </View>
             </TouchableOpacity>
           );
         }}

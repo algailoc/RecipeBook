@@ -15,7 +15,6 @@ function* getRecipeHandler(action) {
 
   try {
     const recipe = yield call(recipesService.getRecipe, action.payload);
-    console.log('Recipe from service:', recipe);
     yield put(getRecipeFinished(recipe));
   } catch (e) {
     yield put(getRecipeError(e));

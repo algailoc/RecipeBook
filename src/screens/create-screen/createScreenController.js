@@ -1,10 +1,13 @@
-import {addRecipe} from '../../store/actions/recipeActionCreator';
+import {
+  addIngredient,
+  addRecipe,
+} from '../../store/actions/recipeActionCreator';
 import {Alert} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 
 const CreateScreenController = (model) => {
   const {
-    id,
+    recipeId,
     currentIngredients,
     recipePic,
     recipeName,
@@ -17,15 +20,17 @@ const CreateScreenController = (model) => {
     t,
   } = model;
 
-  const addIngredientButton = (name, amount) => {
+  const addIngredientButton = (name, amount, unit) => {
     setCurrentIngredients((prevState) => [
       ...prevState,
       {
         id: Date.now().toString(),
         name,
         amount,
+        unit,
       },
     ]);
+    dispatch(addIngredient(recipeId, name, amount, unit));
   };
 
   const addRecipeButtonHandler = () => {
@@ -33,7 +38,7 @@ const CreateScreenController = (model) => {
       navigation.navigate('Home');
       dispatch(
         addRecipe(
-          id,
+          recipeId,
           recipeName,
           recipeSteps,
           currentIngredients,
@@ -70,8 +75,7 @@ const CreateScreenController = (model) => {
       cropping: true,
     }).then(
       (image) => {
-        console.log({uri: image.path});
-        setRecipePic({uri: image.path});
+        setRecipePic(image.path);
       },
       (error) => {
         console.log(error);

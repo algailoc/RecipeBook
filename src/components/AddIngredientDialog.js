@@ -13,7 +13,8 @@ export const AddIngredientDialog = ({model, controller}) => {
   const [visible, setVisible] = useState(false);
 
   const [ingredientName, setIngredientName] = useState('');
-  const [ingredientAmount, setIngredientAmount] = useState('');
+  const [ingredientAmount, setIngredientAmount] = useState();
+  const [ingredientUnit, setIngredientUnit] = useState('');
 
   const {t} = model;
   const {addIngredientButton} = controller;
@@ -26,28 +27,41 @@ export const AddIngredientDialog = ({model, controller}) => {
         animationType="slide"
         dialogStyle={styles.dialog}>
         <View>
-          <View style={styles.wrapper}>
+          <View>
             <TextInput
               style={styles.nameInput}
               placeholder={t('ingredient_name')}
               value={ingredientName}
               onChangeText={(text) => setIngredientName(text)}
             />
-            <TextInput
-              style={styles.amountInput}
-              placeholder={t('ingredient_amount')}
-              value={ingredientAmount}
-              onChangeText={(text) => setIngredientAmount(text)}
-            />
+            <View style={styles.wrapper}>
+              <TextInput
+                style={styles.amountInput}
+                placeholder={t('ingredient_amount')}
+                value={ingredientAmount}
+                onChangeText={(text) => setIngredientAmount(text)}
+              />
+              <TextInput
+                style={styles.amountInput}
+                placeholder={t('ingredient_unit')}
+                value={ingredientUnit}
+                onChangeText={(text) => setIngredientUnit(text)}
+              />
+            </View>
           </View>
-          <View style={{alignItems: 'flex-end'}}>
+          <View style={{alignItems: 'center'}}>
             <Icon.Button
               name="pluscircleo"
               style={{backgroundColor: '#73C1A7'}}
               onPress={() => {
-                addIngredientButton(ingredientName, ingredientAmount);
+                addIngredientButton(
+                  ingredientName,
+                  ingredientAmount,
+                  ingredientUnit,
+                );
                 setIngredientName('');
-                setIngredientAmount('');
+                setIngredientAmount();
+                setIngredientUnit('');
               }}>
               <Text style={styles.buttonText}>
                 {t('add_ingredient_button')}
@@ -76,20 +90,22 @@ const styles = StyleSheet.create({
   nameInput: {
     borderWidth: 4,
     borderRadius: 15,
-    marginVertical: 10,
     borderColor: '#A5F7DB',
-    width: '60%',
+    width: '100%',
     paddingLeft: 15,
     fontSize: 18,
+    alignSelf: 'center',
+    textAlign: 'center',
   },
   amountInput: {
     borderWidth: 4,
     borderRadius: 15,
     marginVertical: 10,
     borderColor: '#A5F7DB',
-    width: '37%',
+    width: '49%',
     paddingLeft: 15,
     fontSize: 18,
+    textAlign: 'center',
   },
   buttonText: {
     color: '#fff',

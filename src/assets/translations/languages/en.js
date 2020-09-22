@@ -16,6 +16,7 @@ export const en = {
   recipe_input: 'Write recipe here',
   ingredient_name: 'Name',
   ingredient_amount: 'Amount',
+  ingredient_unit: 'Unit',
   add_ingredient_button: 'Add',
   add_complete: 'Done',
 

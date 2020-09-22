@@ -4,6 +4,11 @@ import {
   LOAD_RECIPES_LIST_ERROR,
   LOAD_RECIPES_LIST_FINISHED,
 } from '../types/recipesListTypes';
+import {
+  ADD_RECIPE_FINISHED,
+  CREATE_RECIPE_FINISHED,
+  REMOVE_RECIPE_FINISHED,
+} from '../types/recipeTypes';
 
 const initialState = {
   recipes: [
@@ -70,6 +75,34 @@ export const recipesListReducer = (state = initialState, action) => {
     case LOAD_RECIPES_LIST_ERROR: {
       console.log('Error on getting list of recipes ', action.payload);
       return state;
+    }
+
+    case CREATE_RECIPE_FINISHED: {
+      return {
+        ...state,
+        recipes: [...state.recipes, {id: action.payload}],
+      };
+    }
+
+    case ADD_RECIPE_FINISHED: {
+      return {
+        ...state,
+        recipes: [
+          ...state.recipes,
+          {
+            id: action.payload.id,
+            title: action.payload.title,
+            imagePath: action.payload.imagePath,
+          },
+        ],
+      };
+    }
+
+    case REMOVE_RECIPE_FINISHED: {
+      return {
+        ...state,
+        recipes: state.recipes.filter((item) => item.id !== action.payload),
+      };
     }
 
     default: {

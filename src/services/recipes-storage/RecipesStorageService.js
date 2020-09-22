@@ -154,6 +154,15 @@ export class RecipesStorageService {
   }
 
   static async addIngredient({recipeId, name, amount, unit}) {
+    console.log(
+      'RecipeId:',
+      recipeId,
+      'name, amount, unit:',
+      name,
+      amount,
+      unit,
+    );
+
     const addIngredient =
       'INSERT INTO ' +
       INGREDIENTS_TABLE +
@@ -169,13 +178,17 @@ export class RecipesStorageService {
 
     const params = [recipeId, name, amount, unit];
 
-    const result = await SqlStatementExecutor.execute({
-      db: RecipesStorageService.#db,
-      statement: addIngredient,
-      params,
-    });
+    try {
+      const result = await SqlStatementExecutor.execute({
+        db: RecipesStorageService.#db,
+        statement: addIngredient,
+        params,
+      });
+    } catch (e) {
+      console.log('Error on adding ingredient to storage:', e);
+    }
 
-    return await this.getRecipeIngredients({recipeId});
+    return await RecipesStorageService.getRecipeIngredients({recipeId});
   }
 
   static async getRecipeIngredients({recipeId}) {
@@ -207,7 +220,7 @@ export class RecipesStorageService {
       RECIPE_TITLE +
       ' = ?, ' +
       RECIPE_IMAGE_PATH +
-      +' = ?, ' +
+      ' = ?, ' +
       RECIPE_STEPS +
       ' = ?, ' +
       RECIPE_SERVINGS +
@@ -216,7 +229,6 @@ export class RecipesStorageService {
       ' = ?';
 
     const params = [title, imagePath, steps, servings, id];
-    console.log('Params:', params);
 
     try {
       const result = await SqlStatementExecutor.execute({

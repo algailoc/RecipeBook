@@ -26,12 +26,12 @@ const RecipeScreen = () => {
   const styles = recipeScreenStyles;
   const controller = RecipeScreenController(model);
 
-  if (model.title !== undefined) {
+  if (model.title === undefined) {
+    return <RecipeLoader />;
+  } else {
     return (
       <RecipeScreenView controller={controller} model={model} styles={styles} />
     );
-  } else {
-    return <RecipeLoader />;
   }
 };
 

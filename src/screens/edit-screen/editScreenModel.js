@@ -1,23 +1,20 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from '../../utils/common/localisation';
 import {useNavigation} from '@react-navigation/native';
-import {useRoute} from '@react-navigation/native';
 
 const EditScreenModel = () => {
   const navigation = useNavigation();
   const {t} = useTranslation();
   const dispatch = useDispatch();
-  const route = useRoute();
-
-  const {id} = route.params;
 
   const recipe = useSelector((state) => state.recipe.recipe);
-  // const recipe = recipeList.find((item) => item.id === id);
 
   const [currentIngredients, setCurrentIngredients] = useState(
     recipe.ingredients,
   );
+
+  const [id, setId] = useState(recipe.id);
   const [recipeName, setRecipeName] = useState(recipe.title);
   const [recipeSteps, setRecipeSteps] = useState(recipe.steps);
   const [recipePic, setRecipePic] = useState(recipe.imagePath);

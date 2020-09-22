@@ -51,7 +51,10 @@ export const CreateScreenView = ({styles, model, controller}) => {
               style={styles.items}
               onLongPress={() => removeIngredientTouchable(item.id)}>
               <Text style={styles.itemText}>{item.name}</Text>
-              <Text style={styles.itemText}>{item.amount}</Text>
+              <View style={styles.measurementWrapper}>
+                <Text style={styles.itemText}>{item.amount}</Text>
+                <Text style={styles.itemText}>{item.unit}</Text>
+              </View>
             </TouchableOpacity>
           );
         }}

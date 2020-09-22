@@ -1,4 +1,7 @@
 import {
+  ADD_INGREDIENT_BEGIN,
+  ADD_INGREDIENT_ERROR,
+  ADD_INGREDIENT_FINISHED,
   ADD_RECIPE,
   ADD_RECIPE_BEGIN,
   ADD_RECIPE_ERROR,
@@ -21,25 +24,27 @@ import {
 } from '../types/recipeTypes';
 
 const initialState = {
+  loading: false,
   recipe: {},
 };
 
 export const recipeReducers = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPE_BEGIN: {
-      return state;
+      return {...state, loading: true};
     }
 
     case GET_RECIPE_FINISHED: {
       return {
         ...state,
         recipe: action.payload,
+        loading: false,
       };
     }
 
     case GET_RECIPE_ERROR: {
       console.log('Error on getting recipe:', action.payload);
-      return state;
+      return {...state, loading: false};
     }
 
     case CREATE_RECIPE: {
@@ -133,21 +138,31 @@ export const recipeReducers = (state = initialState, action) => {
     case EDIT_RECIPE_FINISHED: {
       return {
         ...state,
-        recipe: state.recipes.map((item) => {
-          if (item.id === action.payload.id) {
-            item.title = action.payload.title;
-            item.steps = action.payload.steps;
-            item.ingredients = action.payload.ingredients;
-            item.imagePath = action.payload.imagePath;
-            item.servings = action.payload.servings;
-          }
-          return item;
-        }),
+        recipe: {
+          title: action.payload.title,
+          steps: action.payload.steps,
+          ingredients: action.payload.ingredients,
+          imagePath: action.payload.imagePath,
+          servings: action.payload.servings,
+        },
       };
     }
 
     case EDIT_RECIPE_ERROR: {
       console.log('Error on editing recipe', action.payload);
+      return state;
+    }
+
+    case ADD_INGREDIENT_BEGIN: {
+      return state;
+    }
+
+    case ADD_INGREDIENT_FINISHED: {
+      return state;
+    }
+
+    case ADD_INGREDIENT_ERROR: {
+      console.log('Error on adding ingredient:', action.payload);
       return state;
     }
 
