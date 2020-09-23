@@ -7,6 +7,7 @@ import {
 import {
   ADD_RECIPE_FINISHED,
   CREATE_RECIPE_FINISHED,
+  EDIT_RECIPE_FINISHED,
   REMOVE_RECIPE_FINISHED,
 } from '../types/recipeTypes';
 
@@ -80,21 +81,20 @@ export const recipesListReducer = (state = initialState, action) => {
     case CREATE_RECIPE_FINISHED: {
       return {
         ...state,
-        recipes: [...state.recipes, {id: action.payload}],
+        recipes: [...state.recipes, {id: action.payload.id}],
       };
     }
 
     case ADD_RECIPE_FINISHED: {
       return {
         ...state,
-        recipes: [
-          ...state.recipes,
-          {
-            id: action.payload.id,
-            title: action.payload.title,
-            imagePath: action.payload.imagePath,
-          },
-        ],
+        recipes: state.recipes.map((item) => {
+          if (item.id === action.payload.id) {
+            item.title = action.payload.title;
+            item.imagePath = action.payload.imagePath;
+          }
+          return item;
+        }),
       };
     }
 
@@ -102,6 +102,19 @@ export const recipesListReducer = (state = initialState, action) => {
       return {
         ...state,
         recipes: state.recipes.filter((item) => item.id !== action.payload),
+      };
+    }
+
+    case EDIT_RECIPE_FINISHED: {
+      return {
+        ...state,
+        recipes: state.recipes.map((item) => {
+          if (item.id === action.payload.id) {
+            item.title = action.payload.title;
+            item.imagePath = action.payload.imagePath;
+          }
+          return item;
+        }),
       };
     }
 

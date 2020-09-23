@@ -40,6 +40,7 @@ export const AddIngredientDialog = ({model, controller}) => {
                 placeholder={t('ingredient_amount')}
                 value={ingredientAmount}
                 onChangeText={(text) => setIngredientAmount(text)}
+                keyboardType="numeric"
               />
               <TextInput
                 style={styles.amountInput}
@@ -114,13 +115,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   touchableWrapper: {
-    backgroundColor: '#73C1A7',
+    backgroundColor: '#DF5C12',
     height: 50,
     width: '40%',
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: '30%',
-    borderRadius: 50,
+    borderRadius: 15,
     marginVertical: 10,
   },
 });

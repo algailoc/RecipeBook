@@ -15,7 +15,6 @@ function* addIngredientHandler(action) {
 
   try {
     const data = yield call(recipesService.addIngredient, action.payload);
-    console.log('New ingredient:', data);
     yield put(addIngredientFinished());
   } catch (e) {
     yield put(addIngredientError(e));

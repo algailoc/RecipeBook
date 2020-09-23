@@ -31,7 +31,7 @@ const initialState = {
 export const recipeReducers = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPE_BEGIN: {
-      return {...state, loading: true};
+      return {...state, recipe: {}, loading: true};
     }
 
     case GET_RECIPE_FINISHED: {
@@ -52,7 +52,10 @@ export const recipeReducers = (state = initialState, action) => {
     }
 
     case CREATE_RECIPE_BEGIN: {
-      return state;
+      return {
+        ...state,
+        recipe: {},
+      };
     }
 
     case CREATE_RECIPE_FINISHED: {

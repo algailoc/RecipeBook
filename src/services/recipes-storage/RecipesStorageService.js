@@ -154,15 +154,6 @@ export class RecipesStorageService {
   }
 
   static async addIngredient({recipeId, name, amount, unit}) {
-    console.log(
-      'RecipeId:',
-      recipeId,
-      'name, amount, unit:',
-      name,
-      amount,
-      unit,
-    );
-
     const addIngredient =
       'INSERT INTO ' +
       INGREDIENTS_TABLE +

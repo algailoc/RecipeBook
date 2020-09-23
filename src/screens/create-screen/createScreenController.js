@@ -71,7 +71,7 @@ const CreateScreenController = (model) => {
   const editPictureHandler = () => {
     ImagePicker.openPicker({
       width: 400,
-      height: 200,
+      height: 150,
       cropping: true,
     }).then(
       (image) => {

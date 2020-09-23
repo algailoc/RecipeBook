@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, FlatList, TouchableOpacity, ImageBackground} from 'react-native';
 import {RecipeItem} from '../../components/RecipeItem';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const HomeScreenView = ({model, controller, styles}) => {
   const {recipeList} = model;
@@ -28,6 +29,18 @@ const HomeScreenView = ({model, controller, styles}) => {
           keyExtractor={(item, index) => index.toString()}
         />
       </ImageBackground>
+      <View style={styles.newRecipeButton}>
+        <Icon.Button
+          style={{underlayColor: '#fff'}}
+          onPress={controller.goToNewRecipe}
+          name="pluscircle"
+          color="#C8271D"
+          size={60}
+          borderRadius={100}
+          iconStyle={{marginRight: -10, margin: -10}}
+          backgroundColor="#fff"
+        />
+      </View>
     </View>
   );
 };

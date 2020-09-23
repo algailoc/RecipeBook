@@ -4,6 +4,7 @@ export const recipeScreenStyles = StyleSheet.create({
   items: {
     flexDirection: 'row',
     margin: 3,
+    marginHorizontal: 6,
     justifyContent: 'space-between',
     borderBottomColor: '#F35227',
     borderBottomWidth: 2,
@@ -31,11 +32,17 @@ export const recipeScreenStyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     alignSelf: 'center',
+    width: '50%',
+    textAlign: 'center',
+    paddingBottom: 5,
+    borderBottomWidth: 2,
+    borderColor: '#839E9F',
+    marginBottom: 10,
   },
   steps: {
     fontSize: 18,
     fontFamily: 'Merriweather-Regular',
-    margin: 5,
+    margin: 10,
     minHeight: 108,
   },
   title: {

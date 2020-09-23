@@ -4,12 +4,17 @@ export const homeScreenStyles = StyleSheet.create({
   imageBkg: {
     width: '100%',
   },
+  newRecipeButton: {
+    position: 'absolute',
+    bottom: 25,
+    right: 25,
+  },
   recipeImage: {
     height: '100%',
     resizeMode: 'contain',
   },
   recipeItem: {
-    height: 200,
+    height: 150,
     marginBottom: 5,
   },
   recipeList: {
