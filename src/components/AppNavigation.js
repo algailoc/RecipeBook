@@ -30,7 +30,6 @@ export const AppNavigation = () => {
         options={{
           title: t('recipe_list'),
           headerShown: true,
-          headerLeft: () => <Button title="" color="#C8271D" />,
         }}
       />
       <Stack.Screen

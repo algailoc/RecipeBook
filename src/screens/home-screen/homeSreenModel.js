@@ -1,6 +1,7 @@
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from '../../utils/common/localisation';
+import {useState} from 'react';
 
 const HomeScreenModels = () => {
   const navigation = useNavigation();
@@ -9,7 +10,19 @@ const HomeScreenModels = () => {
 
   const recipeList = useSelector((state) => state.recipesList.recipes);
 
-  return {recipeList, navigation, t, dispatch};
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  return {
+    recipeList,
+    drawerIsOpen,
+    setDrawerIsOpen,
+    modalIsOpen,
+    setModalIsOpen,
+    navigation,
+    t,
+    dispatch,
+  };
 };
 
 export default HomeScreenModels;

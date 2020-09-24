@@ -3,6 +3,8 @@ export const en = {
   ru: 'Russian',
   en: 'English',
 
+  language_choice: 'Choose language',
+
   recipe_list: 'Recipe list',
 
   ingredients_list: 'Ingredients',

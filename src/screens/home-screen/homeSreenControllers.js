@@ -16,7 +16,17 @@ const HomeScreenController = (model) => {
     model.dispatch(getRecipe(id));
   };
 
-  return {goToRecipeScreen, goToCreateScreen, goToNewRecipe};
+  const goToSettingsScreen = () => {
+    model.setDrawerIsOpen(false);
+    model.setModalIsOpen(true);
+  };
+
+  return {
+    goToRecipeScreen,
+    goToCreateScreen,
+    goToNewRecipe,
+    goToSettingsScreen,
+  };
 };
 
 export default HomeScreenController;

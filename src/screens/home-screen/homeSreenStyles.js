@@ -1,6 +1,9 @@
 import {StyleSheet} from 'react-native';
 
 export const homeScreenStyles = StyleSheet.create({
+  hamburgerMenu: {
+    backgroundColor: '#C8271D',
+  },
   imageBkg: {
     width: '100%',
   },
