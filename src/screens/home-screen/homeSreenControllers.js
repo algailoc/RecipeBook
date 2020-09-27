@@ -1,4 +1,5 @@
 import {createRecipe, getRecipe} from '../../store/actions/recipeActionCreator';
+import {setSystemLanguageAction} from '../../store/actions/systemActionCreator';
 
 const HomeScreenController = (model) => {
   const goToNewRecipe = () => {
@@ -21,11 +22,16 @@ const HomeScreenController = (model) => {
     model.setModalIsOpen(true);
   };
 
+  const setSystemLanguage = (lang) => {
+    model.dispatch(setSystemLanguageAction({languageCode: lang}));
+  };
+
   return {
     goToRecipeScreen,
     goToCreateScreen,
     goToNewRecipe,
     goToSettingsScreen,
+    setSystemLanguage,
   };
 };
 

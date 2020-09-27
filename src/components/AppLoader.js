@@ -30,7 +30,7 @@ const AppLoader = () => {
   if (ready) {
     return <AppNavigation />;
   } else {
-    return <View />;
+    return <RecipeLoader />;
   }
 };
 

@@ -1,9 +1,10 @@
 import {all, spawn, call} from 'redux-saga/effects';
 import recipeStorageSaga from './recipe-storage/recipeStorageSaga';
 import currentRecipeSaga from './current-recipe/currentRecipeSaga';
+import systemSaga from './system/systemSaga';
 
 function* rootSaga() {
-  const sagas = [recipeStorageSaga, currentRecipeSaga];
+  const sagas = [recipeStorageSaga, currentRecipeSaga, systemSaga];
 
   yield all(
     sagas.map((saga) =>

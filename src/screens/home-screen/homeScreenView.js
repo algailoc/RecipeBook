@@ -2,16 +2,11 @@ import React from 'react';
 import {View, FlatList, TouchableOpacity, ImageBackground} from 'react-native';
 import {RecipeItem} from '../../components/RecipeItem';
 import Icon from 'react-native-vector-icons/AntDesign';
-import MenuDrawer from 'react-native-side-drawer';
-import {SideDrawerComponent} from '../../components/SideDrawerComponent';
 import {LanguageSettingsModal} from '../../components/LanguageSettingsDialogue';
 
 const HomeScreenView = ({model, controller, styles}) => {
   const {recipeList, drawerIsOpen} = model;
   const {goToRecipeScreen} = controller;
-  function drawerOpacity() {
-    return !!drawerIsOpen;
-  }
 
   return (
     <View>
@@ -47,16 +42,6 @@ const HomeScreenView = ({model, controller, styles}) => {
           backgroundColor="#fff"
         />
       </View>
-      <MenuDrawer
-        open={drawerIsOpen}
-        drawerContent={
-          <SideDrawerComponent controller={controller} model={model} />
-        }
-        drawerPercentage={40}
-        animationTime={250}
-        overlay={drawerOpacity()}
-        opacity={0.4}
-      />
       <LanguageSettingsModal model={model} controller={controller} />
     </View>
   );
