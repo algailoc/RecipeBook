@@ -9,24 +9,27 @@ const CreateScreenModel = () => {
   const dispatch = useDispatch();
 
   const [currentIngredients, setCurrentIngredients] = useState([
-    {id: '1', name: 'Мука', amount: 100, unit: 'г'},
-    {id: '2', name: 'Молоко', amount: 20, unit: 'мл'},
+    // {id: '1', name: 'Мука', amount: 100, unit: 'г'},
+    // {id: '2', name: 'Молоко', amount: 20, unit: 'мл'},
   ]);
 
   const recipe = useSelector((state) => state.recipe.recipe);
+  const loading = useSelector((state) => state.recipe.loading);
 
   const [recipeId, setRecipeId] = useState('');
   const [recipeName, setRecipeName] = useState();
   const [recipeSteps, setRecipeSteps] = useState('');
   const [recipePic, setRecipePic] = useState('');
-  const [servings, setServings] = useState('');
+  const [servings, setServings] = useState('1');
 
   useEffect(() => {
-    setRecipeId(recipe.id);
-    setRecipeName(recipe.title);
-    setRecipeSteps(recipe.steps);
-    setRecipePic(recipe.imagePath);
-    setServings(recipe.servings);
+    if (recipe !== undefined) {
+      setRecipeId(recipe.id);
+      setRecipeName(recipe.title);
+      setRecipeSteps(recipe.steps);
+      setRecipePic(recipe.imagePath);
+      setServings(recipe.servings);
+    }
   }, [recipe]);
 
   return {
@@ -36,6 +39,7 @@ const CreateScreenModel = () => {
     recipeSteps,
     recipePic,
     servings,
+    loading,
 
     setRecipeName,
     setCurrentIngredients,

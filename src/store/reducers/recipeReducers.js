@@ -25,13 +25,13 @@ import {
 
 const initialState = {
   loading: false,
-  recipe: {},
+  recipe: undefined,
 };
 
 export const recipeReducers = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPE_BEGIN: {
-      return {...state, recipe: {}, loading: true};
+      return {...state, recipe: undefined, loading: true};
     }
 
     case GET_RECIPE_FINISHED: {
@@ -55,6 +55,7 @@ export const recipeReducers = (state = initialState, action) => {
       return {
         ...state,
         recipe: {},
+        loading: true,
       };
     }
 
@@ -62,6 +63,7 @@ export const recipeReducers = (state = initialState, action) => {
       return {
         ...state,
         recipe: action.payload,
+        loading: false,
       };
     }
 
@@ -121,7 +123,7 @@ export const recipeReducers = (state = initialState, action) => {
     case REMOVE_RECIPE_FINISHED: {
       return {
         ...state,
-        recipe: {},
+        recipe: undefined,
       };
     }
 

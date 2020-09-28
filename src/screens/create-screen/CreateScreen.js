@@ -13,7 +13,7 @@ const CreateScreen = () => {
       headerLeft: () => (
         <HeaderBackButton
           tintColor="#fff"
-          onPress={controller.addRecipeButtonHandler}
+          onPress={controller.backButtonHandler}
         />
       ),
     });
@@ -24,7 +24,7 @@ const CreateScreen = () => {
   const controller = CreateScreenController(model);
 
   {
-    if (model.recipeName !== undefined) {
+    if (!model.loading) {
       return (
         <CreateScreenView
           controller={controller}

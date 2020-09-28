@@ -10,6 +10,7 @@ import RecipeScreenController from './recipeScreenController';
 const RecipeScreen = () => {
   useFocusEffect(() => {
     model.navigation.setOptions({
+      title: model.title,
       headerRight: () => (
         <Icon.Button
           onPress={() => controller.editButtonHandler()}
@@ -26,7 +27,7 @@ const RecipeScreen = () => {
   const styles = recipeScreenStyles;
   const controller = RecipeScreenController(model);
 
-  if (model.title === undefined) {
+  if (model.loading) {
     return <RecipeLoader />;
   } else {
     return (

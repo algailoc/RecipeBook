@@ -32,13 +32,7 @@ export const AppNavigation = () => {
           headerShown: true,
         }}
       />
-      <Stack.Screen
-        name="Recipe"
-        component={RecipeScreen}
-        options={({route}) => ({
-          title: route.params.title,
-        })}
-      />
+      <Stack.Screen name="Recipe" component={RecipeScreen} />
       <Stack.Screen
         name="New recipe"
         component={CreateScreen}

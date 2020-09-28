@@ -9,16 +9,7 @@ import {
 import {ServingsDropDown} from '../../components/ServingsDropDown';
 
 const RecipeScreenView = ({model, styles, controller}) => {
-  const {
-    ingredients,
-    steps,
-    servings,
-    isOpened,
-    setIsOpened,
-    setServings,
-    // servingsChanged,
-    t,
-  } = model;
+  const {ingredients, steps, servings, isOpened, setIsOpened, t} = model;
   const {deleteRecipe, goToEdit, servingsChanged} = controller;
 
   const PopUpMenu = () => {

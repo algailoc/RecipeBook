@@ -4,12 +4,9 @@ import translations from '../../../assets/translations';
 export const useTranslation = () => {
   const appTranslations = translations;
 
-  // const currentLanguageCode = useSelector(
-  //   (state) => state.system.system.localization.currentLanguageCode,
-  // );
-
-  const currentLanguageCode = appTranslations.defaultLanguage;
-  console.log('Current language:', currentLanguageCode);
+  const currentLanguageCode = useSelector(
+    (state) => state.system.system.localization.currentLanguageCode,
+  );
 
   const t = (pattern) => {
     return appTranslations.translationsMap[currentLanguageCode][pattern];

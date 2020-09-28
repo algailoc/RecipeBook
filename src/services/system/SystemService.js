@@ -28,9 +28,9 @@ class SystemService {
 
     systemLanguageCode = savedLanguageCode;
 
-    // if (!systemLanguageCode) {
-    //   systemLanguageCode = SystemService.#systemLocalization.getOptimalLanguageCode();
-    // }
+    if (!systemLanguageCode) {
+      systemLanguageCode = SystemService.#systemLocalization.getOptimalLanguageCode();
+    }
 
     const availableLanguageCodes = SystemService.#systemLocalization.getAvailableLanguageCodes();
 

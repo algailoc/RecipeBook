@@ -1,11 +1,11 @@
 import {removeRecipe} from '../../store/actions/recipeActionCreator';
 import {Alert} from 'react-native';
-import {useState} from 'react';
 
 const RecipeScreenController = (model) => {
-  const {setServings, ingredients, setIngredients, recipe, t} = model;
+  const {setServings, ingredients, t} = model;
 
   const deleteRecipe = () => {
+    model.setIsOpened(false);
     Alert.alert(
       '',
       t('alert_delete') + '?',
@@ -16,10 +16,7 @@ const RecipeScreenController = (model) => {
           text: t('alert_confirm'),
           onPress: () => {
             model.navigation.goBack();
-            setTimeout(() => {
-              model.dispatch(removeRecipe(model.id)); //TODO remove timeout when figure out how to delete w/o it
-            }, 1000);
-            // model.dispatch(removeRecipe(model.id));
+            model.dispatch(removeRecipe(model.id));
           },
         },
       ],
@@ -40,13 +37,12 @@ const RecipeScreenController = (model) => {
   };
 
   const servingsChanged = (value) => {
-    // setIngredients((recipeList.find((item) => item.id === model.id)).ingredients);
+    let prevValue = model.servings;
     setServings(value);
     ingredients.map((item) => {
-      //changes the global state
-      item.amount += value;
+      let n = (item.amount / prevValue) * value;
+      n === 0 ? (item.amount = '') : (item.amount = Math.round(n * 100) / 100);
     });
-    console.log(recipe.ingredients);
   };
   return {deleteRecipe, editButtonHandler, goToEdit, servingsChanged};
 };

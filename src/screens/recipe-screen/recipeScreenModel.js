@@ -9,7 +9,7 @@ const RecipeScreenModel = () => {
   const navigation = useNavigation();
 
   const [id, setId] = useState('');
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [steps, setSteps] = useState('');
   const [servings, setServings] = useState('');
@@ -20,11 +20,13 @@ const RecipeScreenModel = () => {
   const loading = useSelector((state) => state.recipe.loading);
 
   useEffect(() => {
-    setTitle(recipe.title);
-    setIngredients(recipe.ingredients);
-    setSteps(recipe.steps);
-    setServings(recipe.servings);
-    setId(recipe.id);
+    if (recipe !== undefined) {
+      setTitle(recipe.title);
+      setIngredients(recipe.ingredients);
+      setSteps(recipe.steps);
+      setServings(recipe.servings);
+      setId(recipe.id);
+    }
   }, [recipe]);
 
   // useEffect(() => {
@@ -44,7 +46,6 @@ const RecipeScreenModel = () => {
     setIngredients,
     setIsOpened,
     setServings,
-    // servingsChanged,
 
     t,
     navigation,

@@ -23,6 +23,7 @@ const HomeScreenController = (model) => {
   };
 
   const setSystemLanguage = (lang) => {
+    model.setModalIsOpen(false);
     model.dispatch(setSystemLanguageAction({languageCode: lang}));
   };
 

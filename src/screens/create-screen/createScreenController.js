@@ -1,6 +1,7 @@
 import {
   addIngredient,
   addRecipe,
+  removeRecipe,
 } from '../../store/actions/recipeActionCreator';
 import {Alert} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -60,7 +61,13 @@ const CreateScreenController = (model) => {
       [
         {text: t('alert_cancel'), style: 'negative'},
         {text: ''},
-        {text: t('alert_confirm'), onPress: () => navigation.goBack()},
+        {
+          text: t('alert_confirm'),
+          onPress: () => {
+            dispatch(removeRecipe(recipeId));
+            navigation.goBack();
+          },
+        },
       ],
       {
         cancelable: true,

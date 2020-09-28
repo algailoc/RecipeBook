@@ -1,7 +1,7 @@
 import SSSInitOperations from './operations/init/SSSInitOperations';
 import PreferencesTableOperations from './operations/preferences/PreferencesTableOperations';
 
-const DB_NAME = 'tobuy_system_service.db';
+const DB_NAME = 'rb_system_service.db';
 
 const SQlite = require('react-native-sqlite-storage');
 

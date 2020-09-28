@@ -4,6 +4,35 @@ import translations from '../../../../assets/translations';
 class SystemLocalization {
   static async init() {}
 
+  static getOptimalLanguageCode() {
+    const appTranslations = translations;
+    const appDefaultLanguage = appTranslations.defaultLanguage;
+    const appTranslationsMap = appTranslations.translationsMap;
+
+    const availableTranslationsSet = new Set();
+    Object.keys(appTranslationsMap).forEach((key) =>
+      availableTranslationsSet.add(key),
+    );
+
+    const phoneLocales = RNLocalize.getLocales();
+    if (phoneLocales && phoneLocales.length) {
+      const firstPhoneLocaleLanguageCode = phoneLocales[0].languageCode;
+      if (availableTranslationsSet.has(firstPhoneLocaleLanguageCode)) {
+        return firstPhoneLocaleLanguageCode;
+      } else {
+        return appDefaultLanguage;
+      }
+    }
+
+    if (!appDefaultLanguage) {
+      console.log(
+        'SystemLocalization->getOptimalLanguageCode(): NO_DEFAULT_LANGUAGE',
+      );
+    }
+
+    return appDefaultLanguage;
+  }
+
   static getAvailableLanguageCodes() {
     const appTranslations = translations;
     const uniqueLanguageCodes = appTranslations.uniqueLanguages;
