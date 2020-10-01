@@ -52,11 +52,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 13,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    borderWidth: 5,
+    borderBottomWidth: 0,
+    borderColor: 'rgba(0, 0, 0, 0.2)',
   },
   textStyle: {
     alignSelf: 'center',

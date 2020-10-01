@@ -8,6 +8,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 const CreateScreenController = (model) => {
   const {
+    recipe,
     recipeId,
     currentIngredients,
     recipePic,
@@ -16,6 +17,7 @@ const CreateScreenController = (model) => {
     servings,
     setCurrentIngredients,
     setRecipePic,
+    setModalVisible,
     dispatch,
     navigation,
     t,
@@ -55,24 +57,11 @@ const CreateScreenController = (model) => {
   };
 
   const backButtonHandler = () => {
-    Alert.alert(
-      t('alert_go_back_title') + '?',
-      t('alert_go_back_message'),
-      [
-        {text: t('alert_cancel'), style: 'negative'},
-        {text: ''},
-        {
-          text: t('alert_confirm'),
-          onPress: () => {
-            dispatch(removeRecipe(recipeId));
-            navigation.goBack();
-          },
-        },
-      ],
-      {
-        cancelable: true,
-      },
-    );
+    setModalVisible(!model.modalVisible);
+  };
+
+  const removeRecipeHandler = () => {
+    dispatch(removeRecipe(recipeId));
   };
 
   const editPictureHandler = () => {
@@ -100,6 +89,7 @@ const CreateScreenController = (model) => {
     backButtonHandler,
     editPictureHandler,
     removeIngredientTouchable,
+    removeRecipeHandler,
   };
 };
 

@@ -7,10 +7,16 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 import {ServingsDropDown} from '../../components/ServingsDropDown';
+import {AlertModal} from '../../components/AlertModal';
 
 const RecipeScreenView = ({model, styles, controller}) => {
   const {ingredients, steps, servings, isOpened, setIsOpened, t} = model;
-  const {deleteRecipe, goToEdit, servingsChanged} = controller;
+  const {
+    deleteRecipe,
+    goToEdit,
+    servingsChanged,
+    removeRecipeHandler,
+  } = controller;
 
   const PopUpMenu = () => {
     return (
@@ -52,6 +58,11 @@ const RecipeScreenView = ({model, styles, controller}) => {
         <Text style={styles.section}>{t('recipe_description')}</Text>
         <Text style={styles.steps}>{steps}</Text>
       </ScrollView>
+      <AlertModal
+        model={model}
+        removeOptional={removeRecipeHandler}
+        textProp={t('alert_delete') + '?'}
+      />
     </View>
   );
 };

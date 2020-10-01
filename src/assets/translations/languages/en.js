@@ -5,7 +5,7 @@ export const en = {
 
   language_choice: 'Choose language',
 
-  recipe_list: 'Recipe list',
+  recipe_list: 'Recipe List',
 
   ingredients_list: 'Ingredients',
   recipe_description: 'Recipe',

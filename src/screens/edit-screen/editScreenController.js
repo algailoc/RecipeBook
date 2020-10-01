@@ -1,6 +1,7 @@
 import {
   addIngredient,
   editRecipe,
+  removeRecipe,
 } from '../../store/actions/recipeActionCreator';
 import {Alert} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -15,6 +16,7 @@ const EditScreenController = (model) => {
     servings,
     setCurrentIngredients,
     setRecipePic,
+    setModalVisible,
     dispatch,
     navigation,
     t,
@@ -34,19 +36,23 @@ const EditScreenController = (model) => {
   };
 
   const backButtonHandler = () => {
-    Alert.alert(
-      t('alert_go_back_title') + '?',
-      t('alert_go_back_message'),
-      [
-        {text: t('alert_cancel'), style: 'negative'},
-        {text: ''},
-        {text: t('alert_confirm'), onPress: () => navigation.goBack()},
-      ],
-      {
-        cancelable: true,
-      },
-    );
+    // Alert.alert(
+    //   t('alert_go_back_title') + '?',
+    //   t('alert_go_back_message'),
+    //   [
+    //     {text: t('alert_cancel'), style: 'negative'},
+    //     {text: ''},
+    //     {text: t('alert_confirm'), onPress: () => navigation.goBack()},
+    //   ],
+    //   {
+    //     cancelable: true,
+    //   },
+    // );
+    setModalVisible(!model.modalVisible);
   };
+
+  const removeRecipeHandler = () => {};
+
   const editPictureHandler = () => {
     ImagePicker.openPicker({
       width: 400,
@@ -92,6 +98,7 @@ const EditScreenController = (model) => {
     editRecipeButtonHandler,
     editPictureHandler,
     removeIngredientTouchable,
+    removeRecipeHandler,
   };
 };
 

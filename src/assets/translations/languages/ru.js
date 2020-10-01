@@ -26,7 +26,7 @@ export const ru = {
   options_remove: 'Удалить',
 
   alert_name_empty: 'Название рецепта не может быть пустым',
-  alert_go_back_title: 'Вы уверены, что хотите вернуться',
+  alert_go_back_title: 'Вы уверены, что хотите уйти',
   alert_go_back_message: 'Изменения не будут сохранены',
   alert_delete: 'Вы уверены, что хотите удалить этот рецепт',
   alert_confirm: 'Подтвердить',

@@ -15,6 +15,7 @@ const RecipeScreenModel = () => {
   const [servings, setServings] = useState('');
 
   const [isOpened, setIsOpened] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const recipe = useSelector((state) => state.recipe.recipe);
   const loading = useSelector((state) => state.recipe.loading);
@@ -41,11 +42,13 @@ const RecipeScreenModel = () => {
     steps,
     servings,
     isOpened,
+    modalVisible,
     loading,
 
     setIngredients,
     setIsOpened,
     setServings,
+    setModalVisible,
 
     t,
     navigation,

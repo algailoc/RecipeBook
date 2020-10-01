@@ -8,13 +8,12 @@ const CreateScreenModel = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
 
-  const [currentIngredients, setCurrentIngredients] = useState([
-    // {id: '1', name: 'Мука', amount: 100, unit: 'г'},
-    // {id: '2', name: 'Молоко', amount: 20, unit: 'мл'},
-  ]);
+  const [currentIngredients, setCurrentIngredients] = useState([]);
 
   const recipe = useSelector((state) => state.recipe.recipe);
   const loading = useSelector((state) => state.recipe.loading);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [recipeId, setRecipeId] = useState('');
   const [recipeName, setRecipeName] = useState();
@@ -33,6 +32,7 @@ const CreateScreenModel = () => {
   }, [recipe]);
 
   return {
+    recipe,
     recipeId,
     recipeName,
     currentIngredients,
@@ -40,12 +40,14 @@ const CreateScreenModel = () => {
     recipePic,
     servings,
     loading,
+    modalVisible,
 
     setRecipeName,
     setCurrentIngredients,
     setRecipeSteps,
     setRecipePic,
     setServings,
+    setModalVisible,
 
     navigation,
     dispatch,

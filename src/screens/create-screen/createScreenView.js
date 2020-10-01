@@ -11,6 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/AntDesign';
 import {AddIngredientDialog} from '../../components/AddIngredientDialog';
 import {ServingsDropDown} from '../../components/ServingsDropDown';
+import {AlertModal} from '../../components/AlertModal';
 
 LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -31,6 +32,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
     removeIngredientTouchable,
     addRecipeButtonHandler,
     editPictureHandler,
+    removeRecipeHandler,
   } = controller;
 
   return (
@@ -88,6 +90,13 @@ export const CreateScreenView = ({styles, model, controller}) => {
           <Text style={styles.createRecipeButtonText}>{t('add_complete')}</Text>
         </Icon.Button>
       </View>
+      <AlertModal
+        model={model}
+        removeOptional={removeRecipeHandler}
+        textProp={
+          t('alert_go_back_title') + '? \n' + t('alert_go_back_message')
+        }
+      />
     </View>
   );
 };

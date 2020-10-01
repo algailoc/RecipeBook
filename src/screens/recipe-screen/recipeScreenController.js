@@ -2,28 +2,15 @@ import {removeRecipe} from '../../store/actions/recipeActionCreator';
 import {Alert} from 'react-native';
 
 const RecipeScreenController = (model) => {
-  const {setServings, ingredients, t} = model;
+  const {setServings, ingredients, setModalVisible, t} = model;
 
   const deleteRecipe = () => {
     model.setIsOpened(false);
-    Alert.alert(
-      '',
-      t('alert_delete') + '?',
-      [
-        {text: t('alert_cancel'), style: 'negative'},
-        {text: ''},
-        {
-          text: t('alert_confirm'),
-          onPress: () => {
-            model.navigation.goBack();
-            model.dispatch(removeRecipe(model.id));
-          },
-        },
-      ],
-      {
-        cancelable: true,
-      },
-    );
+    setModalVisible(!model.modalVisible);
+  };
+
+  const removeRecipeHandler = () => {
+    model.dispatch(removeRecipe(model.id));
   };
 
   const editButtonHandler = () => {
@@ -44,7 +31,13 @@ const RecipeScreenController = (model) => {
       n === 0 ? (item.amount = '') : (item.amount = Math.round(n * 100) / 100);
     });
   };
-  return {deleteRecipe, editButtonHandler, goToEdit, servingsChanged};
+  return {
+    deleteRecipe,
+    editButtonHandler,
+    goToEdit,
+    servingsChanged,
+    removeRecipeHandler,
+  };
 };
 
 export default RecipeScreenController;

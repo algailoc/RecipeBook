@@ -10,6 +10,8 @@ const EditScreenModel = () => {
 
   const recipe = useSelector((state) => state.recipe.recipe);
 
+  const [modalVisible, setModalVisible] = useState(false);
+
   const [currentIngredients, setCurrentIngredients] = useState(
     recipe.ingredients,
   );
@@ -27,12 +29,14 @@ const EditScreenModel = () => {
     recipeSteps,
     recipePic,
     servings,
+    modalVisible,
 
     setRecipeName,
     setCurrentIngredients,
     setRecipeSteps,
     setRecipePic,
     setServings,
+    setModalVisible,
 
     navigation,
     dispatch,
