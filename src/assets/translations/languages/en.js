@@ -2,10 +2,9 @@ export const en = {
   language: 'Language',
   ru: 'Russian',
   en: 'English',
+  language_choice: 'App language',
 
-  language_choice: 'Choose language',
-
-  recipe_list: 'Recipe List',
+  recipe_list: 'My Recipes',
 
   ingredients_list: 'Ingredients',
   recipe_description: 'Recipe',

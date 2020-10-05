@@ -18,13 +18,13 @@ export const LanguageSettingsModal = ({controller, model}) => {
       onBackdropPress={() => model.setModalIsOpen(false)}>
       <MenuTrigger />
       <MenuOptions optionsContainerStyle={styles.modalView}>
-        {/*<Text style={styles.textStyle}>App language</Text>*/}
+        <Text style={styles.textStyle}>{model.t('language_choice')}</Text>
         <MenuOption
           onSelect={() => controller.setSystemLanguage('en')}
           style={{
             ...styles.menuOption,
-            borderBottomWidth: 4,
-            borderBottomColor: '#AEBCC3',
+            // borderBottomWidth: 4,
+            // borderBottomColor: '#AEBCC3',
           }}>
           <Text style={styles.textStyle}>English</Text>
         </MenuOption>
@@ -43,12 +43,16 @@ const styles = StyleSheet.create({
     width: 380,
     alignItems: 'center',
     marginTop: 5,
+    borderWidth: 3,
+    borderColor: 'rgba(190, 196, 200, 0.7)',
+    borderRadius: 20,
+    backgroundColor: '#E1E6E9',
   },
   modalView: {
     // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#EBEFF2',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 13,

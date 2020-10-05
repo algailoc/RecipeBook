@@ -2,10 +2,9 @@ export const ru = {
   language: 'Язык',
   ru: 'Русский',
   en: 'Английский',
+  language_choice: 'Язык приложения',
 
-  language_choice: 'Выберите язык',
-
-  recipe_list: 'Список рецептов',
+  recipe_list: 'Мои рецепты',
 
   ingredients_list: 'Ингредиенты',
   recipe_description: 'Рецепт',

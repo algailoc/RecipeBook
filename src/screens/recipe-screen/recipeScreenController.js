@@ -27,8 +27,14 @@ const RecipeScreenController = (model) => {
     let prevValue = model.servings;
     setServings(value);
     ingredients.map((item) => {
-      let n = (item.amount / prevValue) * value;
-      n === 0 ? (item.amount = '') : (item.amount = Math.round(n * 100) / 100);
+      if (typeof item.amount === 'string') {
+        return item.amount;
+      } else {
+        let n = (item.amount / prevValue) * value;
+        n === 0
+          ? (item.amount = '')
+          : (item.amount = Math.round(n * 100) / 100);
+      }
     });
   };
   return {
