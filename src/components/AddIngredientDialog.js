@@ -33,6 +33,7 @@ export const AddIngredientDialog = ({model, controller}) => {
               placeholder={t('ingredient_name')}
               value={ingredientName}
               onChangeText={(text) => setIngredientName(text)}
+              maxLength={25}
             />
             <View style={styles.wrapper}>
               <TextInput
@@ -41,12 +42,14 @@ export const AddIngredientDialog = ({model, controller}) => {
                 value={ingredientAmount}
                 onChangeText={(text) => setIngredientAmount(text)}
                 keyboardType="numeric"
+                maxLength={6}
               />
               <TextInput
                 style={styles.amountInput}
                 placeholder={t('ingredient_unit')}
                 value={ingredientUnit}
                 onChangeText={(text) => setIngredientUnit(text)}
+                maxLength={10}
               />
             </View>
           </View>

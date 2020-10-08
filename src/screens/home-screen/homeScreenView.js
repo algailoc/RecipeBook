@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {LanguageSettingsModal} from '../../components/LanguageSettingsDialogue';
 
 const HomeScreenView = ({model, controller, styles}) => {
-  const {recipeList, drawerIsOpen} = model;
+  const {recipeList} = model;
   const {goToRecipeScreen} = controller;
 
   return (

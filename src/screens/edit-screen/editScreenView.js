@@ -42,7 +42,7 @@ export const EditScreenView = ({model, controller, styles}) => {
           value={recipeName}
           onChangeText={(text) => setRecipeName(text)}
           placeholder={t('recipe_name')}
-          maxLength={30}
+          maxLength={50}
           style={styles.recipeName}
         />
         <Text style={styles.section}>{t('ingredients_list')}</Text>

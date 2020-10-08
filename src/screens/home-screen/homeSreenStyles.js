@@ -26,12 +26,13 @@ export const homeScreenStyles = StyleSheet.create({
   recipeTitle: {
     textShadowColor: 'black',
     fontSize: 20,
-    textShadowRadius: 2,
+    textShadowRadius: 5,
     color: 'white',
+    textAlign: 'center',
   },
   titleBackground: {
     backgroundColor: 'rgba(248, 52, 39, 0.8)',
-    height: '20%',
+    height: '35%',
     justifyContent: 'center',
     alignItems: 'center',
   },

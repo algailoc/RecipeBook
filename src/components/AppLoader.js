@@ -20,7 +20,9 @@ const AppLoader = () => {
         console.log(e);
       }
 
-      setReady(true);
+      setTimeout(() => {
+        setReady(true);
+      }, 1000);
     };
 
     initFunc();
