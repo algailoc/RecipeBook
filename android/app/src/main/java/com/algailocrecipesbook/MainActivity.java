@@ -1,4 +1,4 @@
-package com.recipebook;
+package com.algailocrecipesbook;
 
 import com.facebook.react.ReactActivity;
 

@@ -25,15 +25,20 @@ export const AddIngredientDialog = ({model, controller}) => {
         visible={visible}
         onTouchOutside={() => setVisible(false)}
         animationType="slide"
-        dialogStyle={styles.dialog}>
+        dialogStyle={styles.dialog}
+        keyboardShouldPersistTaps="always">
         <View>
           <View>
+            <Text style={styles.newIngredientDialog}>
+              {t('new_ingredient')}
+            </Text>
             <TextInput
               style={styles.nameInput}
               placeholder={t('ingredient_name')}
               value={ingredientName}
               onChangeText={(text) => setIngredientName(text)}
               maxLength={25}
+              autoFocus={true}
             />
             <View style={styles.wrapper}>
               <TextInput
@@ -53,10 +58,15 @@ export const AddIngredientDialog = ({model, controller}) => {
               />
             </View>
           </View>
-          <View style={{alignItems: 'center'}}>
+          <View
+            style={{
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+            }}>
             <Icon.Button
               name="pluscircleo"
-              style={{backgroundColor: '#73C1A7'}}
+              style={{backgroundColor: '#73C1A7', paddingHorizontal: 20}}
               onPress={() => {
                 addIngredientButton(
                   ingredientName,
@@ -70,6 +80,12 @@ export const AddIngredientDialog = ({model, controller}) => {
               <Text style={styles.buttonText}>
                 {t('add_ingredient_button')}
               </Text>
+            </Icon.Button>
+            <Icon.Button
+              name="closecircleo"
+              style={{backgroundColor: '#D83B31'}}
+              onPress={() => setVisible(false)}>
+              <Text style={styles.buttonText}>{t('alert_cancel')}</Text>
             </Icon.Button>
           </View>
         </View>
@@ -116,6 +132,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     textAlign: 'center',
+  },
+  newIngredientDialog: {
+    textAlign: 'center',
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 15,
   },
   touchableWrapper: {
     backgroundColor: '#DF5C12',

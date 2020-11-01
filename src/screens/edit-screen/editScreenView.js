@@ -85,7 +85,8 @@ export const EditScreenView = ({model, controller, styles}) => {
           name="checkcircle"
           size={30}
           style={styles.createRecipeButton}
-          backgroundColor="#fff"
+          backgroundColor="rgba(255, 255, 255, 0)"
+          underlayColor="rgba(255, 255, 255, 0)"
           onPress={editRecipeButtonHandler}>
           <Text style={styles.createRecipeButtonText}>{t('add_complete')}</Text>
         </Icon.Button>

@@ -67,11 +67,12 @@ export const ServingsDropDown = ({servings, setServings}) => {
 const styles = StyleSheet.create({
   dropDownContainer: {
     height: 40,
-    width: 60,
+    width: '20%',
     alignSelf: 'flex-end',
   },
   servings: {
     justifyContent: 'flex-end',
+    marginRight: 7,
     alignItems: 'center',
     flexDirection: 'row',
   },

@@ -3,7 +3,7 @@ import RecipeScreenView from './recipeScreenView';
 import RecipeScreenModel from './recipeScreenModel';
 import {recipeScreenStyles} from './recipeScreenStyles';
 import {RecipeLoader} from '../../components/RecipeLoader';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/AntDesign';
 import {useFocusEffect} from '@react-navigation/native';
 import RecipeScreenController from './recipeScreenController';
 

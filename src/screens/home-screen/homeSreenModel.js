@@ -12,13 +12,16 @@ const HomeScreenModels = () => {
 
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [settingsIsOpen, setSettingsIsOpen] = useState(false);
 
   return {
     recipeList,
     drawerIsOpen,
     setDrawerIsOpen,
     modalIsOpen,
+    settingsIsOpen,
     setModalIsOpen,
+    setSettingsIsOpen,
     navigation,
     t,
     dispatch,

@@ -5,6 +5,7 @@ export const ru = {
   language_choice: 'Язык приложения',
 
   recipe_list: 'Мои рецепты',
+  empty_list: 'Здесь пока нет рецептов \n' + 'Начните добавлять их! ',
 
   ingredients_list: 'Ингредиенты',
   recipe_description: 'Рецепт',
@@ -14,6 +15,7 @@ export const ru = {
   image_button: 'Изменить картинку',
   ingredients_removal_help: 'Вы можете удалять ингредиенты долгим нажатием',
   add_ingredients_dialog: 'Добавить ингредиенты',
+  new_ingredient: 'Новый ингредиент',
   recipe_input: 'Опишите рецепт здесь',
   ingredient_name: 'Название',
   ingredient_amount: 'Количество',
@@ -34,4 +36,6 @@ export const ru = {
   edit_recipe: 'Редактирование рецепта',
 
   numberOfServings: 'Количество порций',
+
+  privacy_policy: 'Политика\n' + 'конфиденциальности',
 };
