@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Image, Text} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 export const AppLoading = () => {
@@ -19,14 +19,14 @@ export const AppLoading = () => {
 
 const styles = StyleSheet.create({
   image: {
-    height: 250,
-    width: 250,
+    height: 150,
+    width: 150,
   },
   text: {
     fontSize: 30,
     fontFamily: 'Merriweather-Regular',
     color: '#C8271D',
-    marginBottom: 20,
+    marginBottom: 40,
   },
   wrapper: {
     flex: 1,

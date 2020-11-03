@@ -12,7 +12,7 @@ const RecipeScreenModel = () => {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [steps, setSteps] = useState('');
-  const [servings, setServings] = useState('');
+  const [servings, setServings] = useState('1');
 
   const [isOpened, setIsOpened] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);

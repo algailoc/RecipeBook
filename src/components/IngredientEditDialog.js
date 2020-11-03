@@ -1,36 +1,46 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {Dialog} from 'react-native-simple-dialogs';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export const AddIngredientDialog = ({model, controller}) => {
-  const [visible, setVisible] = useState(false);
-
+export const IngredientEditDialog = ({model, controller}) => {
   const [ingredientName, setIngredientName] = useState('');
-  const [ingredientAmount, setIngredientAmount] = useState();
+  const [ingredientAmount, setIngredientAmount] = useState('');
   const [ingredientUnit, setIngredientUnit] = useState('');
+  const [ingredient, setIngredient] = useState({});
 
-  const {t} = model;
-  const {addIngredientButton} = controller;
+  const {
+    t,
+    editModalVisible,
+    setEditModalVisible,
+    currentIngredient,
+    recipe,
+  } = model;
+  const {removeIngredientTouchable, editIngredientButton} = controller;
+
+  useEffect(() => {
+    setIngredient(currentIngredient);
+    if (ingredient !== undefined) {
+      setIngredientName(ingredient.name);
+      if (ingredient.amount !== null && ingredient.amount !== undefined) {
+        setIngredientAmount(ingredient.amount);
+      }
+      setIngredientUnit(ingredient.unit);
+    }
+  }, [currentIngredient, ingredient]);
 
   return (
     <View>
       <Dialog
-        visible={visible}
-        onTouchOutside={() => setVisible(false)}
+        visible={editModalVisible}
+        onTouchOutside={() => setEditModalVisible(false)}
         animationType="slide"
         dialogStyle={styles.dialog}
         keyboardShouldPersistTaps="always">
         <View>
           <View>
             <Text style={styles.newIngredientDialog}>
-              {t('new_ingredient')}
+              {t('edit_ingredient')}
             </Text>
             <TextInput
               style={styles.nameInput}
@@ -44,7 +54,7 @@ export const AddIngredientDialog = ({model, controller}) => {
               <TextInput
                 style={styles.amountInput}
                 placeholder={t('ingredient_amount')}
-                value={ingredientAmount}
+                value={String(ingredientAmount)}
                 onChangeText={(text) => setIngredientAmount(text)}
                 keyboardType="numeric"
                 maxLength={6}
@@ -60,36 +70,35 @@ export const AddIngredientDialog = ({model, controller}) => {
           </View>
           <View style={styles.buttonWrapper}>
             <Icon.Button
-              name="pluscircleo"
+              name="check"
               style={styles.positiveButtonStyle}
               onPress={() => {
-                addIngredientButton(
-                  ingredientName,
-                  ingredientAmount,
-                  ingredientUnit,
+                setIngredient(
+                  ingredient.id,
+                  ingredient.recipeId,
+                  (ingredient.name = ingredientName),
+                  (ingredient.amount = ingredientAmount),
+                  (ingredient.unit = ingredientUnit),
                 );
-                setIngredientName('');
-                setIngredientAmount();
-                setIngredientUnit('');
+                editIngredientButton({
+                  ingredient,
+                });
+                setEditModalVisible(false);
               }}>
-              <Text style={styles.buttonText}>
-                {t('add_ingredient_button')}
-              </Text>
+              <Text style={styles.buttonText}>{t('save_ingredient')}</Text>
             </Icon.Button>
             <Icon.Button
-              name="closecircleo"
+              name="delete"
               style={styles.negativeButtonStyle}
-              onPress={() => setVisible(false)}>
-              <Text style={styles.buttonText}>{t('alert_cancel')}</Text>
+              onPress={() => {
+                setEditModalVisible(false);
+                removeIngredientTouchable(recipe.id, ingredient.id);
+              }}>
+              <Text style={styles.buttonText}>{t('delete_ingredient')}</Text>
             </Icon.Button>
           </View>
         </View>
       </Dialog>
-      <TouchableOpacity
-        style={styles.touchableWrapper}
-        onPress={() => setVisible(true)}>
-        <Text style={styles.buttonText}>{t('add_ingredients_dialog')}</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -99,17 +108,19 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   buttonWrapper: {
+    width: '100%',
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
   positiveButtonStyle: {
     backgroundColor: '#499A5E',
-    paddingHorizontal: 20,
-    // borderRadius: 20,
+    paddingHorizontal: '10%',
+    justifyContent: 'center',
   },
   negativeButtonStyle: {
     backgroundColor: '#D83B31',
+    justifyContent: 'center',
   },
   wrapper: {
     flexDirection: 'row',
@@ -131,7 +142,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderColor: 'rgba(243, 82, 39, 0.7)',
     width: '49%',
-    // paddingLeft: 15,
+    paddingLeft: 15,
     fontSize: 18,
     textAlign: 'center',
   },

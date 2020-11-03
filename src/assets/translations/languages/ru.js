@@ -5,6 +5,8 @@ export const ru = {
   language_choice: 'Язык приложения',
 
   recipe_list: 'Мои рецепты',
+  empty_list: 'Здесь пока нет рецептов \n' + 'Начните добавлять их! ',
+  delete_recipe_confirm: 'Вы уверены, что хотите удалить рецепт ',
 
   ingredients_list: 'Ингредиенты',
   recipe_description: 'Рецепт',
@@ -12,8 +14,12 @@ export const ru = {
   new_recipe: 'Новый рецепт',
   recipe_name: 'Название рецепта',
   image_button: 'Изменить картинку',
-  ingredients_removal_help: 'Вы можете удалять ингредиенты долгим нажатием',
+  ingredients_removal_help: 'Вы можете изменять ингредиенты, нажав на них',
   add_ingredients_dialog: 'Добавить ингредиенты',
+  new_ingredient: 'Новый ингредиент',
+  edit_ingredient: 'Изменение ингредиента',
+  save_ingredient: 'Сохранить',
+  delete_ingredient: 'Удалить',
   recipe_input: 'Опишите рецепт здесь',
   ingredient_name: 'Название',
   ingredient_amount: 'Количество',
@@ -34,4 +40,6 @@ export const ru = {
   edit_recipe: 'Редактирование рецепта',
 
   numberOfServings: 'Количество порций',
+
+  privacy_policy: 'Политика\n' + 'конфиденциальности',
 };

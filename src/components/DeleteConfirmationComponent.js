@@ -7,24 +7,27 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
+import {removeRecipe} from '../store/actions/recipeActionCreator';
 
-export const AlertModal = ({model, removeOptional, textProp}) => {
+export const DeleteConfirmationComponent = ({model, id, title}) => {
   return (
     <View style={styles.centeredView}>
       <Modal
         animationType="fade"
         transparent={true}
-        visible={model.modalVisible}>
+        visible={model.deleteModalVisible}>
         <TouchableOpacity
           onPress={() => {
-            model.setModalVisible(false);
+            model.setDeleteModalVisible(false);
           }}
           style={styles.centeredView}>
           <TouchableWithoutFeedback
             onPress={() => {}}
             touchSoundDisabled={true}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>{textProp}</Text>
+              <Text style={styles.modalText}>
+                {model.t('delete_recipe_confirm') + title + '?'}
+              </Text>
               <View style={styles.buttonWrapper}>
                 <TouchableOpacity
                   style={{
@@ -33,7 +36,7 @@ export const AlertModal = ({model, removeOptional, textProp}) => {
                     borderBottomLeftRadius: 20,
                   }}
                   onPress={() => {
-                    model.setModalVisible(!model.modalVisible);
+                    model.setDeleteModalVisible(!model.deleteModalVisible);
                   }}>
                   <Text style={{...styles.textStyle, color: 'black'}}>
                     {model.t('alert_cancel')}
@@ -46,9 +49,8 @@ export const AlertModal = ({model, removeOptional, textProp}) => {
                     borderBottomRightRadius: 20,
                   }}
                   onPress={() => {
-                    model.setModalVisible(!model.modalVisible);
-                    removeOptional();
-                    model.navigation.goBack();
+                    model.dispatch(removeRecipe(id));
+                    model.setDeleteModalVisible(!model.deleteModalVisible);
                   }}>
                   <Text style={{...styles.textStyle, color: 'white'}}>
                     {model.t('alert_confirm')}
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     // marginTop: 22,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
   modalView: {
     margin: 20,

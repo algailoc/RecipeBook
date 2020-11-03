@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const recipeScreenStyles = StyleSheet.create({
   items: {
-    flexDirection: 'row',
+    // flexDirection: 'row',
     margin: 3,
     marginHorizontal: 6,
     justifyContent: 'space-between',
@@ -15,9 +15,10 @@ export const recipeScreenStyles = StyleSheet.create({
   },
   measurementWrapper: {
     flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   optionText: {
-    fontSize: 20,
+    fontSize: 16,
   },
   optionsWrapper: {
     backgroundColor: '#fff',
@@ -26,7 +27,7 @@ export const recipeScreenStyles = StyleSheet.create({
     flex: 1,
     alignSelf: 'flex-end',
     marginTop: '14%',
-    marginLeft: '60%',
+    marginLeft: '50%',
   },
   section: {
     fontSize: 18,

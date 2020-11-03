@@ -5,6 +5,7 @@ import {EditScreenView} from './editScreenView';
 import EditScreenModel from './editScreenModel';
 import EditScreenController from './editScreenController';
 import {EditScreenStyles} from './editScreenStyles';
+import {BackHandler} from 'react-native';
 
 const EditScreen = () => {
   useFocusEffect(() => {
@@ -17,6 +18,20 @@ const EditScreen = () => {
       ),
     });
   });
+
+  React.useEffect(() => {
+    const backAction = () => {
+      controller.backButtonHandler();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   const model = EditScreenModel();
   const controller = EditScreenController(model);

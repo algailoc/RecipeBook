@@ -24,8 +24,7 @@ export const CreateScreenStyles = StyleSheet.create({
     textAlign: 'center',
   },
   items: {
-    flexDirection: 'row',
-    margin: 3,
+    // flexDirection: 'row',
     marginHorizontal: 6,
     justifyContent: 'space-between',
     borderBottomColor: '#F35227',
@@ -37,6 +36,7 @@ export const CreateScreenStyles = StyleSheet.create({
   },
   measurementWrapper: {
     flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   recipeName: {
     textAlign: 'center',

@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {AddIngredientDialog} from '../../components/AddIngredientDialog';
 import {ServingsDropDown} from '../../components/ServingsDropDown';
 import {AlertModal} from '../../components/AlertModal';
+import {IngredientEditDialog} from "../../components/IngredientEditDialog";
 
 LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -33,6 +34,7 @@ export const EditScreenView = ({model, controller, styles}) => {
     editRecipeButtonHandler,
     editPictureHandler,
     removeRecipeHandler,
+    editIngredientTouchable,
   } = controller;
 
   return (
@@ -53,7 +55,9 @@ export const EditScreenView = ({model, controller, styles}) => {
             return (
               <TouchableOpacity
                 style={styles.items}
-                onLongPress={() => removeIngredientTouchable(item.id)}>
+                onPress={() => editIngredientTouchable(item.id)}
+                // onLongPress={() => removeIngredientTouchable(item.id)}
+              >
                 <Text style={styles.itemText}>{item.name}</Text>
                 <View style={styles.measurementWrapper}>
                   <Text style={styles.itemText}>{item.amount}</Text>
@@ -85,7 +89,8 @@ export const EditScreenView = ({model, controller, styles}) => {
           name="checkcircle"
           size={30}
           style={styles.createRecipeButton}
-          backgroundColor="#fff"
+          backgroundColor="rgba(255, 255, 255, 0)"
+          underlayColor="rgba(255, 255, 255, 0)"
           onPress={editRecipeButtonHandler}>
           <Text style={styles.createRecipeButtonText}>{t('add_complete')}</Text>
         </Icon.Button>
@@ -97,6 +102,7 @@ export const EditScreenView = ({model, controller, styles}) => {
           t('alert_go_back_title') + '? \n' + t('alert_go_back_message')
         }
       />
+      <IngredientEditDialog model={model} controller={controller} />
     </View>
   );
 };

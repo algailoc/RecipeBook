@@ -1,6 +1,8 @@
 import {
   addIngredient,
+  editIngredient,
   editRecipe,
+  removeIngredient,
   removeRecipe,
 } from '../../store/actions/recipeActionCreator';
 import {Alert} from 'react-native';
@@ -15,6 +17,8 @@ const EditScreenController = (model) => {
     recipeSteps,
     servings,
     setCurrentIngredients,
+    setCurrentIngredient,
+    setEditModalVisible,
     setRecipePic,
     setModalVisible,
     dispatch,
@@ -23,35 +27,33 @@ const EditScreenController = (model) => {
   } = model;
 
   const addIngredientButton = (name, amount, unit) => {
-    setCurrentIngredients((prevState) => [
-      ...prevState,
-      {
-        id: Date.now().toString(),
-        name,
-        amount,
-        unit,
-      },
-    ]);
+    // setCurrentIngredients((prevState) => [
+    //   ...prevState,
+    //   {
+    //     id: Date.now().toString(),
+    //     name,
+    //     amount,
+    //     unit,
+    //   },
+    // ]);
     dispatch(addIngredient(recipeId, name, amount, unit));
   };
 
   const backButtonHandler = () => {
-    // Alert.alert(
-    //   t('alert_go_back_title') + '?',
-    //   t('alert_go_back_message'),
-    //   [
-    //     {text: t('alert_cancel'), style: 'negative'},
-    //     {text: ''},
-    //     {text: t('alert_confirm'), onPress: () => navigation.goBack()},
-    //   ],
-    //   {
-    //     cancelable: true,
-    //   },
-    // );
     setModalVisible(!model.modalVisible);
   };
 
   const removeRecipeHandler = () => {};
+
+  const editIngredientTouchable = (id) => {
+    setCurrentIngredient(currentIngredients.find((item) => id === item.id));
+    setEditModalVisible(true);
+  };
+
+  const editIngredientButton = ({ingredient}) => {
+    console.log('Ingr: ', ingredient);
+    dispatch(editIngredient(ingredient));
+  };
 
   const editPictureHandler = () => {
     ImagePicker.openPicker({
@@ -88,8 +90,8 @@ const EditScreenController = (model) => {
     }
   };
 
-  const removeIngredientTouchable = (id) => {
-    setCurrentIngredients(currentIngredients.filter((item) => id !== item.id));
+  const removeIngredientTouchable = (recipeId, id) => {
+    dispatch(removeIngredient(recipeId, id));
   };
 
   return {
@@ -99,6 +101,8 @@ const EditScreenController = (model) => {
     editPictureHandler,
     removeIngredientTouchable,
     removeRecipeHandler,
+    editIngredientTouchable,
+    editIngredientButton,
   };
 };
 

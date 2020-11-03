@@ -7,7 +7,7 @@ import s_updateSystemLanguageHandler from './handlers/s_updateSystemLanguageHand
 import s_setSystemLanguageHandler from './handlers/s_setSystemLanguageHandler';
 
 function* systemSaga() {
-  console.log('systemSaga loaded');
+  // console.log('systemSaga loaded');
 
   yield takeLatest(UPDATE_SYSTEM_LANGUAGE, s_updateSystemLanguageHandler);
   yield takeLatest(SET_SYSTEM_LANGUAGE, s_setSystemLanguageHandler);

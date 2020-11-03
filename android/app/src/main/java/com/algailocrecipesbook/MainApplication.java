@@ -1,4 +1,4 @@
-package com.recipebook;
+package com.algailocrecipesbook;
 
 import android.app.Application;
 import android.content.Context;

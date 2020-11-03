@@ -5,6 +5,8 @@ export const en = {
   language_choice: 'App language',
 
   recipe_list: 'My Recipes',
+  empty_list: 'There are no recipes yet \n' + 'You can start by adding one!',
+  delete_recipe_confirm: 'Are you sure you want to delete ',
 
   ingredients_list: 'Ingredients',
   recipe_description: 'Recipe',
@@ -12,13 +14,17 @@ export const en = {
   new_recipe: 'New recipe',
   recipe_name: 'Recipe name',
   image_button: 'Change image',
-  ingredients_removal_help: 'You can remove ingredients by long pressing them',
+  ingredients_removal_help: 'You can edit ingredients by pressing on them',
   add_ingredients_dialog: 'Add ingredients',
+  new_ingredient: 'New ingredient',
+  edit_ingredient: 'Ingredient editing',
+  save_ingredient: 'Save',
+  delete_ingredient: 'Delete',
   recipe_input: 'Write recipe here',
   ingredient_name: 'Name',
   ingredient_amount: 'Amount',
   ingredient_unit: 'Unit',
-  add_ingredient_button: 'Add',
+  add_ingredient_button: 'Add ingredient',
   add_complete: 'Done',
 
   options_edit: 'Edit',
@@ -34,4 +40,6 @@ export const en = {
   edit_recipe: 'Recipe editing',
 
   numberOfServings: 'Number of servings',
+
+  privacy_policy: 'Privacy Policy link',
 };

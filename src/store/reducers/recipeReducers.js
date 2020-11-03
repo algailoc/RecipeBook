@@ -10,6 +10,9 @@ import {
   CREATE_RECIPE_BEGIN,
   CREATE_RECIPE_ERROR,
   CREATE_RECIPE_FINISHED,
+  EDIT_INGREDIENT_BEGIN,
+  EDIT_INGREDIENT_ERROR,
+  EDIT_INGREDIENT_FINISHED,
   EDIT_RECIPE,
   EDIT_RECIPE_BEGIN,
   EDIT_RECIPE_ERROR,
@@ -17,6 +20,9 @@ import {
   GET_RECIPE_BEGIN,
   GET_RECIPE_ERROR,
   GET_RECIPE_FINISHED,
+  REMOVE_INGREDIENT_BEGIN,
+  REMOVE_INGREDIENT_ERROR,
+  REMOVE_INGREDIENT_FINISHED,
   REMOVE_RECIPE,
   REMOVE_RECIPE_BEGIN,
   REMOVE_RECIPE_ERROR,
@@ -26,6 +32,7 @@ import {
 const initialState = {
   loading: false,
   recipe: undefined,
+  processingIngredient: false,
 };
 
 export const recipeReducers = (state = initialState, action) => {
@@ -159,16 +166,75 @@ export const recipeReducers = (state = initialState, action) => {
     }
 
     case ADD_INGREDIENT_BEGIN: {
-      return state;
+      return {
+        ...state,
+        processingIngredient: true,
+      };
     }
 
     case ADD_INGREDIENT_FINISHED: {
-      return state;
+      return {
+        ...state,
+        processingIngredient: false,
+        recipe: {
+          ...state.recipe,
+          ingredients: action.payload,
+        },
+      };
     }
 
     case ADD_INGREDIENT_ERROR: {
       console.log('Error on adding ingredient:', action.payload);
-      return state;
+      return {
+        ...state,
+        processingIngredient: false,
+      };
+    }
+
+    case EDIT_INGREDIENT_BEGIN: {
+      return {
+        ...state,
+        processingIngredient: true,
+      };
+    }
+
+    case EDIT_INGREDIENT_FINISHED: {
+      return {
+        ...state,
+        processingIngredient: false,
+        recipe: {
+          ...state.recipe,
+          ingredients: action.payload,
+        },
+      };
+    }
+
+    case EDIT_INGREDIENT_ERROR: {
+      console.log('Error on editing ingredient: ', action.payload);
+      return {...state, processingIngredient: false};
+    }
+
+    case REMOVE_INGREDIENT_BEGIN: {
+      return {
+        ...state,
+        processingIngredient: true,
+      };
+    }
+
+    case REMOVE_INGREDIENT_FINISHED: {
+      return {
+        ...state,
+        processingIngredient: false,
+        recipe: {
+          ...state.recipe,
+          ingredients: action.payload,
+        },
+      };
+    }
+
+    case REMOVE_INGREDIENT_ERROR: {
+      console.log('Error on removing ingredient:', action.payload);
+      return {...state, processingIngredient: false};
     }
 
     default: {

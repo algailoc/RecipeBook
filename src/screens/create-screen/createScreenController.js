@@ -1,6 +1,8 @@
 import {
   addIngredient,
   addRecipe,
+  editIngredient,
+  removeIngredient,
   removeRecipe,
 } from '../../store/actions/recipeActionCreator';
 import {Alert} from 'react-native';
@@ -11,12 +13,15 @@ const CreateScreenController = (model) => {
     recipe,
     recipeId,
     currentIngredients,
+    currentIngredient,
     recipePic,
     recipeName,
     recipeSteps,
     servings,
     setCurrentIngredients,
+    setCurrentIngredient,
     setRecipePic,
+    setEditModalVisible,
     setModalVisible,
     dispatch,
     navigation,
@@ -24,15 +29,15 @@ const CreateScreenController = (model) => {
   } = model;
 
   const addIngredientButton = (name, amount, unit) => {
-    setCurrentIngredients((prevState) => [
-      ...prevState,
-      {
-        id: Date.now().toString(),
-        name,
-        amount,
-        unit,
-      },
-    ]);
+    // setCurrentIngredients((prevState) => [
+    //   ...prevState,
+    //   {
+    //     id: Date.now().toString(),
+    //     name,
+    //     amount,
+    //     unit,
+    //   },
+    // ]);
     dispatch(addIngredient(recipeId, name, amount, unit));
   };
 
@@ -60,6 +65,16 @@ const CreateScreenController = (model) => {
     setModalVisible(!model.modalVisible);
   };
 
+  const editIngredientTouchable = (id) => {
+    setCurrentIngredient(currentIngredients.find((item) => id === item.id));
+    setEditModalVisible(true);
+  };
+
+  const editIngredientButton = ({ingredient}) => {
+    console.log('Ingr: ', ingredient);
+    dispatch(editIngredient(ingredient));
+  };
+
   const removeRecipeHandler = () => {
     dispatch(removeRecipe(recipeId));
   };
@@ -79,14 +94,16 @@ const CreateScreenController = (model) => {
     );
   };
 
-  const removeIngredientTouchable = (id) => {
-    setCurrentIngredients(currentIngredients.filter((item) => id !== item.id));
+  const removeIngredientTouchable = (recipeId, id) => {
+    dispatch(removeIngredient(recipeId, id));
   };
 
   return {
     addIngredientButton,
     addRecipeButtonHandler,
     backButtonHandler,
+    editIngredientTouchable,
+    editIngredientButton,
     editPictureHandler,
     removeIngredientTouchable,
     removeRecipeHandler,
