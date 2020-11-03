@@ -18,18 +18,16 @@ export const homeScreenStyles = StyleSheet.create({
     right: 25,
   },
   optionText: {
-    fontSize: 18,
+    fontSize: 16,
     textAlign: 'center',
   },
   optionsWrapper: {
     backgroundColor: '#fff',
   },
   popUpWrapper: {
-    flex: 1,
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
     marginTop: '14%',
     marginLeft: '50%',
-    width: 200,
   },
   recipeImage: {
     height: '100%',
@@ -37,7 +35,7 @@ export const homeScreenStyles = StyleSheet.create({
   },
   recipeItem: {
     height: 150,
-    marginBottom: 5,
+    marginBottom: 4,
   },
   recipeList: {
     height: '100%',
@@ -51,7 +49,9 @@ export const homeScreenStyles = StyleSheet.create({
   },
   recipeListTextWrapper: {
     marginTop: '50%',
-    marginLeft: '5%',
+    // marginLeft: '5%',
+    // justifyContent: 'flex-end',
+    alignSelf: 'center',
     padding: 5,
     backgroundColor: '#fff',
     borderRadius: 50,

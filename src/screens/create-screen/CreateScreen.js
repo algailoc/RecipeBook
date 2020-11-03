@@ -6,6 +6,7 @@ import CreateScreenController from './createScreenController';
 import {useFocusEffect} from '@react-navigation/native';
 import {HeaderBackButton} from '@react-navigation/stack';
 import {RecipeLoader} from '../../components/RecipeLoader';
+import {BackHandler} from 'react-native';
 
 const CreateScreen = () => {
   useFocusEffect(() => {
@@ -18,6 +19,20 @@ const CreateScreen = () => {
       ),
     });
   });
+
+  React.useEffect(() => {
+    const backAction = () => {
+      controller.backButtonHandler();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   const styles = CreateScreenStyles;
   const model = CreateScreenModel();

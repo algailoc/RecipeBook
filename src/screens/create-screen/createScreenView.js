@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {AddIngredientDialog} from '../../components/AddIngredientDialog';
 import {ServingsDropDown} from '../../components/ServingsDropDown';
 import {AlertModal} from '../../components/AlertModal';
+import {IngredientEditDialog} from '../../components/IngredientEditDialog';
 
 LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -19,6 +20,7 @@ LogBox.ignoreLogs([
 
 export const CreateScreenView = ({styles, model, controller}) => {
   const {
+    recipeId,
     currentIngredients,
     servings,
     setRecipeSteps,
@@ -31,6 +33,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
   const {
     removeIngredientTouchable,
     addRecipeButtonHandler,
+    editIngredientTouchable,
     editPictureHandler,
     removeRecipeHandler,
   } = controller;
@@ -48,12 +51,16 @@ export const CreateScreenView = ({styles, model, controller}) => {
         <Text style={styles.section}>{t('ingredients_list')}</Text>
         <FlatList
           data={currentIngredients}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
                 style={styles.items}
-                onLongPress={() => removeIngredientTouchable(item.id)}>
+                onPress={() => editIngredientTouchable(item.id)}
+                // onLongPress={() =>
+                //   removeIngredientTouchable(recipeId, item.id)
+                // }
+              >
                 <Text style={styles.itemText}>{item.name}</Text>
                 <View style={styles.measurementWrapper}>
                   <Text style={styles.itemText}>{item.amount}</Text>
@@ -98,6 +105,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
           t('alert_go_back_title') + '? \n' + t('alert_go_back_message')
         }
       />
+      <IngredientEditDialog model={model} controller={controller} />
     </View>
   );
 };

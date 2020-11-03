@@ -203,6 +203,66 @@ export class RecipesStorageService {
     return ingredients;
   }
 
+  static async removeIngredient({recipeId, id}) {
+    const removeIngredient =
+      'DELETE FROM ' +
+      INGREDIENTS_TABLE +
+      ' WHERE ' +
+      INGREDIENTS_RECIPE_ID +
+      ' =? AND ' +
+      INGREDIENTS_ID +
+      ' =?';
+
+    const params = [recipeId, id];
+
+    try {
+      const result = await SqlStatementExecutor.execute({
+        db: RecipesStorageService.#db,
+        statement: removeIngredient,
+        params,
+      });
+      const rowsAffected = result.rowsAffected;
+      // return rowsAffected > 0;
+    } catch (e) {
+      console.log('Error on removing ingredient in storage', e);
+    }
+
+    return await RecipesStorageService.getRecipeIngredients({recipeId});
+  }
+
+  static async updateIngredient({recipeId, name, amount, unit, id}) {
+    const updateIngredients =
+      'UPDATE ' +
+      INGREDIENTS_TABLE +
+      ' SET ' +
+      INGREDIENTS_NAME +
+      ' = ?, ' +
+      INGREDIENTS_AMOUNT +
+      ' = ?, ' +
+      INGREDIENTS_UNIT +
+      ' = ? WHERE ' +
+      INGREDIENTS_ID +
+      ' = ? AND ' +
+      INGREDIENTS_RECIPE_ID +
+      ' =?';
+
+    const params = [name, amount, unit, id, recipeId];
+
+    try {
+      const result = await SqlStatementExecutor.execute({
+        db: RecipesStorageService.#db,
+        statement: updateIngredients,
+        params,
+      });
+      const rowsAffected = result.rowsAffected;
+      console.log('Updating recipe success = ', rowsAffected > 0);
+    } catch (e) {
+      console.log('Error on updating ingredient in storage', e);
+    }
+
+    return await RecipesStorageService.getRecipeIngredients({recipeId});
+  }
+
   static async updateRecipe({id, title, imagePath, steps, servings}) {
     const updateRecipe =
       'UPDATE ' +
@@ -246,6 +306,32 @@ export class RecipesStorageService {
 
     const rowsAffected = result.rowsAffected;
 
-    return rowsAffected > 0;
+    return await RecipesStorageService.removeAllIngredients({recipeId: id});
+  }
+
+  static async removeAllIngredients({recipeId}) {
+    const removeIngredient =
+      'DELETE FROM ' +
+      INGREDIENTS_TABLE +
+      ' WHERE ' +
+      INGREDIENTS_RECIPE_ID +
+      ' =?';
+
+    const params = [recipeId];
+
+    try {
+      const result = await SqlStatementExecutor.execute({
+        db: RecipesStorageService.#db,
+        statement: removeIngredient,
+        params,
+      });
+      const rowsAffected = result.rowsAffected;
+      return rowsAffected > 0;
+    } catch (e) {
+      console.log(
+        'Error on removing ingredients while removing recipe in storage: ',
+        e,
+      );
+    }
   }
 }

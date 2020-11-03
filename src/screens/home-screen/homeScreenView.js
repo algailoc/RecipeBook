@@ -17,9 +17,17 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import {DeleteConfirmationComponent} from '../../components/DeleteConfirmationComponent';
 
 const HomeScreenView = ({model, controller, styles}) => {
-  const {recipeList} = model;
+  const {
+    recipeList,
+    setDeleteModalVisible,
+    currentId,
+    setCurrentId,
+    currentTitle,
+    setCurrentTitle,
+  } = model;
   const {goToRecipeScreen} = controller;
 
   const PopUpMenu = () => {
@@ -52,7 +60,13 @@ const HomeScreenView = ({model, controller, styles}) => {
           data={recipeList}
           renderItem={({item}) => (
             <TouchableOpacity
-              onPress={() => goToRecipeScreen(item.id, item.title)}>
+              delayLongPress={250}
+              onPress={() => goToRecipeScreen(item.id, item.title)}
+              onLongPress={() => {
+                setCurrentId(item.id);
+                setCurrentTitle(item.title);
+                setDeleteModalVisible(true);
+              }}>
               <RecipeItem
                 style={styles.recipeItem}
                 title={item.title}
@@ -70,10 +84,10 @@ const HomeScreenView = ({model, controller, styles}) => {
           <View style={styles.recipeListTextWrapper}>
             <Text style={styles.recipeListText}>{model.t('empty_list')}</Text>
           </View>
-          <Image
-            style={styles.arrowImage}
-            source={require('../../assets/img/arrow.png')}
-          />
+          {/*<Image*/}
+            {/*style={styles.arrowImage}*/}
+            {/*source={require('../../assets/img/arrow.png')}*/}
+          {/*/>*/}
         </View>
       );
     }
@@ -85,22 +99,6 @@ const HomeScreenView = ({model, controller, styles}) => {
         source={require('../../assets/img/background-1.jpg')}
         style={styles.imageBkg}>
         <RecipeListComponent />
-        {/*<FlatList*/}
-        {/*style={styles.recipeList}*/}
-        {/*data={recipeList}*/}
-        {/*renderItem={({item}) => (*/}
-        {/*<TouchableOpacity*/}
-        {/*onPress={() => goToRecipeScreen(item.id, item.title)}>*/}
-        {/*<RecipeItem*/}
-        {/*style={styles.recipeItem}*/}
-        {/*title={item.title}*/}
-        {/*image={item.imagePath}*/}
-        {/*styles={styles}*/}
-        {/*/>*/}
-        {/*</TouchableOpacity>*/}
-        {/*)}*/}
-        {/*keyExtractor={(item, index) => index.toString()}*/}
-        {/*/>*/}
       </ImageBackground>
       <View style={styles.newRecipeButton}>
         <Icon.Button
@@ -108,13 +106,18 @@ const HomeScreenView = ({model, controller, styles}) => {
           onPress={controller.goToNewRecipe}
           name="pluscircle"
           color="#C8271D"
-          size={60}
+          size={70}
           borderRadius={100}
           iconStyle={{marginRight: -10, margin: -10}}
           backgroundColor="#fff"
         />
       </View>
       <LanguageSettingsModal model={model} controller={controller} />
+      <DeleteConfirmationComponent
+        model={model}
+        id={currentId}
+        title={currentTitle}
+      />
       <PopUpMenu />
     </View>
   );

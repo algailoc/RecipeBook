@@ -40,7 +40,8 @@ export const LanguageSettingsModal = ({controller, model}) => {
 
 const styles = StyleSheet.create({
   menuOption: {
-    width: 380,
+    // width: '100%',
+    flex: 1,
     alignItems: 'center',
     marginTop: 5,
     borderWidth: 3,
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#E1E6E9',
   },
   modalView: {
-    // flex: 1,
-    alignItems: 'center',
+    flex: 1,
+    // alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#EBEFF2',
     borderTopLeftRadius: 20,

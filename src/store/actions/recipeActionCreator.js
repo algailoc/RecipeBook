@@ -23,6 +23,14 @@ import {
   ADD_INGREDIENT_BEGIN,
   ADD_INGREDIENT_FINISHED,
   ADD_INGREDIENT_ERROR,
+  EDIT_INGREDIENT,
+  EDIT_INGREDIENT_BEGIN,
+  EDIT_INGREDIENT_FINISHED,
+  EDIT_INGREDIENT_ERROR,
+  REMOVE_INGREDIENT,
+  REMOVE_INGREDIENT_BEGIN,
+  REMOVE_INGREDIENT_FINISHED,
+  REMOVE_INGREDIENT_ERROR,
 } from '../types/recipeTypes';
 
 export function getRecipe(id) {
@@ -215,10 +223,10 @@ export function addIngredientBegin() {
   return action;
 }
 
-export function addIngredientFinished(recipeId, name, amount, unit) {
+export function addIngredientFinished(data) {
   const action = {
     type: ADD_INGREDIENT_FINISHED,
-    payload: {recipeId, name, amount, unit},
+    payload: data,
   };
   return action;
 }
@@ -226,6 +234,70 @@ export function addIngredientFinished(recipeId, name, amount, unit) {
 export function addIngredientError(e) {
   const action = {
     type: ADD_INGREDIENT_ERROR,
+    payload: e,
+  };
+  return action;
+}
+
+export function editIngredient({recipeId, name, amount, unit, id}) {
+  const action = {
+    type: EDIT_INGREDIENT,
+    payload: {recipeId, name, amount, unit, id},
+  };
+  return action;
+}
+
+export function editIngredientBegin() {
+  const action = {
+    type: EDIT_INGREDIENT_BEGIN,
+    payload: undefined,
+  };
+  return action;
+}
+
+export function editIngredientFinished(data) {
+  const action = {
+    type: EDIT_INGREDIENT_FINISHED,
+    payload: data,
+  };
+  return action;
+}
+
+export function editIngredientError(e) {
+  const action = {
+    type: EDIT_INGREDIENT_ERROR,
+    payload: e,
+  };
+  return action;
+}
+
+export function removeIngredient(recipeId, id) {
+  const action = {
+    type: REMOVE_INGREDIENT,
+    payload: {recipeId, id},
+  };
+  return action;
+}
+
+export function removeIngredientBegin() {
+  const action = {
+    type: REMOVE_INGREDIENT_BEGIN,
+    payload: undefined,
+  };
+  return action;
+}
+
+export function removeIngredientFinished(data) {
+  const action = {
+    type: REMOVE_INGREDIENT_FINISHED,
+    payload: data,
+  };
+  return action;
+}
+
+export function removeIngredientError(e) {
+  const action = {
+    type: REMOVE_INGREDIENT_ERROR,
     payload: e,
   };
   return action;
