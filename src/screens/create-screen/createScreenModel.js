@@ -34,6 +34,12 @@ const CreateScreenModel = () => {
       setServings(recipe.servings);
       setCurrentIngredients(recipe.ingredients);
     }
+  }, [recipe.id]);
+
+  useEffect(() => {
+    if (recipe !== undefined) {
+      setCurrentIngredients(recipe.ingredients);
+    }
   }, [recipe]);
 
   return {

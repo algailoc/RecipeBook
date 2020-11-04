@@ -13,7 +13,7 @@ export const AddIngredientDialog = ({model, controller}) => {
   const [visible, setVisible] = useState(false);
 
   const [ingredientName, setIngredientName] = useState('');
-  const [ingredientAmount, setIngredientAmount] = useState();
+  const [ingredientAmount, setIngredientAmount] = useState('');
   const [ingredientUnit, setIngredientUnit] = useState('');
 
   const {t} = model;
@@ -69,7 +69,7 @@ export const AddIngredientDialog = ({model, controller}) => {
                   ingredientUnit,
                 );
                 setIngredientName('');
-                setIngredientAmount();
+                setIngredientAmount('');
                 setIngredientUnit('');
               }}>
               <Text style={styles.buttonText}>

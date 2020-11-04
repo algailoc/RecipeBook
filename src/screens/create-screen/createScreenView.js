@@ -13,6 +13,8 @@ import {AddIngredientDialog} from '../../components/AddIngredientDialog';
 import {ServingsDropDown} from '../../components/ServingsDropDown';
 import {AlertModal} from '../../components/AlertModal';
 import {IngredientEditDialog} from '../../components/IngredientEditDialog';
+import {IngredientEditModal} from '../../components/IngredientEditModal';
+import {AddIngredientModal} from "../../components/AddIngredientModal";
 
 LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -72,7 +74,8 @@ export const CreateScreenView = ({styles, model, controller}) => {
         />
         <Text style={styles.tip}>{t('ingredients_removal_help')}</Text>
         <ServingsDropDown servings={servings} setServings={setServings} />
-        <AddIngredientDialog model={model} controller={controller} />
+        {/*<AddIngredientDialog model={model} controller={controller} />*/}
+        <AddIngredientModal model={model} controller={controller} />
         <Text style={styles.section}>{t('recipe_description')}</Text>
         <TextInput
           placeholder={t('recipe_input')}
@@ -105,7 +108,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
           t('alert_go_back_title') + '? \n' + t('alert_go_back_message')
         }
       />
-      <IngredientEditDialog model={model} controller={controller} />
+      <IngredientEditModal model={model} controller={controller} />
     </View>
   );
 };
