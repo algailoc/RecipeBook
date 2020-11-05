@@ -55,14 +55,17 @@ export const EditIngredientModal = ({model, controller}) => {
                 <Text style={styles.newIngredientDialog}>
                   {t('edit_ingredient')}
                 </Text>
-                <TextInput
-                  style={styles.nameInput}
-                  placeholder={t('ingredient_name')}
-                  value={ingredientName}
-                  onChangeText={(text) => setIngredientName(text)}
-                  maxLength={25}
-                  autoFocus={true}
-                />
+                <View style={{flexDirection: 'row'}}>
+                  <TextInput
+                    style={styles.nameInput}
+                    placeholder={t('ingredient_name')}
+                    value={ingredientName}
+                    onChangeText={(text) => setIngredientName(text)}
+                    maxLength={35}
+                    autoFocus={true}
+                  />
+                  <View style={{width: '1%'}} />
+                </View>
                 <View style={styles.wrapper}>
                   <TextInput
                     style={styles.amountInput}
@@ -77,7 +80,7 @@ export const EditIngredientModal = ({model, controller}) => {
                     placeholder={t('ingredient_unit')}
                     value={ingredientUnit}
                     onChangeText={(text) => setIngredientUnit(text)}
-                    maxLength={10}
+                    maxLength={15}
                   />
                 </View>
               </View>
@@ -155,7 +158,7 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderRadius: 15,
     borderColor: 'rgba(243, 82, 39, 0.7)',
-    width: '100%',
+    width: '99%',
     fontSize: 18,
     alignSelf: 'center',
     textAlign: 'center',

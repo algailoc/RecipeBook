@@ -29,6 +29,9 @@ export const AddIngredientModal = ({model, controller}) => {
           <TouchableOpacity
             onPress={() => {
               setVisible(false);
+              setIngredientName('');
+              setIngredientAmount('');
+              setIngredientUnit('');
             }}
             style={styles.centeredView}>
             <TouchableWithoutFeedback
@@ -39,14 +42,17 @@ export const AddIngredientModal = ({model, controller}) => {
                   <Text style={styles.newIngredientDialog}>
                     {t('new_ingredient')}
                   </Text>
-                  <TextInput
-                    style={styles.nameInput}
-                    placeholder={t('ingredient_name')}
-                    value={ingredientName}
-                    onChangeText={(text) => setIngredientName(text)}
-                    maxLength={25}
-                    ref={inputOne}
-                  />
+                  <View style={{flexDirection: 'row'}}>
+                    <TextInput
+                      style={styles.nameInput}
+                      placeholder={t('ingredient_name')}
+                      value={ingredientName}
+                      onChangeText={(text) => setIngredientName(text)}
+                      maxLength={35}
+                      ref={inputOne}
+                    />
+                    <View style={{width: '1%'}} />
+                  </View>
                   <View style={styles.wrapper}>
                     <TextInput
                       style={styles.amountInput}
@@ -61,7 +67,7 @@ export const AddIngredientModal = ({model, controller}) => {
                       placeholder={t('ingredient_unit')}
                       value={ingredientUnit}
                       onChangeText={(text) => setIngredientUnit(text)}
-                      maxLength={10}
+                      maxLength={15}
                     />
                   </View>
                 </View>
@@ -92,6 +98,9 @@ export const AddIngredientModal = ({model, controller}) => {
                     style={styles.negativeButtonStyle}
                     onPress={() => {
                       setVisible(false);
+                      setIngredientName('');
+                      setIngredientAmount('');
+                      setIngredientUnit('');
                     }}>
                     <Icon
                       name="closecircleo"
@@ -155,7 +164,7 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderRadius: 15,
     borderColor: 'rgba(243, 82, 39, 0.7)',
-    width: '100%',
+    width: '99%',
     fontSize: 18,
     alignSelf: 'center',
     textAlign: 'center',
