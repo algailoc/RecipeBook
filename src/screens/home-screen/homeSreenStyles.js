@@ -1,11 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 export const homeScreenStyles = StyleSheet.create({
-  arrowImage: {
-    width: 200,
-    height: 200,
-    marginLeft: '25%',
-  },
   hamburgerMenu: {
     backgroundColor: '#C8271D',
   },
@@ -43,14 +38,11 @@ export const homeScreenStyles = StyleSheet.create({
   recipeListText: {
     color: '#7A0B0B',
     fontSize: 30,
-    // fontWeight: 'bold',
     textAlign: 'center',
     fontFamily: 'Neucha-Regular',
   },
   recipeListTextWrapper: {
     marginTop: '50%',
-    // marginLeft: '5%',
-    // justifyContent: 'flex-end',
     alignSelf: 'center',
     padding: 5,
     backgroundColor: '#fff',

@@ -45,7 +45,6 @@ export const AddIngredientModal = ({model, controller}) => {
                     value={ingredientName}
                     onChangeText={(text) => setIngredientName(text)}
                     maxLength={25}
-                    // autoFocus={true}
                     ref={inputOne}
                   />
                   <View style={styles.wrapper}>
@@ -115,7 +114,6 @@ export const AddIngredientModal = ({model, controller}) => {
 
 const styles = StyleSheet.create({
   buttonWrapper: {
-    // width: '100%',
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
@@ -130,7 +128,6 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    // alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

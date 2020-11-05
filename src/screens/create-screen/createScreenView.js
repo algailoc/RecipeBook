@@ -9,12 +9,10 @@ import {
   LogBox,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {AddIngredientDialog} from '../../components/AddIngredientDialog';
 import {ServingsDropDown} from '../../components/ServingsDropDown';
 import {AlertModal} from '../../components/AlertModal';
-import {IngredientEditDialog} from '../../components/IngredientEditDialog';
-import {IngredientEditModal} from '../../components/IngredientEditModal';
-import {AddIngredientModal} from "../../components/AddIngredientModal";
+import {EditIngredientModal} from '../../components/EditIngredientModal';
+import {AddIngredientModal} from '../../components/AddIngredientModal';
 
 LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -22,8 +20,7 @@ LogBox.ignoreLogs([
 
 export const CreateScreenView = ({styles, model, controller}) => {
   const {
-    recipeId,
-    currentIngredients,
+    ingredients,
     servings,
     setRecipeSteps,
     setRecipeName,
@@ -33,7 +30,6 @@ export const CreateScreenView = ({styles, model, controller}) => {
     t,
   } = model;
   const {
-    removeIngredientTouchable,
     addRecipeButtonHandler,
     editIngredientTouchable,
     editPictureHandler,
@@ -52,17 +48,13 @@ export const CreateScreenView = ({styles, model, controller}) => {
         />
         <Text style={styles.section}>{t('ingredients_list')}</Text>
         <FlatList
-          data={currentIngredients}
+          data={ingredients}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
                 style={styles.items}
-                onPress={() => editIngredientTouchable(item.id)}
-                // onLongPress={() =>
-                //   removeIngredientTouchable(recipeId, item.id)
-                // }
-              >
+                onPress={() => editIngredientTouchable(item.id)}>
                 <Text style={styles.itemText}>{item.name}</Text>
                 <View style={styles.measurementWrapper}>
                   <Text style={styles.itemText}>{item.amount}</Text>
@@ -74,7 +66,6 @@ export const CreateScreenView = ({styles, model, controller}) => {
         />
         <Text style={styles.tip}>{t('ingredients_removal_help')}</Text>
         <ServingsDropDown servings={servings} setServings={setServings} />
-        {/*<AddIngredientDialog model={model} controller={controller} />*/}
         <AddIngredientModal model={model} controller={controller} />
         <Text style={styles.section}>{t('recipe_description')}</Text>
         <TextInput
@@ -108,7 +99,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
           t('alert_go_back_title') + '? \n' + t('alert_go_back_message')
         }
       />
-      <IngredientEditModal model={model} controller={controller} />
+      <EditIngredientModal model={model} controller={controller} />
     </View>
   );
 };

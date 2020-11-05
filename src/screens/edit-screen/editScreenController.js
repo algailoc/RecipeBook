@@ -3,7 +3,6 @@ import {
   editIngredient,
   editRecipe,
   removeIngredient,
-  removeRecipe,
 } from '../../store/actions/recipeActionCreator';
 import {Alert} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -11,12 +10,11 @@ import ImagePicker from 'react-native-image-crop-picker';
 const EditScreenController = (model) => {
   const {
     recipeId,
-    currentIngredients,
     recipePic,
     recipeName,
     recipeSteps,
     servings,
-    setCurrentIngredients,
+    ingredients,
     setCurrentIngredient,
     setEditModalVisible,
     setRecipePic,
@@ -27,15 +25,6 @@ const EditScreenController = (model) => {
   } = model;
 
   const addIngredientButton = (name, amount, unit) => {
-    // setCurrentIngredients((prevState) => [
-    //   ...prevState,
-    //   {
-    //     id: Date.now().toString(),
-    //     name,
-    //     amount,
-    //     unit,
-    //   },
-    // ]);
     dispatch(addIngredient(recipeId, name, amount, unit));
   };
 
@@ -46,7 +35,7 @@ const EditScreenController = (model) => {
   const removeRecipeHandler = () => {};
 
   const editIngredientTouchable = (id) => {
-    setCurrentIngredient(currentIngredients.find((item) => id === item.id));
+    setCurrentIngredient(ingredients.find((item) => id === item.id));
     setEditModalVisible(true);
   };
 
@@ -78,7 +67,7 @@ const EditScreenController = (model) => {
           recipeId,
           recipeName,
           recipeSteps,
-          currentIngredients,
+          ingredients,
           recipePic,
           servings,
         ),

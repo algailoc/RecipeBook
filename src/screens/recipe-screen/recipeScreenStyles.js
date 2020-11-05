@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 
 export const recipeScreenStyles = StyleSheet.create({
   items: {
-    // flexDirection: 'row',
     margin: 3,
     marginHorizontal: 6,
     justifyContent: 'space-between',
@@ -45,8 +44,5 @@ export const recipeScreenStyles = StyleSheet.create({
     fontFamily: 'Merriweather-Regular',
     margin: 10,
     minHeight: 108,
-  },
-  title: {
-    fontSize: 26,
   },
 });

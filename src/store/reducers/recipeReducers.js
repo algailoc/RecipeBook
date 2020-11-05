@@ -32,19 +32,26 @@ import {
 const initialState = {
   loading: false,
   recipe: undefined,
+  ingredients: undefined,
   processingIngredient: false,
 };
 
 export const recipeReducers = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPE_BEGIN: {
-      return {...state, recipe: undefined, loading: true};
+      return {
+        ...state,
+        recipe: undefined,
+        ingredients: undefined,
+        loading: true,
+      };
     }
 
     case GET_RECIPE_FINISHED: {
       return {
         ...state,
         recipe: action.payload,
+        ingredients: action.payload.ingredients,
         loading: false,
       };
     }
@@ -62,6 +69,7 @@ export const recipeReducers = (state = initialState, action) => {
       return {
         ...state,
         recipe: {},
+        ingredients: [],
         loading: true,
       };
     }
@@ -70,6 +78,7 @@ export const recipeReducers = (state = initialState, action) => {
       return {
         ...state,
         recipe: action.payload,
+        ingredients: action.payload.ingredients,
         loading: false,
       };
     }
@@ -89,10 +98,10 @@ export const recipeReducers = (state = initialState, action) => {
           id: action.payload.id,
           title: action.payload.title,
           steps: action.payload.steps,
-          ingredients: action.payload.ingredients,
           imagePath: action.payload.imagePath,
           servings: action.payload.servings,
         },
+        ingredients: action.payload.ingredients,
       };
     }
 
@@ -107,10 +116,10 @@ export const recipeReducers = (state = initialState, action) => {
           id: action.payload.id,
           title: action.payload.title,
           steps: action.payload.steps,
-          ingredients: action.payload.ingredients,
           imagePath: action.payload.imagePath,
           servings: action.payload.servings,
         },
+        ingredients: action.payload.ingredients,
       };
     }
 
@@ -131,6 +140,7 @@ export const recipeReducers = (state = initialState, action) => {
       return {
         ...state,
         recipe: undefined,
+        ingredients: undefined,
       };
     }
 
@@ -153,10 +163,10 @@ export const recipeReducers = (state = initialState, action) => {
         recipe: {
           title: action.payload.title,
           steps: action.payload.steps,
-          ingredients: action.payload.ingredients,
           imagePath: action.payload.imagePath,
           servings: action.payload.servings,
         },
+        ingredients: action.payload.ingredients,
       };
     }
 
@@ -176,10 +186,7 @@ export const recipeReducers = (state = initialState, action) => {
       return {
         ...state,
         processingIngredient: false,
-        recipe: {
-          ...state.recipe,
-          ingredients: action.payload,
-        },
+        ingredients: action.payload,
       };
     }
 
@@ -202,10 +209,7 @@ export const recipeReducers = (state = initialState, action) => {
       return {
         ...state,
         processingIngredient: false,
-        recipe: {
-          ...state.recipe,
-          ingredients: action.payload,
-        },
+        ingredients: action.payload,
       };
     }
 
@@ -225,10 +229,7 @@ export const recipeReducers = (state = initialState, action) => {
       return {
         ...state,
         processingIngredient: false,
-        recipe: {
-          ...state.recipe,
-          ingredients: action.payload,
-        },
+        ingredients: action.payload,
       };
     }
 

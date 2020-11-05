@@ -1,8 +1,7 @@
 import {removeRecipe} from '../../store/actions/recipeActionCreator';
-import {Alert} from 'react-native';
 
 const RecipeScreenController = (model) => {
-  const {setServings, ingredients, setModalVisible, t} = model;
+  const {setServings, ingredients, setModalVisible} = model;
 
   const deleteRecipe = () => {
     model.setIsOpened(false);

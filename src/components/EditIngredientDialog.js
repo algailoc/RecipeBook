@@ -3,7 +3,7 @@ import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {Dialog} from 'react-native-simple-dialogs';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export const IngredientEditDialog = ({model, controller}) => {
+export const EditIngredientDialog = ({model, controller}) => {
   const [ingredientName, setIngredientName] = useState('');
   const [ingredientAmount, setIngredientAmount] = useState('');
   const [ingredientUnit, setIngredientUnit] = useState('');

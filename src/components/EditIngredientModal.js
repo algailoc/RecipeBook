@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export const IngredientEditModal = ({model, controller}) => {
+export const EditIngredientModal = ({model, controller}) => {
   const [ingredientName, setIngredientName] = useState('');
   const [ingredientAmount, setIngredientAmount] = useState('');
   const [ingredientUnit, setIngredientUnit] = useState('');
@@ -122,7 +122,6 @@ export const IngredientEditModal = ({model, controller}) => {
 
 const styles = StyleSheet.create({
   buttonWrapper: {
-    // width: '100%',
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
@@ -137,7 +136,6 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    // alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

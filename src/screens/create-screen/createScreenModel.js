@@ -8,9 +8,8 @@ const CreateScreenModel = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
 
-  const [currentIngredients, setCurrentIngredients] = useState([]);
-
   const recipe = useSelector((state) => state.recipe.recipe);
+  const ingredients = useSelector((state) => state.recipe.ingredients);
   const loading = useSelector((state) => state.recipe.loading);
   const processing = useSelector((state) => state.recipe.processingIngredient);
 
@@ -32,13 +31,6 @@ const CreateScreenModel = () => {
       setRecipeSteps(recipe.steps);
       setRecipePic(recipe.imagePath);
       setServings(recipe.servings);
-      setCurrentIngredients(recipe.ingredients);
-    }
-  }, [recipe.id]);
-
-  useEffect(() => {
-    if (recipe !== undefined) {
-      setCurrentIngredients(recipe.ingredients);
     }
   }, [recipe]);
 
@@ -46,7 +38,7 @@ const CreateScreenModel = () => {
     recipe,
     recipeId,
     recipeName,
-    currentIngredients,
+    ingredients,
     currentIngredient,
     recipeSteps,
     recipePic,
@@ -57,7 +49,6 @@ const CreateScreenModel = () => {
     editModalVisible,
 
     setRecipeName,
-    setCurrentIngredients,
     setCurrentIngredient,
     setRecipeSteps,
     setRecipePic,

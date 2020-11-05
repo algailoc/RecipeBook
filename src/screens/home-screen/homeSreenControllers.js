@@ -12,7 +12,6 @@ const HomeScreenController = (model) => {
   };
 
   const goToRecipeScreen = (id, title) => {
-    // model.navigation.navigate('Recipe', {id, title});
     model.navigation.navigate('Recipe', {title});
     model.dispatch(getRecipe(id));
   };

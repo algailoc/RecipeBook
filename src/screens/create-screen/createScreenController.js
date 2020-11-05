@@ -10,15 +10,12 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 const CreateScreenController = (model) => {
   const {
-    recipe,
+    ingredients,
     recipeId,
-    currentIngredients,
-    currentIngredient,
     recipePic,
     recipeName,
     recipeSteps,
     servings,
-    setCurrentIngredients,
     setCurrentIngredient,
     setRecipePic,
     setEditModalVisible,
@@ -29,15 +26,6 @@ const CreateScreenController = (model) => {
   } = model;
 
   const addIngredientButton = (name, amount, unit) => {
-    // setCurrentIngredients((prevState) => [
-    //   ...prevState,
-    //   {
-    //     id: Date.now().toString(),
-    //     name,
-    //     amount,
-    //     unit,
-    //   },
-    // ]);
     dispatch(addIngredient(recipeId, name, amount, unit));
   };
 
@@ -49,7 +37,7 @@ const CreateScreenController = (model) => {
           recipeId,
           recipeName,
           recipeSteps,
-          currentIngredients,
+          ingredients,
           recipePic,
           servings,
         ),
@@ -66,7 +54,7 @@ const CreateScreenController = (model) => {
   };
 
   const editIngredientTouchable = (id) => {
-    setCurrentIngredient(currentIngredients.find((item) => id === item.id));
+    setCurrentIngredient(ingredients.find((item) => id === item.id));
     setEditModalVisible(true);
   };
 
