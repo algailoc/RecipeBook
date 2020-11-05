@@ -10,6 +10,7 @@ const EditScreenModel = () => {
 
   const recipe = useSelector((state) => state.recipe.recipe);
   const ingredients = useSelector((state) => state.recipe.ingredients);
+  const processing = useSelector((state) => state.recipe.processingIngredient);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
@@ -22,6 +23,8 @@ const EditScreenModel = () => {
 
   const [currentIngredient, setCurrentIngredient] = useState();
 
+  const [itemHeight, setItemHeight] = useState(50);
+
   return {
     recipeId,
     recipeName,
@@ -32,6 +35,7 @@ const EditScreenModel = () => {
     ingredients,
     modalVisible,
     editModalVisible,
+    itemHeight,
 
     setRecipeName,
     setCurrentIngredient,
@@ -40,7 +44,9 @@ const EditScreenModel = () => {
     setServings,
     setModalVisible,
     setEditModalVisible,
+    setItemHeight,
 
+      processing,
     recipe,
     navigation,
     dispatch,

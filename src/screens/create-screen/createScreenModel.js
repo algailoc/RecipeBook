@@ -24,6 +24,8 @@ const CreateScreenModel = () => {
 
   const [currentIngredient, setCurrentIngredient] = useState();
 
+  const [itemHeight, setItemHeight] = useState(50);
+
   useEffect(() => {
     if (recipe !== undefined) {
       setRecipeId(recipe.id);
@@ -47,6 +49,7 @@ const CreateScreenModel = () => {
     processing,
     modalVisible,
     editModalVisible,
+    itemHeight,
 
     setRecipeName,
     setCurrentIngredient,
@@ -55,6 +58,7 @@ const CreateScreenModel = () => {
     setServings,
     setModalVisible,
     setEditModalVisible,
+    setItemHeight,
 
     navigation,
     dispatch,

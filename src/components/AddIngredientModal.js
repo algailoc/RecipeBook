@@ -77,20 +77,30 @@ export const AddIngredientModal = ({model, controller}) => {
                       setIngredientName('');
                       setIngredientAmount('');
                       setIngredientUnit('');
-                      setVisible(false);
+                      inputOne.current.focus();
                     }}>
-                    <Icon name="pluscircleo" size={20} style={{color: '#fff'}}>
-                      <Text>{t('add_ingredient_button')}</Text>
-                    </Icon>
+                    <Icon
+                      name="pluscircleo"
+                      size={20}
+                      style={{color: '#fff'}}
+                    />
+                    <Text style={styles.modalButtonText}>
+                      {t('add_ingredient_button')}
+                    </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={styles.negativeButtonStyle}
                     onPress={() => {
                       setVisible(false);
                     }}>
-                    <Icon name="closecircleo" size={20} style={{color: '#fff'}}>
-                      <Text>{t('alert_cancel')}</Text>
-                    </Icon>
+                    <Icon
+                      name="closecircleo"
+                      size={20}
+                      style={{color: '#fff'}}
+                    />
+                    <Text style={styles.modalButtonText}>
+                      {t('options_close')}
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -166,6 +176,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
+  modalButtonText: {
+    fontSize: 20,
+    color: '#fff',
+    paddingLeft: 5,
+  },
   newIngredientDialog: {
     textAlign: 'center',
     fontSize: 22,
@@ -174,6 +189,7 @@ const styles = StyleSheet.create({
   },
   positiveButtonStyle: {
     justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#499A5E',
     borderBottomLeftRadius: 20,
     flexDirection: 'row',
@@ -182,6 +198,7 @@ const styles = StyleSheet.create({
   },
   negativeButtonStyle: {
     justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#D83B31',
     borderBottomRightRadius: 20,
     flexDirection: 'row',

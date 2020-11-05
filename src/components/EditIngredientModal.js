@@ -97,9 +97,10 @@ export const EditIngredientModal = ({model, controller}) => {
                     });
                     setEditModalVisible(false);
                   }}>
-                  <Icon name="check" size={20} style={{color: '#fff'}}>
-                    <Text>{t('save_ingredient')}</Text>
-                  </Icon>
+                  <Icon name="check" size={20} style={{color: '#fff'}} />
+                  <Text style={styles.modalButtonText}>
+                    {t('save_ingredient')}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.negativeButtonStyle}
@@ -107,9 +108,10 @@ export const EditIngredientModal = ({model, controller}) => {
                     setEditModalVisible(false);
                     removeIngredientTouchable(recipe.id, ingredient.id);
                   }}>
-                  <Icon name="delete" size={20} style={{color: '#fff'}}>
-                    <Text>{t('delete_ingredient')}</Text>
-                  </Icon>
+                  <Icon name="delete" size={20} style={{color: '#fff'}} />
+                  <Text style={styles.modalButtonText}>
+                    {t('delete_ingredient')}
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -174,6 +176,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
   },
+  modalButtonText: {
+    fontSize: 20,
+    color: '#fff',
+    paddingLeft: 5,
+  },
   newIngredientDialog: {
     textAlign: 'center',
     fontSize: 22,
@@ -182,6 +189,7 @@ const styles = StyleSheet.create({
   },
   positiveButtonStyle: {
     justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#499A5E',
     borderBottomLeftRadius: 20,
     flexDirection: 'row',
@@ -190,6 +198,7 @@ const styles = StyleSheet.create({
   },
   negativeButtonStyle: {
     justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#D83B31',
     borderBottomRightRadius: 20,
     flexDirection: 'row',

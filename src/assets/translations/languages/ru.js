@@ -29,6 +29,7 @@ export const ru = {
 
   options_edit: 'Редактировать',
   options_remove: 'Удалить',
+  options_close: 'Закрыть',
 
   alert_name_empty: 'Название рецепта не может быть пустым',
   alert_go_back_title: 'Вы уверены, что хотите уйти',

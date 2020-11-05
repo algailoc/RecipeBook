@@ -176,26 +176,19 @@ export const recipeReducers = (state = initialState, action) => {
     }
 
     case ADD_INGREDIENT_BEGIN: {
-      return {
-        ...state,
-        processingIngredient: true,
-      };
+      return state;
     }
 
     case ADD_INGREDIENT_FINISHED: {
       return {
         ...state,
-        processingIngredient: false,
         ingredients: action.payload,
       };
     }
 
     case ADD_INGREDIENT_ERROR: {
       console.log('Error on adding ingredient:', action.payload);
-      return {
-        ...state,
-        processingIngredient: false,
-      };
+      return state;
     }
 
     case EDIT_INGREDIENT_BEGIN: {
