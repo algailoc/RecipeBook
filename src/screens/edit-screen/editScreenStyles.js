@@ -24,7 +24,6 @@ export const EditScreenStyles = StyleSheet.create({
     textAlign: 'center',
   },
   items: {
-    // flexDirection: 'row',
     marginHorizontal: 6,
     justifyContent: 'space-between',
     borderBottomColor: '#F35227',

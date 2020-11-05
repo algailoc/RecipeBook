@@ -70,14 +70,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // marginTop: 22,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    // alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -89,7 +87,6 @@ const styles = StyleSheet.create({
   },
   openButton: {
     backgroundColor: '#F194FF',
-    // borderRadius: 15,
     padding: 10,
     elevation: 2,
     width: '50%',

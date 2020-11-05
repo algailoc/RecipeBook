@@ -21,11 +21,7 @@ export const LanguageSettingsModal = ({controller, model}) => {
         <Text style={styles.textStyle}>{model.t('language_choice')}</Text>
         <MenuOption
           onSelect={() => controller.setSystemLanguage('en')}
-          style={{
-            ...styles.menuOption,
-            // borderBottomWidth: 4,
-            // borderBottomColor: '#AEBCC3',
-          }}>
+          style={styles.menuOption}>
           <Text style={styles.textStyle}>English</Text>
         </MenuOption>
         <MenuOption
@@ -40,7 +36,6 @@ export const LanguageSettingsModal = ({controller, model}) => {
 
 const styles = StyleSheet.create({
   menuOption: {
-    // width: '100%',
     flex: 1,
     alignItems: 'center',
     marginTop: 5,
@@ -51,7 +46,6 @@ const styles = StyleSheet.create({
   },
   modalView: {
     flex: 1,
-    // alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#EBEFF2',
     borderTopLeftRadius: 20,

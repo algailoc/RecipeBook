@@ -38,18 +38,12 @@ const CreateScreen = () => {
   const model = CreateScreenModel();
   const controller = CreateScreenController(model);
 
-  {
-    if (!model.loading) {
-      return (
-        <CreateScreenView
-          controller={controller}
-          model={model}
-          styles={styles}
-        />
-      );
-    } else {
-      return <RecipeLoader />;
-    }
+  if (!model.loading) {
+    return (
+      <CreateScreenView controller={controller} model={model} styles={styles} />
+    );
+  } else {
+    return <RecipeLoader />;
   }
 };
 

@@ -10,7 +10,6 @@ const RecipeScreenModel = () => {
 
   const [id, setId] = useState('');
   const [title, setTitle] = useState('');
-  const [ingredients, setIngredients] = useState([]);
   const [steps, setSteps] = useState('');
   const [servings, setServings] = useState('1');
 
@@ -19,20 +18,16 @@ const RecipeScreenModel = () => {
 
   const recipe = useSelector((state) => state.recipe.recipe);
   const loading = useSelector((state) => state.recipe.loading);
+  const ingredients = useSelector((state) => state.recipe.ingredients);
 
   useEffect(() => {
     if (recipe !== undefined) {
       setTitle(recipe.title);
-      setIngredients(recipe.ingredients);
       setSteps(recipe.steps);
       setServings(recipe.servings);
       setId(recipe.id);
     }
   }, [recipe]);
-
-  // useEffect(() => {
-  //   navigation.setOptions({title: title});
-  // }, [title]);
 
   return {
     id,
@@ -45,7 +40,6 @@ const RecipeScreenModel = () => {
     modalVisible,
     loading,
 
-    setIngredients,
     setIsOpened,
     setServings,
     setModalVisible,

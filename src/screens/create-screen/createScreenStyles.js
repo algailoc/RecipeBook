@@ -24,7 +24,6 @@ export const CreateScreenStyles = StyleSheet.create({
     textAlign: 'center',
   },
   items: {
-    // flexDirection: 'row',
     marginHorizontal: 6,
     justifyContent: 'space-between',
     borderBottomColor: '#F35227',
@@ -56,11 +55,6 @@ export const CreateScreenStyles = StyleSheet.create({
     borderBottomWidth: 2,
     borderColor: '#839E9F',
     marginBottom: 10,
-  },
-  servings: {
-    justifyContent: 'flex-end',
-    height: 40,
-    flexDirection: 'row',
   },
   stepsInput: {
     textAlignVertical: 'top',

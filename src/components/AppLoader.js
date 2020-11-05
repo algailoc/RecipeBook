@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import Services from '../services/Services';
 import {AppNavigation} from './AppNavigation';
-import {RecipeLoader} from './RecipeLoader';
 import {loadRecipesList} from '../store/actions/recipesListActionCreator';
 import {AppLoading} from './AppLoading';
 

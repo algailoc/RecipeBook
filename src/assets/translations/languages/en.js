@@ -29,6 +29,7 @@ export const en = {
 
   options_edit: 'Edit',
   options_remove: 'Delete',
+  options_close: 'Close',
 
   alert_name_empty: 'Name cannot be empty',
   alert_go_back_title: 'Are you sure you want to go back',

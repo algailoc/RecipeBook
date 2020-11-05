@@ -7,12 +7,13 @@ import {
   TouchableOpacity,
   ScrollView,
   LogBox,
+  ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {AddIngredientDialog} from '../../components/AddIngredientDialog';
 import {ServingsDropDown} from '../../components/ServingsDropDown';
 import {AlertModal} from '../../components/AlertModal';
-import {IngredientEditDialog} from '../../components/IngredientEditDialog';
+import {EditIngredientModal} from '../../components/EditIngredientModal';
+import {AddIngredientModal} from '../../components/AddIngredientModal';
 
 LogBox.ignoreLogs([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
@@ -20,23 +21,64 @@ LogBox.ignoreLogs([
 
 export const CreateScreenView = ({styles, model, controller}) => {
   const {
-    recipeId,
-    currentIngredients,
+    ingredients,
     servings,
     setRecipeSteps,
     setRecipeName,
     setServings,
     recipeName,
     recipeSteps,
+    itemHeight,
+    setItemHeight,
+    processing,
     t,
   } = model;
   const {
-    removeIngredientTouchable,
     addRecipeButtonHandler,
     editIngredientTouchable,
     editPictureHandler,
     removeRecipeHandler,
   } = controller;
+
+  const itemsLoaded = () => {
+    return (
+      <FlatList
+        data={ingredients}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({item}) => {
+          return (
+            <TouchableOpacity
+              onLayout={(event) => {
+                let {height} = event.nativeEvent.layout;
+                setItemHeight(height);
+              }}
+              style={styles.items}
+              onPress={() => editIngredientTouchable(item.id)}>
+              <Text style={styles.itemText}>{item.name}</Text>
+              <View style={styles.measurementWrapper}>
+                <Text style={styles.itemText}>{item.amount}</Text>
+                <Text style={styles.itemText}>{item.unit}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        }}
+      />
+    );
+  };
+
+  const itemsLoading = () => {
+    return (
+      <View
+        style={{
+          height: itemHeight * ingredients.length,
+          justifyContent: 'center',
+        }}>
+        <ActivityIndicator color="#F35227" size="large" />
+      </View>
+    );
+  };
+
+  const IngredientsView = processing ? itemsLoading : itemsLoaded;
 
   return (
     <View>
@@ -49,30 +91,10 @@ export const CreateScreenView = ({styles, model, controller}) => {
           style={styles.recipeName}
         />
         <Text style={styles.section}>{t('ingredients_list')}</Text>
-        <FlatList
-          data={currentIngredients}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                style={styles.items}
-                onPress={() => editIngredientTouchable(item.id)}
-                // onLongPress={() =>
-                //   removeIngredientTouchable(recipeId, item.id)
-                // }
-              >
-                <Text style={styles.itemText}>{item.name}</Text>
-                <View style={styles.measurementWrapper}>
-                  <Text style={styles.itemText}>{item.amount}</Text>
-                  <Text style={styles.itemText}>{item.unit}</Text>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-        />
+        <IngredientsView />
         <Text style={styles.tip}>{t('ingredients_removal_help')}</Text>
         <ServingsDropDown servings={servings} setServings={setServings} />
-        <AddIngredientDialog model={model} controller={controller} />
+        <AddIngredientModal model={model} controller={controller} />
         <Text style={styles.section}>{t('recipe_description')}</Text>
         <TextInput
           placeholder={t('recipe_input')}
@@ -105,7 +127,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
           t('alert_go_back_title') + '? \n' + t('alert_go_back_message')
         }
       />
-      <IngredientEditDialog model={model} controller={controller} />
+      <EditIngredientModal model={model} controller={controller} />
     </View>
   );
 };

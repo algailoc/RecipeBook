@@ -6,7 +6,6 @@ import {
   ImageBackground,
   Linking,
   Text,
-  Image,
 } from 'react-native';
 import {RecipeItem} from '../../components/RecipeItem';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -84,10 +83,6 @@ const HomeScreenView = ({model, controller, styles}) => {
           <View style={styles.recipeListTextWrapper}>
             <Text style={styles.recipeListText}>{model.t('empty_list')}</Text>
           </View>
-          {/*<Image*/}
-            {/*style={styles.arrowImage}*/}
-            {/*source={require('../../assets/img/arrow.png')}*/}
-          {/*/>*/}
         </View>
       );
     }
