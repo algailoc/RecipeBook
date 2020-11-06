@@ -25,6 +25,7 @@ const EditScreenController = (model) => {
   } = model;
 
   const addIngredientButton = (name, amount, unit) => {
+    amount = amount.replace(',', '.');
     dispatch(addIngredient(recipeId, name, amount, unit));
   };
 
@@ -40,7 +41,7 @@ const EditScreenController = (model) => {
   };
 
   const editIngredientButton = ({ingredient}) => {
-    console.log('Ingr: ', ingredient);
+    ingredient.amount = ingredient.amount.replace(',', '.');
     dispatch(editIngredient(ingredient));
   };
 

@@ -28,7 +28,7 @@ export const recipesListReducer = (state = initialState, action) => {
     case LOAD_RECIPES_LIST_FINISHED: {
       return {
         ...state,
-        recipes: action.payload,
+        recipes: action.payload.reverse(),
       };
     }
 
@@ -48,12 +48,12 @@ export const recipesListReducer = (state = initialState, action) => {
       return {
         ...state,
         recipes: [
-          ...state.recipes,
           {
             id: action.payload.id,
             title: action.payload.title,
             imagePath: action.payload.imagePath,
           },
+          ...state.recipes,
         ],
       };
     }

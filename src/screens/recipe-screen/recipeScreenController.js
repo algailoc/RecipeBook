@@ -26,6 +26,7 @@ const RecipeScreenController = (model) => {
     let prevValue = model.servings;
     setServings(value);
     ingredients.map((item) => {
+      console.log(item.name, item.amount, ' is a ', typeof item.amount);
       if (typeof item.amount === 'string') {
         return item.amount;
       } else {
