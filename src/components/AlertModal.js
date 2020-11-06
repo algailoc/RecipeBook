@@ -46,9 +46,9 @@ export const AlertModal = ({model, removeOptional, textProp}) => {
                     borderBottomRightRadius: 20,
                   }}
                   onPress={() => {
+                    model.navigation.goBack();
                     model.setModalVisible(!model.modalVisible);
                     removeOptional();
-                    model.navigation.goBack();
                   }}>
                   <Text style={{...styles.textStyle, color: 'white'}}>
                     {model.t('alert_confirm')}
