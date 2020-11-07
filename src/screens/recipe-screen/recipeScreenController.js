@@ -9,7 +9,8 @@ const RecipeScreenController = (model) => {
   };
 
   const removeRecipeHandler = () => {
-    model.dispatch(removeRecipe(model.id));
+    setTimeout(() => model.dispatch(removeRecipe(model.id)), 500);
+    // model.dispatch(removeRecipe(model.id));
   };
 
   const editButtonHandler = () => {

@@ -26,7 +26,9 @@ const CreateScreenController = (model) => {
   } = model;
 
   const addIngredientButton = (name, amount, unit) => {
-    amount = amount.replace(',', '.');
+    if (typeof amount === 'string') {
+      amount = amount.replace(',', '.');
+    }
     dispatch(addIngredient(recipeId, name, amount, unit));
   };
 
@@ -60,7 +62,9 @@ const CreateScreenController = (model) => {
   };
 
   const editIngredientButton = ({ingredient}) => {
-    ingredient.amount = ingredient.amount.replace(',', '.');
+    if (typeof ingredient.amount === 'string') {
+      ingredient.amount = ingredient.amount.replace(',', '.');
+    }
     dispatch(editIngredient(ingredient));
   };
 
