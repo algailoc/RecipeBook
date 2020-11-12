@@ -4,6 +4,10 @@ export const ru = {
   en: 'Английский',
   language_choice: 'Язык приложения',
 
+  sort_by_old: 'Сначала старые',
+  sort_by_new: 'Сначала новые',
+  sort_by_name: 'По алфавиту',
+
   recipe_list: 'Мои рецепты',
   empty_list: 'Здесь пока нет рецептов \n' + 'Начните добавлять их! ',
   delete_recipe_confirm: 'Вы уверены, что хотите удалить рецепт ',

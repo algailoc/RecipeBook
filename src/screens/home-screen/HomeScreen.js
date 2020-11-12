@@ -4,26 +4,28 @@ import HomeScreenView from './homeScreenView';
 import HomeScreenModels from './homeSreenModel';
 import HomeScreenController from './homeSreenControllers';
 import {homeScreenStyles} from './homeSreenStyles';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const HomeScreen = () => {
   useFocusEffect(() => {
     model.navigation.setOptions({
       headerRight: () => (
         <Icon.Button
-          name="information-circle-outline"
+          name="sort"
           size={35}
           style={styles.hamburgerMenu}
-          onPress={() => model.setSettingsIsOpen(!model.settingsIsOpen)}
+          onPress={() => {
+            model.setSortingIsOpen(!model.sortingIsOpen);
+          }}
         />
       ),
       headerLeft: () => (
         <Icon.Button
-          name="language-sharp"
+          name="settings"
           size={30}
           color="#fff"
           style={styles.hamburgerMenu}
-          onPress={() => model.setModalIsOpen(!model.modalIsOpen)}
+          onPress={() => model.setSettingsIsOpen(!model.settingsIsOpen)}
         />
       ),
     });

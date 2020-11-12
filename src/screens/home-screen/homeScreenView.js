@@ -26,25 +26,77 @@ const HomeScreenView = ({model, controller, styles}) => {
     setCurrentId,
     currentTitle,
     setCurrentTitle,
+    settingsIsOpen,
+    setSettingsIsOpen,
+    modalIsOpen,
+    setModalIsOpen,
+    sortingIsOpen,
+    setSortingIsOpen,
   } = model;
-  const {goToRecipeScreen} = controller;
+  const {goToRecipeScreen, goToNewRecipe, sortRecipes} = controller;
 
   const PopUpMenu = () => {
     return (
       <Menu
-        opened={model.settingsIsOpen}
-        onBackdropPress={() => model.setSettingsIsOpen(false)}>
+        opened={settingsIsOpen}
+        onBackdropPress={() => setSettingsIsOpen(false)}>
         <MenuTrigger text="" />
         <MenuOptions
           optionsContainerStyle={styles.popUpWrapper}
           style={styles.optionsWrapper}>
           <MenuOption
+            onSelect={() => {
+              setModalIsOpen(!modalIsOpen);
+              setSettingsIsOpen(false);
+            }}>
+            <Text style={styles.optionText}>{model.t('language')}</Text>
+          </MenuOption>
+          <MenuOption
+            style={styles.optionBorder}
             onSelect={() =>
               Linking.openURL(
                 'https://github.com/algailoc/RecipeBook/blob/master/Privacy%20Policy.md',
               )
             }>
             <Text style={styles.optionText}>{model.t('privacy_policy')}</Text>
+          </MenuOption>
+        </MenuOptions>
+      </Menu>
+    );
+  };
+
+  const SortingPopupMenu = () => {
+    return (
+      <Menu
+        opened={sortingIsOpen}
+        onBackdropPress={() => setSortingIsOpen(false)}>
+        <MenuTrigger text="" />
+        <MenuOptions
+          optionsContainerStyle={styles.sortingPopupWrapper}
+          style={styles.optionsWrapper}>
+          <MenuOption
+            onSelect={() => {
+              setSortingIsOpen(false);
+              console.log('Sorting by new pressed');
+            }}>
+            <Text style={styles.optionText}>{model.t('sort_by_new')}</Text>
+          </MenuOption>
+          <MenuOption
+            style={styles.optionBorder}
+            onSelect={() => {
+              setSortingIsOpen(false);
+              controller.sortRecipes('old');
+              console.log('Sorting by old pressed');
+            }}>
+            <Text style={styles.optionText}>{model.t('sort_by_old')}</Text>
+          </MenuOption>
+          <MenuOption
+            style={styles.optionBorder}
+            onSelect={() => {
+              setSortingIsOpen(false);
+              console.log('Sorting by name pressed');
+            }}>
+            <Text style={styles.optionText}>{model.t('sort_by_name')}</Text>
           </MenuOption>
         </MenuOptions>
       </Menu>
@@ -98,7 +150,7 @@ const HomeScreenView = ({model, controller, styles}) => {
       <View style={styles.newRecipeButton}>
         <Icon.Button
           style={{underlayColor: '#fff'}}
-          onPress={controller.goToNewRecipe}
+          onPress={goToNewRecipe}
           name="pluscircle"
           color="#C8271D"
           size={70}
@@ -114,6 +166,7 @@ const HomeScreenView = ({model, controller, styles}) => {
         title={currentTitle}
       />
       <PopUpMenu />
+      <SortingPopupMenu />
     </View>
   );
 };

@@ -4,6 +4,10 @@ export const en = {
   en: 'English',
   language_choice: 'App language',
 
+  sort_by_old: 'Sort by old',
+  sort_by_new: 'Sort by new',
+  sort_by_name: 'Sort by name',
+
   recipe_list: 'My Recipes',
   empty_list: 'There are no recipes yet \n' + 'You can start by adding one!',
   delete_recipe_confirm: 'Are you sure you want to delete ',

@@ -26,12 +26,20 @@ const HomeScreenController = (model) => {
     model.dispatch(setSystemLanguageAction({languageCode: lang}));
   };
 
+  const sortRecipes = (sortType) => {
+    if (sortType === 'old' && model.currentSortType !== 'old') {
+      model.recipeList.reverse();
+      model.setCurrentSortType('old');
+    }
+  };
+
   return {
     goToRecipeScreen,
     goToCreateScreen,
     goToNewRecipe,
     goToSettingsScreen,
     setSystemLanguage,
+    sortRecipes,
   };
 };
 

@@ -12,6 +12,11 @@ export const homeScreenStyles = StyleSheet.create({
     bottom: 25,
     right: 25,
   },
+  optionBorder: {
+    borderTopWidth: 1,
+    borderRadius: 20,
+    borderTopColor: 'darkgray',
+  },
   optionText: {
     fontSize: 16,
     textAlign: 'center',
@@ -20,6 +25,11 @@ export const homeScreenStyles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   popUpWrapper: {
+    alignSelf: 'center',
+    marginTop: '14%',
+    height: '10%',
+  },
+  sortingPopupWrapper: {
     alignSelf: 'center',
     marginTop: '14%',
     marginLeft: '50%',
