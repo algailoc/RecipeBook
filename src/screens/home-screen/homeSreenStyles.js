@@ -26,12 +26,12 @@ export const homeScreenStyles = StyleSheet.create({
   },
   popUpWrapper: {
     alignSelf: 'center',
-    // marginTop: '14%',
+    marginTop: '14%',
     height: '10%',
   },
   sortingPopupWrapper: {
     alignSelf: 'center',
-    // marginTop: '14%',
+    marginTop: '14%',
     marginLeft: '50%',
   },
   recipeImage: {

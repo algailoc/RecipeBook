@@ -115,8 +115,6 @@ const HomeScreenView = ({model, controller, styles}) => {
       <ImageBackground
         source={require('../../assets/img/background-1.jpg')}
         style={styles.imageBkg}>
-        <PopUpMenu />
-        <SortingPopupMenu />
         <FlatList
           style={styles.recipeList}
           ListEmptyComponent={ListEmptyComponent}
@@ -153,6 +151,8 @@ const HomeScreenView = ({model, controller, styles}) => {
           backgroundColor="#fff"
         />
       </View>
+      <PopUpMenu />
+      <SortingPopupMenu />
       <LanguageSettingsModal model={model} controller={controller} />
       <DeleteConfirmationComponent
         model={model}
