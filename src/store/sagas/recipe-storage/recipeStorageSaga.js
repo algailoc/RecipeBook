@@ -6,7 +6,6 @@ function* recipeStorageSaga() {
   // console.log('recipeStorageSaga loaded');
 
   yield takeLatest(LOAD_RECIPES_LIST, getRecipesListHandler);
-
 }
 
 export default recipeStorageSaga;

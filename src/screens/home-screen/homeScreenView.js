@@ -26,19 +26,41 @@ const HomeScreenView = ({model, controller, styles}) => {
     setCurrentId,
     currentTitle,
     setCurrentTitle,
+    settingsIsOpen,
+    setSettingsIsOpen,
+    modalIsOpen,
+    setModalIsOpen,
+    sortingIsOpen,
+    setSortingIsOpen,
   } = model;
-  const {goToRecipeScreen} = controller;
+  const {goToRecipeScreen, goToNewRecipe, sortRecipes} = controller;
+
+  const ListEmptyComponent = () => {
+    return (
+      <View style={styles.recipeListTextWrapper}>
+        <Text style={styles.recipeListText}>{model.t('empty_list')}</Text>
+      </View>
+    );
+  };
 
   const PopUpMenu = () => {
     return (
       <Menu
-        opened={model.settingsIsOpen}
-        onBackdropPress={() => model.setSettingsIsOpen(false)}>
+        opened={settingsIsOpen}
+        onBackdropPress={() => setSettingsIsOpen(false)}>
         <MenuTrigger text="" />
         <MenuOptions
           optionsContainerStyle={styles.popUpWrapper}
           style={styles.optionsWrapper}>
           <MenuOption
+            onSelect={() => {
+              setModalIsOpen(!modalIsOpen);
+              setSettingsIsOpen(false);
+            }}>
+            <Text style={styles.optionText}>{model.t('language')}</Text>
+          </MenuOption>
+          <MenuOption
+            style={styles.optionBorder}
             onSelect={() =>
               Linking.openURL(
                 'https://github.com/algailoc/RecipeBook/blob/master/Privacy%20Policy.md',
@@ -51,11 +73,51 @@ const HomeScreenView = ({model, controller, styles}) => {
     );
   };
 
-  const RecipeListComponent = () => {
-    if (recipeList[0] !== undefined) {
-      return (
+  const SortingPopupMenu = () => {
+    return (
+      <Menu
+        opened={sortingIsOpen}
+        onBackdropPress={() => setSortingIsOpen(false)}>
+        <MenuTrigger text="" />
+        <MenuOptions
+          optionsContainerStyle={styles.sortingPopupWrapper}
+          style={styles.optionsWrapper}>
+          <MenuOption
+            onSelect={() => {
+              setSortingIsOpen(false);
+              sortRecipes('new');
+            }}>
+            <Text style={styles.optionText}>{model.t('sort_by_new')}</Text>
+          </MenuOption>
+          <MenuOption
+            style={styles.optionBorder}
+            onSelect={() => {
+              setSortingIsOpen(false);
+              sortRecipes('old');
+            }}>
+            <Text style={styles.optionText}>{model.t('sort_by_old')}</Text>
+          </MenuOption>
+          <MenuOption
+            style={styles.optionBorder}
+            onSelect={() => {
+              setSortingIsOpen(false);
+              sortRecipes('name');
+            }}>
+            <Text style={styles.optionText}>{model.t('sort_by_name')}</Text>
+          </MenuOption>
+        </MenuOptions>
+      </Menu>
+    );
+  };
+
+  return (
+    <View>
+      <ImageBackground
+        source={require('../../assets/img/background-1.jpg')}
+        style={styles.imageBkg}>
         <FlatList
           style={styles.recipeList}
+          ListEmptyComponent={ListEmptyComponent}
           data={recipeList}
           renderItem={({item}) => (
             <TouchableOpacity
@@ -74,31 +136,13 @@ const HomeScreenView = ({model, controller, styles}) => {
               />
             </TouchableOpacity>
           )}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item) => item.id.toString()}
         />
-      );
-    } else {
-      return (
-        <View style={styles.recipeList}>
-          <View style={styles.recipeListTextWrapper}>
-            <Text style={styles.recipeListText}>{model.t('empty_list')}</Text>
-          </View>
-        </View>
-      );
-    }
-  };
-
-  return (
-    <View>
-      <ImageBackground
-        source={require('../../assets/img/background-1.jpg')}
-        style={styles.imageBkg}>
-        <RecipeListComponent />
       </ImageBackground>
       <View style={styles.newRecipeButton}>
         <Icon.Button
           style={{underlayColor: '#fff'}}
-          onPress={controller.goToNewRecipe}
+          onPress={goToNewRecipe}
           name="pluscircle"
           color="#C8271D"
           size={70}
@@ -107,13 +151,14 @@ const HomeScreenView = ({model, controller, styles}) => {
           backgroundColor="#fff"
         />
       </View>
+      <PopUpMenu />
+      <SortingPopupMenu />
       <LanguageSettingsModal model={model} controller={controller} />
       <DeleteConfirmationComponent
         model={model}
         id={currentId}
         title={currentTitle}
       />
-      <PopUpMenu />
     </View>
   );
 };

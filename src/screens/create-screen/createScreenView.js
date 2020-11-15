@@ -47,7 +47,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
   //       keyExtractor={(item) => item.id.toString()}
   //       renderItem={({item}) => {
   //         return (
-  //           <TouchableOpacity
+  //           <Pressable
   //             onLayout={(event) => {
   //               let {height} = event.nativeEvent.layout;
   //               setItemHeight(height);
@@ -59,7 +59,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
   //               <Text style={styles.itemText}>{item.amount}</Text>
   //               <Text style={styles.itemText}>{item.unit}</Text>
   //             </View>
-  //           </TouchableOpacity>
+  //           </Pressable>
   //         );
   //       }}
   //     />
@@ -91,6 +91,7 @@ export const CreateScreenView = ({styles, model, controller}) => {
           style={styles.recipeName}
         />
         <Text style={styles.section}>{t('ingredients_list')}</Text>
+        {/*<IngredientsView />*/}
         <FlatList
           data={ingredients}
           keyExtractor={(item) => item.id.toString()}

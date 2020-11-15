@@ -1,4 +1,5 @@
 import {
+  CHANGE_SORT_DIRECTION,
   LOAD_RECIPES_LIST,
   LOAD_RECIPES_LIST_BEGIN,
   LOAD_RECIPES_LIST_ERROR,
@@ -6,13 +7,14 @@ import {
 } from '../types/recipesListTypes';
 import {
   ADD_RECIPE_FINISHED,
-  CREATE_RECIPE_FINISHED,
   EDIT_RECIPE_FINISHED,
   REMOVE_RECIPE_FINISHED,
 } from '../types/recipeTypes';
+import {sortByName, sortByNew, sortByOld} from './helpers/sortingTypes';
 
 const initialState = {
   recipes: [],
+  sortDirection: 'new',
 };
 
 export const recipesListReducer = (state = initialState, action) => {
@@ -26,10 +28,32 @@ export const recipesListReducer = (state = initialState, action) => {
     }
 
     case LOAD_RECIPES_LIST_FINISHED: {
-      return {
-        ...state,
-        recipes: action.payload.reverse(),
-      };
+      switch (state.sortDirection) {
+        case 'new': {
+          return {
+            ...state,
+            recipes: action.payload.sort(sortByNew),
+          };
+        }
+        case 'old': {
+          return {
+            ...state,
+            recipes: action.payload.sort(sortByOld),
+          };
+        }
+        case 'name': {
+          return {
+            ...state,
+            recipes: action.payload.sort(sortByName),
+          };
+        }
+        default: {
+          return {
+            ...state,
+            recipes: action.payload.sort(sortByNew),
+          };
+        }
+      }
     }
 
     case LOAD_RECIPES_LIST_ERROR: {
@@ -37,26 +61,60 @@ export const recipesListReducer = (state = initialState, action) => {
       return state;
     }
 
-    // case CREATE_RECIPE_FINISHED: {
-    //   return {
-    //     ...state,
-    //     recipes: [...state.recipes, {id: action.payload.id}],
-    //   };
-    // }
-
     case ADD_RECIPE_FINISHED: {
-      return {
-        ...state,
-        recipes: [
-          {
-            id: action.payload.id,
-            title: action.payload.title,
-            imagePath: action.payload.imagePath,
-          },
-          ...state.recipes,
-        ],
-      };
+      switch (state.sortDirection) {
+        case 'new': {
+          return {
+            ...state,
+            recipes: [
+              {
+                id: action.payload.id,
+                title: action.payload.title,
+                imagePath: action.payload.imagePath,
+              },
+              ...state.recipes,
+            ],
+          };
+        }
+        case 'old': {
+          return {
+            ...state,
+            recipes: [
+              ...state.recipes,
+              {
+                id: action.payload.id,
+                title: action.payload.title,
+                imagePath: action.payload.imagePath,
+              },
+            ],
+          };
+        }
+        default: {
+          return {
+            ...state,
+            recipes: [
+              {
+                id: action.payload.id,
+                title: action.payload.title,
+                imagePath: action.payload.imagePath,
+              },
+              ...state.recipes,
+            ],
+          };
+        }
+      }
     }
+    // return {
+    //   ...state,
+    //   recipes: [
+    //     {
+    //       id: action.payload.id,
+    //       title: action.payload.title,
+    //       imagePath: action.payload.imagePath,
+    //     },
+    //     ...state.recipes,
+    //   ],
+    // };
 
     case REMOVE_RECIPE_FINISHED: {
       return {
@@ -75,6 +133,13 @@ export const recipesListReducer = (state = initialState, action) => {
           }
           return item;
         }),
+      };
+    }
+
+    case CHANGE_SORT_DIRECTION: {
+      return {
+        ...state,
+        sortDirection: action.payload,
       };
     }
 

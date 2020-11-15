@@ -1,5 +1,9 @@
 import {createRecipe, getRecipe} from '../../store/actions/recipeActionCreator';
 import {setSystemLanguageAction} from '../../store/actions/systemActionCreator';
+import {
+  changeSortDirection,
+  loadRecipesList,
+} from '../../store/actions/recipesListActionCreator';
 
 const HomeScreenController = (model) => {
   const goToNewRecipe = () => {
@@ -26,12 +30,18 @@ const HomeScreenController = (model) => {
     model.dispatch(setSystemLanguageAction({languageCode: lang}));
   };
 
+  const sortRecipes = (sortType) => {
+    model.dispatch(changeSortDirection(sortType));
+    model.dispatch(loadRecipesList());
+  };
+
   return {
     goToRecipeScreen,
     goToCreateScreen,
     goToNewRecipe,
     goToSettingsScreen,
     setSystemLanguage,
+    sortRecipes,
   };
 };
 

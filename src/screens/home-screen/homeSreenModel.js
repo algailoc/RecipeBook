@@ -9,15 +9,19 @@ const HomeScreenModels = () => {
   const dispatch = useDispatch();
 
   const recipeList = useSelector((state) => state.recipesList.recipes);
+  const sortDirection = useSelector((state) => state.recipesList.sortDirection);
 
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [settingsIsOpen, setSettingsIsOpen] = useState(false);
+  const [sortingIsOpen, setSortingIsOpen] = useState(false);
+
   const [currentId, setCurrentId] = useState();
   const [currentTitle, setCurrentTitle] = useState();
 
   return {
+    sortDirection,
     currentId,
     currentTitle,
     recipeList,
@@ -26,11 +30,13 @@ const HomeScreenModels = () => {
     modalIsOpen,
     deleteModalVisible,
     settingsIsOpen,
+    sortingIsOpen,
     setCurrentId,
     setCurrentTitle,
     setModalIsOpen,
     setSettingsIsOpen,
     setDeleteModalVisible,
+    setSortingIsOpen,
     navigation,
     t,
     dispatch,

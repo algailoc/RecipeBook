@@ -3,6 +3,7 @@ import {
   LOAD_RECIPES_LIST_BEGIN,
   LOAD_RECIPES_LIST_FINISHED,
   LOAD_RECIPES_LIST_ERROR,
+  CHANGE_SORT_DIRECTION,
 } from '../types/recipesListTypes';
 
 export function loadRecipesList() {
@@ -33,6 +34,14 @@ export function loadRecipesListError(error) {
   const action = {
     type: LOAD_RECIPES_LIST_ERROR,
     payload: error,
+  };
+  return action;
+}
+
+export function changeSortDirection(sortDirection) {
+  const action = {
+    type: CHANGE_SORT_DIRECTION,
+    payload: sortDirection,
   };
   return action;
 }

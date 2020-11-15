@@ -51,6 +51,14 @@ export const ServingsDropDown = ({servings, setServings}) => {
             label: '10',
             value: '10',
           },
+          {
+            label: '11',
+            value: '11',
+          },
+          {
+            label: '12',
+            value: '12',
+          },
         ]}
         defaultValue={servings}
         containerStyle={styles.dropDownContainer}
