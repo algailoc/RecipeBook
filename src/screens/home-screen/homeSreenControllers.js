@@ -1,5 +1,9 @@
 import {createRecipe, getRecipe} from '../../store/actions/recipeActionCreator';
 import {setSystemLanguageAction} from '../../store/actions/systemActionCreator';
+import {
+  changeSortDirection,
+  loadRecipesList,
+} from '../../store/actions/recipesListActionCreator';
 
 const HomeScreenController = (model) => {
   const goToNewRecipe = () => {
@@ -27,10 +31,8 @@ const HomeScreenController = (model) => {
   };
 
   const sortRecipes = (sortType) => {
-    if (sortType === 'old' && model.currentSortType !== 'old') {
-      model.recipeList.reverse();
-      model.setCurrentSortType('old');
-    }
+    model.dispatch(changeSortDirection(sortType));
+    model.dispatch(loadRecipesList());
   };
 
   return {

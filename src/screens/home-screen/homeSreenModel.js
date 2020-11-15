@@ -9,6 +9,7 @@ const HomeScreenModels = () => {
   const dispatch = useDispatch();
 
   const recipeList = useSelector((state) => state.recipesList.recipes);
+  const sortDirection = useSelector((state) => state.recipesList.sortDirection);
 
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -19,11 +20,8 @@ const HomeScreenModels = () => {
   const [currentId, setCurrentId] = useState();
   const [currentTitle, setCurrentTitle] = useState();
 
-  const [currentSortType, setCurrentSortType] = useState('new');
-
   return {
-    currentSortType,
-    setCurrentSortType,
+    sortDirection,
     currentId,
     currentTitle,
     recipeList,

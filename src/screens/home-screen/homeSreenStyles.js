@@ -26,12 +26,12 @@ export const homeScreenStyles = StyleSheet.create({
   },
   popUpWrapper: {
     alignSelf: 'center',
-    marginTop: '14%',
+    // marginTop: '14%',
     height: '10%',
   },
   sortingPopupWrapper: {
     alignSelf: 'center',
-    marginTop: '14%',
+    // marginTop: '14%',
     marginLeft: '50%',
   },
   recipeImage: {
@@ -54,6 +54,7 @@ export const homeScreenStyles = StyleSheet.create({
   recipeListTextWrapper: {
     marginTop: '50%',
     alignSelf: 'center',
+    justifyContent: 'center',
     padding: 5,
     backgroundColor: '#fff',
     borderRadius: 50,

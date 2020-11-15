@@ -35,6 +35,14 @@ const HomeScreenView = ({model, controller, styles}) => {
   } = model;
   const {goToRecipeScreen, goToNewRecipe, sortRecipes} = controller;
 
+  const ListEmptyComponent = () => {
+    return (
+      <View style={styles.recipeListTextWrapper}>
+        <Text style={styles.recipeListText}>{model.t('empty_list')}</Text>
+      </View>
+    );
+  };
+
   const PopUpMenu = () => {
     return (
       <Menu
@@ -77,7 +85,7 @@ const HomeScreenView = ({model, controller, styles}) => {
           <MenuOption
             onSelect={() => {
               setSortingIsOpen(false);
-              console.log('Sorting by new pressed');
+              sortRecipes('new');
             }}>
             <Text style={styles.optionText}>{model.t('sort_by_new')}</Text>
           </MenuOption>
@@ -85,8 +93,7 @@ const HomeScreenView = ({model, controller, styles}) => {
             style={styles.optionBorder}
             onSelect={() => {
               setSortingIsOpen(false);
-              controller.sortRecipes('old');
-              console.log('Sorting by old pressed');
+              sortRecipes('old');
             }}>
             <Text style={styles.optionText}>{model.t('sort_by_old')}</Text>
           </MenuOption>
@@ -94,7 +101,7 @@ const HomeScreenView = ({model, controller, styles}) => {
             style={styles.optionBorder}
             onSelect={() => {
               setSortingIsOpen(false);
-              console.log('Sorting by name pressed');
+              sortRecipes('name');
             }}>
             <Text style={styles.optionText}>{model.t('sort_by_name')}</Text>
           </MenuOption>
@@ -103,11 +110,16 @@ const HomeScreenView = ({model, controller, styles}) => {
     );
   };
 
-  const RecipeListComponent = () => {
-    if (recipeList[0] !== undefined) {
-      return (
+  return (
+    <View>
+      <ImageBackground
+        source={require('../../assets/img/background-1.jpg')}
+        style={styles.imageBkg}>
+        <PopUpMenu />
+        <SortingPopupMenu />
         <FlatList
           style={styles.recipeList}
+          ListEmptyComponent={ListEmptyComponent}
           data={recipeList}
           renderItem={({item}) => (
             <TouchableOpacity
@@ -126,26 +138,8 @@ const HomeScreenView = ({model, controller, styles}) => {
               />
             </TouchableOpacity>
           )}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item) => item.id.toString()}
         />
-      );
-    } else {
-      return (
-        <View style={styles.recipeList}>
-          <View style={styles.recipeListTextWrapper}>
-            <Text style={styles.recipeListText}>{model.t('empty_list')}</Text>
-          </View>
-        </View>
-      );
-    }
-  };
-
-  return (
-    <View>
-      <ImageBackground
-        source={require('../../assets/img/background-1.jpg')}
-        style={styles.imageBkg}>
-        <RecipeListComponent />
       </ImageBackground>
       <View style={styles.newRecipeButton}>
         <Icon.Button
@@ -165,8 +159,6 @@ const HomeScreenView = ({model, controller, styles}) => {
         id={currentId}
         title={currentTitle}
       />
-      <PopUpMenu />
-      <SortingPopupMenu />
     </View>
   );
 };
